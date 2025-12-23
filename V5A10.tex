@@ -1089,7 +1089,7 @@ Then we have,
   \end{align*}
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}$\:$
   \begin{enumerate}
     \item $\sum_{n\leq x}{\frac 1 n} = \ln x + \psi + o\left({\frac 1 x}\right)$.
     \item $\sum_{n\leq x} {\frac 1 {n^s}} = {\frac {x^{1-s}} {1-s}}+\zeta(s)+o\left({\frac 1 {x^s}}\right)$, where $\Re(s)>0,s\not=1$. 
@@ -1101,6 +1101,7 @@ Then we have,
     & \Leftrightarrow \sum_{p\leq x}\ln p \sim x,\\
     & \Leftrightarrow \sum_{n\leq x}\mu(n) = o(x).
   \end{align*}
+  \label{corollary_analytic_continuation_zeta}
 \end{corollary}
 
 \begin{proof}Consider $f(t) = {\frac 1 {t^s}}$ and $a_n=1$ for all $n\in \N$. 
@@ -1449,6 +1450,7 @@ Suppose $\zeta(s)\not=0$, where $\Re(s)>0$, then Euler product exists.
 \end{remark}
 
 \begin{example}
+  \label{example_analytic_continuation_L}
   Let $\chi:\Z\to\C^\times$ be a non-principal character modulo $q$ and set $A(n) = \chi(n)$. 
   Recall that 
   \begin{equation*}
@@ -1471,35 +1473,82 @@ Suppose $\zeta(s)\not=0$, where $\Re(s)>0$, then Euler product exists.
     L(s,\chi_0) = \zeta(s)\prod_{p|q}\left(1-{\frac 1 {p^s}}\right).
   \end{equation*}
 \end{example}
- 
-  Analytic continuation of $L(s,\chi_0)$ for $\Re(s)>0$ except $s=1$ where it has a simple pole of residue, 
+
+\begin{theorem}
+  \label{theorem_analytic_continuation_zeta}
+  $\zeta$ has an analytic continuation for $\Re(s)>0$ besides $s=1$. For $s=1$ we have a simple pole of residue $1$.
+\end{theorem}
+
+\begin{proof}
+  Recall from the proof of Corollary \ref{corollary_analytic_continuation_zeta}. We have for $\Re(s)>1$,
   \begin{equation*}
-    \lim_{s\to 1}(s-1)L(s,\chi_0)=\prod_{p|q}\left(1-{\frac 1 p}\right)= {\frac {\phi(q)} q}.
+    \zeta(s) = {\frac {-s} {1-s}}-s\int_1^\infty {\frac {\{t\}} {t^{s+1}}}dt.
   \end{equation*}
+  The right hand side of the equation is analytic when $\Re(s)>0,s\not=1$.
+  When $s=1$, we have, 
+  \begin{equation*}
+    \lim_{s\to1^+}(s-1)\zeta(s) = \lim_{s\to1^+}\left(s-s(s-1)\int_1^\infty {\frac {\{t\}} {t^{s+1}}}dt\right) = 1.
+  \end{equation*}
+\end{proof}
+
+\begin{corollary}
+  For $\Re(s)>0$ and $s\not=1$, we have an analytic continuation of $L(s,\chi_0)$ where $\chi_0$ is a principal character modulo $q$, which is 
+  \begin{equation*}
+    L(s,\chi_0) = \zeta(s)\prod_{p|q}\left(1-{\frac 1 {p^s}}\right).
+  \end{equation*}
+  Obviously at $s=1$, it has a simple pole of residue $\prod_{p|q}\left(1-{\frac 1 {p^s}}\right)$, which we can write as 
+  \begin{equation*}
+    \Res(L(s,\chi_0),1) = {\frac {\varphi(q)} q}.
+  \end{equation*}
+\end{corollary}
+
+\begin{proof}
+  A direct corollary of Theorem \ref{theorem_analytic_continuation_zeta}.
+\end{proof}
+ 
   Suppose $\chi\not=\chi_0$, we have, analytic continuation of $L(s,\chi)\not=0$is  %later.
+
+\begin{theorem}
+  \label{theorem_analytic_continuation_L_chi}
+  Let $\chi$ be a non-principal character, then there is an analytic continuation of $L(s,\chi)$ for $\Re(s)>0$.
+\end{theorem}
+
+\begin{proof}
+  From Example \ref{example_analytic_continuation_L}, we have,
+  \begin{equation*}
+    L(s,\chi) = \sum_{n\in\N}{\frac {\chi(n)} {n^s}} = s\int_0^\infty {\frac {\sum_{n\leq t}\chi(n)} {t^{s+1}}}dt.
+  \end{equation*}
+  The right hand side is analytic. 
+\end{proof}
+
 \begin{theorem}
     \begin{equation*}
       \sum_{n\in\N}{\frac {a_n} {n^s}}
     \end{equation*}
     is analytic in its range of convergence. 
-  \end{theorem}
+\end{theorem}
 
-  Recall that 
-  \begin{equation*}
-    L({\frac 1 2}, \chi) = 0, \chi\not=\chi_0.?
+\begin{remark}
+  We have the following conjecture.
+    \begin{equation*}
+    L\left({\frac 1 2}, \chi\right) = 0, \chi\not=\chi_0.?
   \end{equation*}
   \begin{equation*}
-    \zeta({\frac 1 2})={\frac 1 {1-\sqrt{2}}}\sum_{n\in\N}{\frac {(-1)^{n-1}} {\sqrt{n}}}\approx -1.46\cdots
+    \zeta\left({\frac 1 2}\right)={\frac 1 {1-\sqrt{2}}}\sum_{n\in\N}{\frac {(-1)^{n-1}} {\sqrt{n}}}\approx -1.46\cdots
   \end{equation*}
+\end{remark}
 
   \begin{definition}
-    A quadratic characters is $\Image\chi\in\{\pm1\}$. which is a non-principal real character
+    A character is said to be quadratic if its values are either $\pm1$. 
   \end{definition}
 
-  \begin{align*}
-    L(s,\chi_0) & = 0\quad\text{ if } s=0,-2,-4, \text{ when $\chi$ is an even character}.\\
-    L(s,\chi_0) & = 0\quad\text{ if } s=-1,-3,-5, \text{ when $\chi$ is an odd character}.\\
+ \begin{remark}
+  We have,
+   \begin{align*}
+    L(s,\chi) & = 0\quad\text{ if } s=0,-2,-4, \text{ when $\chi$ is an even character}.\\
+    L(s,\chi) & = 0\quad\text{ if } s=-1,-3,-5, \text{ when $\chi$ is an odd character}.\\
   \end{align*}
+ \end{remark}
 
   \begin{lemma}
     For $\sigma>1$ and $t\in \R$, we have,
@@ -1508,8 +1557,9 @@ Suppose $\zeta(s)\not=0$, where $\Re(s)>0$, then Euler product exists.
     \end{equation*}
     And also,
     \begin{equation*}
-      \Re(3\ln(\zeta(\sigma))+4\ln(\zeta(\sigma+it))+\ln(\zeta(\sigma+2it))). 
+      \Re(3\ln(\zeta(\sigma))+4\ln(\zeta(\sigma+it))+\ln(\zeta(\sigma+2it)))\geq0. 
     \end{equation*}
+    \label{lemma_analytical_continuation_zeta}
   \end{lemma}
 
   \begin{proof}
@@ -1545,19 +1595,50 @@ Suppose $\zeta(s)\not=0$, where $\Re(s)>0$, then Euler product exists.
       \zeta(1+it_0)\not=0, t\not=0.
     \end{equation*}
   \end{proof}
-
-  Examine, ${\frac {\zeta'(s)} {\zeta(s)}}$.%later
-
   \begin{equation*}
     \zeta(s) = {\frac s {s-1}} + s\int_1^\infty {\frac {\{t\}} t^{s+1}}dt, 
   \end{equation*}
-
   \begin{theorem}
     For $t\in\R\backslash\{0\}$, we have 
     \begin{equation*}
       \zeta(1+it)\not=0.
     \end{equation*}
+    And for non-trivial character $\chi$ we have,
+    \begin{equation*}
+      L(1,\chi)\not=0.
+    \end{equation*}
+    \label{theorem_non_vanishing_zeta_s_1}
   \end{theorem}
+  \begin{proof}
+    
+  \end{proof}
+  \begin{theorem}
+  ${\frac {\zeta'(s)} {\zeta(s)}}$ has an analytic continuation to $\Re(s)=1,s\not=1$. And for $s=1$, we have a simple pole of residue $-1$.
+\end{theorem}
+
+\begin{proof}
+  We have,
+  \begin{equation*}
+    (s-1)\zeta(s) = s -s(s-1)\int_1^\infty {\frac {\{t\}} {t^{s+1}}}dt.
+  \end{equation*}
+  Set 
+  \begin{equation*}
+    f(s)\defeq 1 - (s-1)\int_1^\infty {\frac {\{t\}} {t^{s+1}}}dt,
+  \end{equation*}
+  so that $(s-1)\zeta(s) = sf(s)$. We already have $f(s)$ is analytic when $\Re(s)>0$. Differentiating both sides we get,
+  \begin{equation*}
+    (s-1)\zeta'(s)+\zeta(s) = sf'(s)+f(s).
+  \end{equation*}
+  Dividing both sides by $(s-1)\zeta(s)$ we get,
+  \begin{equation*}
+    {\frac {\zeta'(s)} {\zeta(s)}} + {\frac 1 {s-1}} = {\frac {sf'(s)+f(s)} {(s-1)\zeta(s)}}.
+  \end{equation*}
+  The right hand side is analytic when $\zeta$ does not vanish. From Theorem \ref{theorem_non_vanishing_zeta_s_1}, by letting $s=1+it$ for some $t\in\R\backslash\{0\}$, we get the desired analytic continuation. For $s=1$, we have 
+  \begin{equation*}
+     (s-1){\frac {\zeta'(s)} {\zeta(s)}} = {\frac {sf'(s)+f(s)} {\zeta(s)}}-1.
+  \end{equation*}
+  Recall that $\zeta(s)$ has a pole at $1$ and observe that $f(1) = 1, f'(s)$ is finite thus the last statement follows.
+\end{proof}
   %11/27
   \begin{lemma}
     Let $f\defeq \sum_{d|n}\chi(d)$, where $\chi$ is a character. We have,
