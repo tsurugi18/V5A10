@@ -11,6 +11,24 @@
 \usepackage{fancyhdr}
 \usepackage{tikz-cd} 
 \usetikzlibrary{arrows}
+
+\makeatletter
+\newcommand\RedeclareMathOperator{%
+  \@ifstar{\def\rmo@s{m}\rmo@redeclare}{\def\rmo@s{o}\rmo@redeclare}%
+}
+% this is taken from \renew@command
+\newcommand\rmo@redeclare[2]{%
+  \begingroup \escapechar\m@ne\xdef\@gtempa{{\string#1}}\endgroup
+  \expandafter\@ifundefined\@gtempa
+     {\@latex@error{\noexpand#1undefined}\@ehc}%
+     \relax
+  \expandafter\rmo@declmathop\rmo@s{#1}{#2}}
+% This is just \@declmathop without \@ifdefinable
+\newcommand\rmo@declmathop[3]{%
+  \DeclareRobustCommand{#2}{\qopname\newmcodes@#1{#3}}%
+}
+\@onlypreamble\RedeclareMathOperator
+\makeatother
 \newcommand{\midarrow}{\tikz \draw[-triangle 90] (0,0) -- +(.1,0);}
 
 \newtheorem{theorem}{Theorem} [section] 
@@ -26,6 +44,7 @@
 \newtheorem{example}{Example}[section] 
 \newtheorem{exercise}{Exercise}[section] 
 
+\RedeclareMathOperator{\Re}{Re}
 \DeclareMathOperator{\tmod}{mod}
 \DeclareMathOperator{\triv}{triv}
 \DeclareMathOperator{\straw}{s.t.}
@@ -174,6 +193,13 @@ By the integration by parts, we see that it's asymptotic expansion is
 \psi(x) = \sum_{\substack{m,p\\ p^m\leq x}}\ln p.
 \end{equation*}
 \end{definition}
+
+\begin{remark}
+  We can rewrite the second Chebyschev function as follows.
+  \begin{equation*}
+    \psi(x) = \sum_{\substack{p\leq x\\ m=\max\{n\in\N\sep p^n\leq x\}}}m\ln p.
+  \end{equation*}
+\end{remark}
 
 \begin{definition}[Möbius Function]
   Let $n\in\N$, we define,
@@ -552,7 +578,8 @@ For any $q<x$, we have
     \item $\sum_{d|n}\Lambda(d) = \log n $
     \item $\sum_{d|n}\mu(d)\log d = \Lambda(n)$.
   \end{enumerate}
-  And in particular $\sum_{d|n}\Lambda(d) = \log n $ holds
+  And in particular $\sum_{d|n}\Lambda(d) = \log n $ holds.
+  \label{theorem_von_mangoldot_sum}
 \end{theorem}
 
 \begin{proof}
@@ -592,6 +619,8 @@ For any $q<x$, we have
   \begin{equation*}
     \psi(x) = \sum_{d\leq x}\Lambda(d).
   \end{equation*}
+  This follows directly from the definition.
+  \label{remark_second_chebyschev_mangoldot}
 \end{remark}
 
 \begin{definition}[Dirichlet Series]
@@ -1500,6 +1529,7 @@ Suppose $\zeta(s)\not=0$, where $\Re(s)>0$, then Euler product exists.
   \begin{equation*}
     \Res(L(s,\chi_0),1) = {\frac {\varphi(q)} q}.
   \end{equation*}
+  \label{corollary_analytic_continuation_principal_character}
 \end{corollary}
 
 \begin{proof}
@@ -1586,31 +1616,25 @@ Suppose $\zeta(s)\not=0$, where $\Re(s)>0$, then Euler product exists.
     \begin{equation*}
       \Re(\ln(z))\leq %later
     \end{equation*}
-    Thus we get, 
-    \begin{equation*}
-      \vert \zeta(\sigma)^3\zeta(\sigma+it)^4\zeta(\sigma+2it)\vert \geq 1.
-    \end{equation*}
-    Suppose $\zeta(1+it_0)=0$, for $t_0\in\R\backslash\{0\}$, then, 
-    \begin{equation*}
-      \zeta(1+it_0)\not=0, t\not=0.
-    \end{equation*}
   \end{proof}
-  \begin{equation*}
-    \zeta(s) = {\frac s {s-1}} + s\int_1^\infty {\frac {\{t\}} t^{s+1}}dt, 
-  \end{equation*}
   \begin{theorem}
     For $t\in\R\backslash\{0\}$, we have 
     \begin{equation*}
       \zeta(1+it)\not=0.
     \end{equation*}
-    And for non-trivial character $\chi$ we have,
-    \begin{equation*}
-      L(1,\chi)\not=0.
-    \end{equation*}
     \label{theorem_non_vanishing_zeta_s_1}
   \end{theorem}
   \begin{proof}
-    
+    Using Lemma \ref{lemma_analytical_continuation_zeta}, we have,
+    Thus we get, 
+    \begin{equation*}
+      \vert \zeta(\sigma)^3\zeta(\sigma+it)^4\zeta(\sigma+2it)\vert \geq 1.
+    \end{equation*}
+    Suppose $\zeta(1+it_0)=0$, for $t_0\in\R\backslash\{0\}$. Suppose further that the order of zero is $m\in\N$. Then by looking at, and taking $\sigma\to1+$
+    \begin{equation*}
+      \underbrace{((\sigma-1)\zeta(\sigma))}_{\to\text{finite}}^3\underbrace{\left({\frac {\zeta(\sigma+it_0)} {(\sigma-1)^m}}\right)}_{\to\text{non-zero}}^4\underbrace{((\sigma-1)^{4m-3}\zeta(\sigma+2it_0))}_{\to 0 }.
+    \end{equation*}
+    Contradicts to that the abosolute value of above expression is at least $1$.
   \end{proof}
   \begin{theorem}
   ${\frac {\zeta'(s)} {\zeta(s)}}$ has an analytic continuation to $\Re(s)=1,s\not=1$. And for $s=1$, we have a simple pole of residue $-1$.
@@ -1639,11 +1663,242 @@ Suppose $\zeta(s)\not=0$, where $\Re(s)>0$, then Euler product exists.
   \end{equation*}
   Recall that $\zeta(s)$ has a pole at $1$ and observe that $f(1) = 1, f'(s)$ is finite thus the last statement follows.
 \end{proof}
+\begin{theorem}
+  Let $\chi$ be a non-trivial non-real Dirichlet character of modulo $q$, then 
+  \begin{equation*}
+    L(1,\chi)\not=0.
+  \end{equation*}
+  \label{theorem_L_chi_non_vanishing}
+\end{theorem}
+\begin{proof}
+Recall that 
+\begin{equation*}
+  L(s,\chi) = \prod_{p}\left(1-{\frac {\chi(p)}{p^s}}\right)^{-1},
+\end{equation*}
+where $\Re(s)>1$. Now consider,
+\begin{equation*}
+  \log L(s,\chi) = \sum_{n,p}{\frac {\chi(p^s)} {np^{ns}}} = \sum_{n\geq 2}{\frac {\Lambda(n)\chi(n)} {n^s\log n}}.
+\end{equation*}
+Set $\zeta_{\varphi(q)} = e^{{\frac {2\pi i} {\varphi(q)}}}$. Then for any $n\in(\Z/q\Z)^\times$, there is $n'=n(n,q,\chi)$ (ie $n'$ depends on $n,q$, and $\chi$) such that 
+\begin{equation*}
+  \chi(n) = \zeta_{\varphi(q)}^{n'}
+\end{equation*}
+Note that for a cyclic group $G = \langle g\rangle$, and a character $\chi:G\to\C^\times\in\hat{G}$, there is $a\in\{1,\cdots,\varphi(q)\}$ such that 
+\begin{equation*}
+  \chi(g) = \zeta_{\varphi(q)}^a.
+\end{equation*}
+We have, for $\sigma>1$
+\begin{equation*}
+  \Re(\log L(\sigma,\chi)) = \sum_{n\geq2}{\frac {\Lambda(n)\cos\left({\frac {2\pi i} {\varphi(q)}}\right)} {n^\sigma\log(n)}}.
+\end{equation*}
+By Lemma \ref{lemma_analytical_continuation_zeta}, we have,
+\begin{equation*}
+  \Re(3\zeta(\sigma)+4L(\sigma,\chi)+L(\sigma,\chi^2))\geq 0,
+\end{equation*}
+therefore,
+\begin{equation*}
+  \vert \zeta(\sigma)^3L(\sigma,\chi)^4L(\sigma,\chi^2)\vert\geq1.
+\end{equation*}
+Note that $\chi^2\not=\chi$ as it is non-real and $L(\sigma,\chi^2)$ is analytic by Theorem \ref{theorem_analytic_continuation_L_chi}. If $L(\sigma,\chi)=0$ then 
+\begin{equation*}
+  \zeta(\sigma)^3L(\sigma,\chi)^4
+\end{equation*}
+has a zero of order at least $1$. Thus this is a contradiction.
+\end{proof}
+
+\begin{lemma}For $k\in\Z_{\geq0}$, 
+  \begin{equation*}
+    \left({\frac {\sin\left(k+{\frac 1 2}\right)\theta} {\sin{\frac \theta 2}}}\right)^2 = 2k+1\sum_{j=1}^{2k}2(2k+1-j)\cos j\theta.
+  \end{equation*}
+  \label{lemma_trig_sum_cos}
+\end{lemma}
+
+\begin{theorem}
+  Let $f:\C\to\C$ be a fnction such that 
+  \begin{enumerate}[i).]
+    \item $f$ is analytic,
+    \item $f\not\equiv 0$,
+    \item $\log f(s) = \sum_{n\in\N}{\frac {a_n} {n^s}}$ for $a_n\geq0$ and $\Re(s)\geq1$,
+    \item $f$ is analytic on $\Re(s)=1,s\not=1$, and it has a pole at $s=1$ of order $e$.
+  \end{enumerate}
+  If $f(s)=0$ on the line $\Re(s)=1$, then the order of zero is at most ${\frac e 2}$.
+\end{theorem}
+
+\begin{proof}
+  For $e\leq 2k-1$, let us define,
+  \begin{equation*}
+    g(s)\defeq f(s)^{2k+1}\prod_{j=1}^{2k}f(s+ijt_0)^{2(2k+1-j)} = f(s)^{2k+1}f(s+it_0)^{4k}\cdots.
+  \end{equation*}
+  Then $f(s)^{2k+1}$ has a pole of order $e(2k+1)$ and $\prod_{j=1}^{2k}f(s+ijt_0)^{2(2k+1-j)}$ has a zero of order $2k(2k+1)$
+  Note that 
+  \begin{equation*}
+    2k(2k+1)-e(2k+1)\geq 1.
+  \end{equation*}
+  Thus $g$ has a zero at $1$ of order at least $1$, in particular, $g(1) = 0$.
+  \par Consider,
+  \begin{align*}
+    \log g(\sigma) & = (2k+1)\log f(\sigma)+\sum_{j=1}^{2k} 2(2k+1-j)\log(f(\sigma+ijt_0)),\\
+    & = (2k+1)\sum_{n\in\N}{\frac {a_n} {n^\sigma}}+\sum_{j=1}^{2k}2(2k+1-j)\left(\sum_{n\in\N}{\frac {a_n} {a^{\sigma+ijt_0}}}\right),\\
+    & = \sum_{n\in\N}{\frac {a_n} {n^\sigma}}\left(2k+1+\sum_{j=1}^{2k}2(2k+i-j)e^{-ijt_0\log(n)}\right).\\
+    \Re(\log(g(\sigma))) & = \sum_{n\in\N}{\frac {a_n} {n^\sigma}}\left(2k+1+\sum_{j=1}^{2k}2(2k+i-j)\cos(jt_0\log(n))\right).\\
+  \end{align*}
+  Using Lemma \ref{lemma_trig_sum_cos}, we get,
+  \begin{equation*}
+    \Re\log(g(\sigma)) = \sum_{n\geq1}{\frac {a_n} {n^\sigma}}\left({\frac {\sin\left(k+{\frac 1 2}\right)t_0\log(n)} {\sin{\frac {t_0\log(n)} 2}}}\right)^2\geq0.
+  \end{equation*}
+  Therefore $\vert g(\sigma)\vert \geq 1$ if $\Re g(\sigma)\geq1$.
+\end{proof}
+
+\begin{corollary}
+  For any Dirichlet character $\chi$ of modulo $q$ we have, $L(s,\chi)$ is analytic over $\Re(s)>1$. Furthermore $L(s,\chi)\not=0$ on $\Re(s)=1,s\not=1$.
+\end{corollary}
+
+\begin{proof}The first assertion is due to Theorem \ref{theorem_analytic_continuation_L_chi}. 
+  Let
+  \begin{equation*}
+    f(s) \defeq \prod_{\chi\tmod q}L(s,\chi).
+  \end{equation*}
+  Then,
+  \begin{equation*}
+    \log(f(s)) = \sum_{\chi\tmod q}\log L(s,\chi) = \sum_{n,p}{\frac {\sum_{\chi\tmod q} \chi(p^n)} {np^{ns}}},\Re(s)>1.
+  \end{equation*}
+  Using Theorem \ref{theorem_sum_character}, we get,
+  \begin{equation*}
+    \log(f(s)) = \sum_{\substack{n,p\\ p^n\equiv 1\tmod q}} {\frac {\varphi(q)} {np^{ns}}}.
+  \end{equation*}
+  Note $f$ has a pole of order at most $1$ at $\Re(s)=1$ and its residue is 
+  \begin{equation*}
+    \Res(f(s),1) = \left(\lim_{s\to1}(s-1)L(s,\chi_0)\right)\prod_{\substack{\chi\not=\chi_0\\ \chi\tmod q}}L(1,\chi) = {\frac {\varphi(q)} q}\prod_{\substack{\chi\not=\chi_0\\ \chi\tmod q}}L(1,\chi).
+  \end{equation*}
+  The right hand side is not $0$ by Theorem \ref{theorem_L_chi_non_vanishing}.
+\end{proof}
+
+\begin{theorem}
+  There are infinitely many primes.
+  \label{theorem_prime_infinite_ver_2}
+\end{theorem}
+
+\begin{proof}
+  We have,
+  \begin{align*}
+    \zeta(s) & = \prod_{p}\left(1-{\frac 1 {p^s}}\right)^{-1}.\\
+    \log\zeta(s) & = \sum_{n,p}{\frac 1 {np^{ns}}} = \sum_{p}{\frac 1 {p^s}}+\sum_{n\geq 2}{\frac 1 {np^{ns}}}.
+  \end{align*}
+  Since $\zeta$ has a pole at $1$, so does its log. Observe that at $s=1$,
+  \begin{equation*}
+    \sum_{p}{\frac 1 {p^s}}+\sum_{n\geq 2}{\frac 1 {np^{ns}}} \leq \sum_{p}\sum_{n\geq 2}{\frac 1 {p^n}} = \sum_{p}{\frac 1 {p^2}}{\frac 1 {1-{\frac 1 p}}} = \sum_{p} {\frac 1 {p(p-1)}} << \sum_{n\in\N}{\frac 1 {n^2}}.
+  \end{equation*} 
+  Thus $\lim_{s\to1^+}\sum_{p}{\frac 1 {p^s}}$ must be infinity.
+\end{proof}
+
+\begin{corollary}For any Dirichlet character $\chi$ of modulo $q$ we have,
+  $L(s,\chi)\not=0$ for $\Re(s)=1,s\not=1$.
+\end{corollary}
+
+\begin{proof}
+  Let 
+  \begin{equation*}
+    f(s) \defeq \prod_{\chi\tmod q}L(s,\chi).
+  \end{equation*}
+\end{proof}
+
+\begin{lemma}
+  Let $p$ be a prime and $a,q$ be coprimes such that $p\equiv a \tmod q$. Then we have,
+  \begin{equation*}
+    \sum_{\chi\tmod q}\chi(p^n)\overline{\chi(a)} = \begin{cases}
+      \varphi(q),\quad (p^n \equiv a \tmod q),\\
+      0,\quad(\otherwise).
+    \end{cases}
+  \end{equation*}
+  \label{lemma_dirichlet_lemma_1}
+\end{lemma}
+
+\begin{proof}
+  Since $\chi(a)$ is a $\varphi(q)$-th root of unity, we have, $\overline{\chi(a)} = \chi(a^{-1})$. Therefore,
+  \begin{align*}
+    \sum_{\chi\tmod q}\chi(p^n)\overline{\chi(a)} & = \sum_{\chi\tmod q}\chi(p^n)\chi(a^{-1}),\\
+    & = \sum_{\chi\tmod q}\chi(p^na^{-1}),\\
+    & = \begin{cases}
+      \varphi(q),\quad (p^na^{-1} \equiv 1 \tmod q),\\
+      0,\quad(\otherwise).
+    \end{cases}
+  \end{align*}
+\end{proof}
+
+\begin{theorem}[Dirichlet's Theorem]
+  Let $a,q$ be coprime. Then $(a+nq)_{n\in\N}$ contains infinitely many primes.
+\end{theorem}
+
+\begin{proof}
+  Motivated by the alternative proof of the existence of infinitely many primes, examine,
+  \begin{equation*}
+    \sum_{\chi\tmod q}\log L(s,\chi) = \sum_{n,p}\left({\frac {\sum_{\chi\tmod q} \chi(p^n)} {np^{ns}}}\right),
+  \end{equation*}
+  where $\Re(s)>1$. Using Theorem \ref{theorem_sum_character}, we have,
+  \begin{equation*}
+    \sum_{\chi\tmod q}\log L(s,\chi) = \sum_{\substack{n,p\\ p^n\equiv 1\tmod q}}{\frac {\varphi(q)} {np^{ns}}} = \sum_{p^n\equiv 1\tmod q}{\frac {\varphi(q)} {p^s}}+\sum_{\substack{p,n\geq2\\ p^n\equiv 1\tmod q}}{\frac {\varphi(q)} {np^{ns}}}.
+  \end{equation*}
+  Taking the log out we have,
+  \begin{equation*}
+    \prod_{\chi\tmod q}L(s,\chi) = \exp\left(\varphi(q)\left(\sum_{p^n\equiv 1\tmod q}{\frac {1} {p^s}}+\sum_{\substack{p,n\geq2\\ p^n\equiv 1\tmod q}}{\frac {1} {np^{ns}}}\right)\right).
+  \end{equation*}
+  Since for $\chi\not=\chi_0,L(1,\chi)\not=0$ and by Corollary \ref{corollary_analytic_continuation_principal_character}, we have,
+  \begin{equation*}
+    \lim_{s\to1^+}(s-1)\prod_{\chi\tmod q}L(s,\chi) = {\frac {\varphi(q)} q}\prod_{\substack{\chi\tmod q \\ \chi\not=\chi_0}}L(1,\chi).
+  \end{equation*}
+  By the same argument from Theorem \ref{theorem_prime_infinite_ver_2}, we see,
+  \begin{equation*}
+    \sum_{\substack{p,n\geq2\\p^n\equiv\tmod q}}{\frac 1 {np^{ns}}} \leq \sum_{n\in\N}{\frac 1 {n^2}} = {\frac {\pi^2} 6}.
+  \end{equation*}
+  However,
+  \begin{equation*}
+    \lim_{s\to1^+}(s-1)\exp\left(\varphi(q)\left(\sum_{p^n\equiv 1\tmod q}{\frac {1} {p^s}}+\sum_{\substack{p,n\geq2\\ p^n\equiv 1\tmod q}}{\frac {1} {np^{ns}}}\right)\right)\not=0
+  \end{equation*}
+  which is only possible when 
+  \begin{equation*}
+    \lim_{s\to1^+}\sum_{p^n\equiv 1\tmod q}{\frac 1 {p^s}} = \infty.
+  \end{equation*}
+  % Applying the second assertion of Theorem \ref{theorem_sum_character}, we see 
+  \par Together with Lemma \ref{lemma_dirichlet_lemma_1}, we derived the general statement.
+\end{proof}
+
+\begin{theorem}[Bertrand's Postulate]
+  For a sufficiently large $n\in\N$, there is a prime number inbetween $n$ and $2n$.
+\end{theorem}
+\begin{proof}
+  Consider the second Chebyschev function, and by Remark \ref{remark_second_chebyschev_mangoldot}, we have,
+  \begin{equation*}
+    T(x)\defeq \sum_{l\leq x}\psi\left({\frac x l}\right) = \sum_{l\leq x}\sum_{n\leq {\frac x l}}\Lambda(n) = \sum_{\substack{l,n\\ ln\leq x}}\Lambda(n).
+  \end{equation*}
+  That is 
+  \begin{equation*}
+    \sum_{l\leq x}\psi\left({\frac x l}\right) = \sum_{m\leq x}\sum_{d|m}\Lambda(d).
+  \end{equation*}
+  By Theorem \ref{theorem_von_mangoldot_sum}, 
+  \begin{equation*}
+    T(x) = \sum_{m\leq x}\log(m).
+  \end{equation*}
+    Using the definition,
+  \begin{align*}
+    T(x) - 2T\left({\frac x 2}\right) & = \sum_{l\leq x}\psi\left({\frac x l}\right)-2\sum_{2l\leq x}\psi\left({\frac x {2e}}\right),\\
+    & = \sum_{l\leq x}(-1)^{l+1}\psi\left({\frac x l}\right),\\
+    & = \psi(x) - \psi\left({\frac x 2}\right)+\cdots.
+  \end{align*}
+  Again by Remark \ref{remark_second_chebyschev_mangoldot}
+  \begin{equation*}
+     x\leq y\Rightarrow \psi(x)\leq \psi(y).
+  \end{equation*}
+  In particular, 
+  \begin{equation*}
+    \psi(x)-\psi\left({\frac x 2}\right) \leq \sum_{l\leq x}(-1)^{l+1}\psi\left({\frac x l}\right)\leq \psi(x)-\psi\left({\frac x 2}\right)+\psi\left({\frac x 3}\right).
+  \end{equation*}
+\end{proof}
+
   %11/27
   \begin{lemma}
-    Let $f\defeq \sum_{d|n}\chi(d)$, where $\chi$ is a character. We have,
+    Let $f\defeq \sum_{d|n}\chi(d)$, where $\chi$ is a character, then,
     \begin{equation*}
-      \forall n\in\N, f(n)\geq 0, f(n) \geq 1 \text{ if $n$ is a perfect square.}
+      \forall n\in\N, \text{$n$ is a perfect square}\Rightarrow f(n)\geq 0, f(n) \geq 1.
     \end{equation*}
   \end{lemma}
   \begin{proof}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.19)  23 DEC 2025 02:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.19)  26 DEC 2025 10:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -418,23 +418,24 @@ File: pgflibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \c@conjecture=\count320
 \c@example=\count321
 \c@exercise=\count322
+LaTeX Info: Redefining \Re on input line 47.
  (./V5A10.aux)
 \openout1 = `V5A10.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
  (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count323
@@ -454,15 +455,15 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 97.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 116.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 97.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 116.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 97.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 116.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
@@ -476,7 +477,7 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 [3]
 
 [4]
-Overfull \hbox (4.86212pt too wide) detected at line 352
+Overfull \hbox (4.86212pt too wide) detected at line 378
 \OML/cmm/m/it/10 ^^Y\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ; \OML/cmm/m/it/10 q; a\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10 jf[]gj
  []
 
@@ -486,7 +487,7 @@ Overfull \hbox (4.86212pt too wide) detected at line 352
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 461.
+(amsmath)                 on input line 487.
 
 
 
@@ -535,7 +536,7 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 [27]
 
 [28]
-Overfull \hbox (54.75406pt too wide) detected at line 1577
+Overfull \hbox (59.33739pt too wide) detected at line 1607
 []
  []
 
@@ -554,77 +555,87 @@ Overfull \hbox (54.75406pt too wide) detected at line 1577
 [34]
 
 [35]
-Overfull \hbox (12.38414pt too wide) detected at line 1817
-[]
- []
-
-
 
 [36]
 
 [37]
-Overfull \hbox (206.08125pt too wide) detected at line 1897
-[]
- []
-
-
 
 [38]
 
 [39]
-Overfull \hbox (32.66656pt too wide) detected at line 1964
-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1982--1984
-
- []
-
-
 
 [40]
-
-[41]
-Overfull \hbox (64.50711pt too wide) detected at line 2050
+Overfull \hbox (16.96747pt too wide) detected at line 2072
 []
  []
 
 
 
+[41]
+
 [42]
+Overfull \hbox (206.08125pt too wide) detected at line 2152
+[]
+ []
+
+
 
 [43]
 
 [44]
+Overfull \hbox (32.66656pt too wide) detected at line 2219
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2237--2239
+
+ []
+
+
 
 [45]
 
 [46]
+Overfull \hbox (64.50711pt too wide) detected at line 2305
+[]
+ []
+
+
 
 [47]
 
 [48]
 
-[49] (./V5A10.aux)
+[49]
+
+[50]
+
+[51]
+
+[52]
+
+[53]
+
+[54] (./V5A10.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 16216 strings out of 473190
- 339773 string characters out of 5715799
- 799252 words of memory out of 5000000
- 39181 multiletter control sequences out of 15000+600000
+ 16227 strings out of 473190
+ 340046 string characters out of 5715799
+ 799544 words of memory out of 5000000
+ 39192 multiletter control sequences out of 15000+600000
  568733 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  116i,17n,121p,537b,685s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on V5A10.pdf (49 pages, 369394 bytes).
+Output written on V5A10.pdf (54 pages, 384426 bytes).
 PDF statistics:
- 262 PDF objects out of 1000 (max. 8388607)
- 171 compressed objects within 2 object streams
+ 277 PDF objects out of 1000 (max. 8388607)
+ 181 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
