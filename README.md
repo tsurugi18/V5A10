@@ -1,1 +1,2 @@
 # V5A10
+## Typed lecture note of Analytical Number Theory course from UniBonn WS 2025/26. I do not guarantee any completeness of the note, therefore should it be used at your own risk. Although, if you find any mistakes, you can reach me out by s18smura@uni-bonn.de. I'm more than happy to correct any mistakes on my notes.
