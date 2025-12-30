@@ -45,6 +45,7 @@
 \newtheorem{exercise}{Exercise}[section] 
 
 \RedeclareMathOperator{\Re}{Re}
+\RedeclareMathOperator{\Im}{Im}
 \DeclareMathOperator{\tmod}{mod}
 \DeclareMathOperator{\triv}{triv}
 \DeclareMathOperator{\straw}{s.t.}
@@ -489,6 +490,7 @@ For any $q<x$, we have
 \end{proof}
 
 \begin{proposition}[Möbius Inversion Formula]
+  \label{proposition_inversion_formula}
   Let $f,g:\N\to\C$ be functions (we do not assume them to be multiplicative). If 
   \begin{equation*}
     \sum_{d|n}g(d) = f(n),
@@ -655,6 +657,7 @@ we get this equals to ${\frac 1 2 }\ln2$.
   \begin{equation*}
     {\frac 1 {\zeta(s)}} = \sum_{n\geq 1}{\frac {\mu(n)} {n^s}}.
   \end{equation*}
+  \label{theomre_zeta_inverse}
 \end{theorem}
 \begin{proof}
   \begin{align*}
@@ -672,6 +675,7 @@ we get this equals to ${\frac 1 2 }\ln2$.
   \begin{equation*}
     \lim_{n\to\infty} {\frac {\log n} {n^\varepsilon}}=0.
   \end{equation*}
+  \label{theorem_log_zeta_mangoldot}
 \end{theorem}
 \begin{proof}
   \begin{align*}
@@ -1076,6 +1080,7 @@ Hint first show that
 \end{equation*}
 
 \begin{proposition}[Abels' summation formula]
+  \label{proposition_abel_summation}
 \par Given $(a_n)_{n\in \N}$ in $\C$ and $f(n)$ is continuously differentiable in $[1,x]$. Set
 \begin{equation*}
   A(x) \defeq \sum_{n\leq x}a_n.
@@ -1226,6 +1231,7 @@ can be written as
   & = o(x).
 \end{align*}
 \begin{remark}
+  \label{remark_chebyschev_functions_relation}
   \begin{equation*}
     \psi(x) = \sum_{n\leq x}s(n) = \sum_{1\leq k, p^k\leq x}\ln p.
   \end{equation*}
@@ -1638,6 +1644,7 @@ Suppose $\zeta(s)\not=0$, where $\Re(s)>0$, then Euler product exists.
   \end{proof}
   \begin{theorem}
   ${\frac {\zeta'(s)} {\zeta(s)}}$ has an analytic continuation to $\Re(s)=1,s\not=1$. And for $s=1$, we have a simple pole of residue $-1$.
+  \label{thorem_zeta_zeta_derivatie_residue}
 \end{theorem}
 
 \begin{proof}
@@ -1892,14 +1899,175 @@ has a zero of order at least $1$. Thus this is a contradiction.
   \begin{equation*}
     \psi(x)-\psi\left({\frac x 2}\right) \leq \sum_{l\leq x}(-1)^{l+1}\psi\left({\frac x l}\right)\leq \psi(x)-\psi\left({\frac x 2}\right)+\psi\left({\frac x 3}\right).
   \end{equation*}
+  Recall Proposition \ref{proposition_abel_summation}, consider 
+  \begin{equation*}
+    A(x) = \sum_{n\leq x}1 = \lfloor x\rfloor,
+  \end{equation*}
+  and since $\log(x)$ is continuously differentiable on $[1,x]$, we have,
+  \begin{align*}
+    T(x) = \lfloor x\rfloor\log(x) - \int_1^x{\frac {\lfloor x\rfloor} x}dx = x\log(x) - x+O(\log(x)).
+  \end{align*}
+  Therefore, 
+  \begin{align*}
+    T(x) - 2T\left({\frac x 2}\right) & = x\log(x)-x+O(\log(x))-2\left({\frac x 2}\log\left({\frac x 2}\right)-{\frac x 2}+O(\log(x))\right),\\
+    & = \log2\cdot x + O(\log(x)).
+  \end{align*}
+  Combining with the previous result, we get,
+  \begin{equation*}
+    \psi(x)-\psi\left({\frac x 2}\right)\leq (\log2)x+O(\log(x))\leq \psi(x)-\psi\left({\frac x 2}\right)+\psi\left({\frac x 3}\right).
+  \end{equation*}
+  Generalizing this we obtain,
+  \begin{equation*}
+    \psi\left({\frac x {2^{n-1}}}\right)-\left({\frac x {2^n}}\right)\leq \log(2){\frac x {2^{n-1}}}+O(\log(x)).
+  \end{equation*}
+  By induction, we obtain,
+  \begin{align*}
+    \psi(x)-\psi\left({\frac x {2^n}}\right) &\leq (\log2)x\left(1+{\frac 1 2}+\cdots+{\frac 1 {2^{n-1}}}\right)+O(n\log(x)),\\
+    &\leq (2\log2)x+O(n\log(x)).\tag{$\psi1$}
+    \label{eq_psi_1}
+  \end{align*}
+  Take $n$ to be the maximal such that $2^n\leq x$ that is $\lfloor{\frac x {2^n}}\rfloor = 1$. Then, $\psi\left({\frac x {2^n}}\right)=0$, thus,
+  \begin{equation*}
+    \psi(x) \leq (2\log2)x+O((\log(x))^2).
+  \end{equation*}
+  On the other hand,
+  \begin{align*}
+    \psi(x)-\psi\left({\frac x 2}\right) +\psi\left({\frac x 3}\right) &\geq (\log2)x+O(\log(x)),\\
+    \Rightarrow \psi(x)-\psi\left({\frac x 2}\right) &\geq (\log(2))x+O(\log(x))-\psi\left({\frac x 3}\right) 
+  \end{align*}
+  Using Inequality \eqref{eq_psi_1}, we get,
+  \begin{align*}
+    \psi(x)-\psi\left({\frac x 2}\right) & \geq (\log2)x+O(\log(x))-(2\log2){\frac x 3}+O((\log(x))^2),\\
+    & = (\log2){\frac x 3}+O((\log(x))^2).\tag{$\psi2$}\label{eq_psi_2}
+  \end{align*}
+  Using Remark \ref{remark_chebyschev_functions_relation}, that is 
+  \begin{equation*}
+    \psi(x)-\theta(x) = O(\sqrt{x}\log(x)),
+  \end{equation*}
+  together with Inequalities \eqref{eq_psi_1} and \eqref{eq_psi_2}, we obtain,
+  \begin{align*}
+    \theta(x)-\theta\left({\frac x 2}\right) &\geq (\log2){\frac x 3}+O(\sqrt{x}\log(x)).
+  \end{align*}
+  Thus the right hand side is greater than $0$ if $x$ is sufficiently large with coefficient, therefore by definition of $\theta$, we have,
+  \begin{equation*}
+    \theta(x)-\theta\left({\frac x 2}\right) = \sum_{{\frac x 2}\leq p\leq x}\log(p)>0.
+  \end{equation*}
 \end{proof}
 
+\begin{theorem}[Chebyschev]
+  %later do we actually need this?
+\end{theorem}
+
+\subsection{Ikehara-Wiener Theorem and Its Applications}
+
+\begin{theorem}[Ikehara-Wiener]
+  \label{theorem_ikehara_wiener}
+  Let $(b_n)_{n\in\N}$ be a sequence of non-negative numbers and set,
+  \begin{equation*}
+    f(s) = \sum_{n\in\N}{\frac {b_n} {n^s}}.
+  \end{equation*}
+  Suppose 
+  \begin{enumerate}[i).]
+    \item the series converges abslutely for $\Re(s)>1$,
+    \item $f$ has an analytic continuation to $\Re(s)=1$ except $s=1$,
+    \item $f$ has a simple pole at $s=1$ with residue $R\geq0$.
+  \end{enumerate}
+  Then we have,
+  \begin{equation*}
+    \sum_{n\leq x}b_n = Rx+O(x).
+  \end{equation*}
+  That is 
+  \begin{equation*}
+    \lim_{x\to\infty}{\frac {\sum_{n\leq x}b_n} {x}} = R.
+  \end{equation*}
+\end{theorem}
+
+\begin{lemma}
+  Let $\chi$ be a Dirichlet character modulo $q$, then 
+  \begin{equation*}
+    L(s,\chi)^{-1} = \sum_{n\in\N}{\frac {\chi(n)\mu(n)} {n^s}}.
+  \end{equation*}
+  \label{lemma_dirichlet_inverse}
+\end{lemma}
+
+\begin{proof}
+We immitate the proof of Theorem \ref{theomre_zeta_inverse}. Using Theorem \ref{mobius_identity},
+\begin{align*}
+  L(s,\chi)\left(\sum_{n\in\N}{\frac {\mu(n)\Lambda(n)} {n^s}}\right) & = \sum_{t\in\N}\sum_{n|t}{\frac {\chi\left({\frac t n}\right)\chi(n)\mu(n)} {t^s}} = \sum_{t\in\N}\chi(t)\sum_{n|t}\mu(n) = 1.
+\end{align*}
+\end{proof}
+
+\begin{theorem}
+  \label{theorem_L_inverse}
+  Let $\chi$ be a character then, for $\Re(s)>1$,
+  \begin{equation*}
+    -{\frac {L'(s,\chi)} {L(s,\chi)}} = \sum_{n\in\N}{\frac {\chi(n)\Lambda(n)} {n^s}}.
+  \end{equation*}
+\end{theorem}
+
+\begin{proof}
+  By Lemma \ref{lemma_dirichlet_inverse} and Proposition \ref{proposition_inversion_formula}
+  \begin{align*}
+    -{\frac {L'(s,\chi)} {L(s,\chi)}} & = \left(\sum_{t\in\N}{\frac {\chi(n)\log(t)} {t^s}}\right)\left(\sum_{n\in\N}{\frac {\mu(n)\chi(n)} {n^s}}\right),\\
+    & = \sum_{t\in\N}\chi(t)\sum_{n|t}{\frac {\mu\left({\frac t n}\right)\log(n)} {t^{s}}},\\
+    & = \sum_{n\in\N}{\frac {\chi(n)\Lambda(n)} {n^s}}.
+  \end{align*}
+\end{proof}
+
+\begin{definition}
+  \begin{equation*}
+    \psi(x,q,a) = \sum_{\substack{n\leq x\\ n\equiv a\tmod q}}\Lambda(n).
+  \end{equation*}
+\end{definition}
+
+\begin{proposition}
+  As $x\to\infty$, we have,
+  \begin{equation*}
+    \psi(x,q,a) \sim {\frac x {\varphi(q)}}.
+  \end{equation*}
+\end{proposition}
+
+\begin{proof}
+  Consider 
+  \begin{equation*}
+    \sum_{\chi\tmod q}\overline{\chi}(a)\left(\sum_{n\in\N}{\frac {\chi(n)\Lambda(n)} {n^s}}\right) =\sum_{n\in\N}{\frac {\Lambda(n)} {n^s}}\left(\sum_{\chi\tmod q}\chi(a^{-1}n)\right)
+  \end{equation*}
+  Using Lemma \ref{lemma_dirichlet_lemma_1}, we get,
+  \begin{equation*}
+    -{\frac {1} {\varphi(q)}}\sum_{\chi\tmod q}\overline{\chi}(a){\frac {L'(s,\chi)} {L(s,\chi)}}= \varphi(q)\sum_{n\equiv a\tmod q}{\frac {\Lambda(n)} {n^s}}.
+  \end{equation*}
+  Recall from Corollary \ref{corollary_analytic_continuation_principal_character}, we have,
+  \begin{equation*}
+    \Res(L(s,\chi_0),1) = {\frac {\varphi(q)} {q}}.
+  \end{equation*}
+  And by Theorem \ref{theorem_analytic_continuation_L_chi}, $L(s,\chi)$ is analytic at $s=1$ for $\chi\not=\chi_0$. Also using Theorem \ref{theorem_non_vanishing_zeta_s_1}, we have 
+  \begin{equation*}
+    \chi\not=\chi_0\Rightarrow {\frac {L'(s,\chi)}{L(s,\chi)}} \text{ is analytic for $\Re(s)\geq1$}.
+  \end{equation*}
+  Furthermore, we have Theorem \ref{thorem_zeta_zeta_derivatie_residue}, we have 
+  \begin{equation*}
+    \Res\left({\frac {\zeta'(s)} {\zeta(s)}},1\right) = -1.
+  \end{equation*}
+  Combining these, we get, 
+  \begin{equation*}
+    \lim_{s\to1}(s-1)\left(-{\frac 1{\varphi(q)}}\sum_{\substack{\chi\tmod q\\\chi\not=\chi_0}}{\frac {L'(s,\chi)} {L(s,\chi)}}-{\frac 1 {\varphi(q)}}{\frac {L'(s,\chi_0)} {L(s,\chi_0)}}\right) = {\frac 1 {\varphi(q)}}.
+  \end{equation*}
+  Now Using Theorem \ref{theorem_ikehara_wiener}, and apply $b_n=\Lambda(n)$ $f = \varphi(q)\sum_{n\equiv a\tmod q}{\frac {\Lambda(n)}{n^s}}$, we get,
+  \begin{equation*}
+    \psi(x,q,a) = \sum_{n\leq x}\Lambda(n) = {\frac 1 {\varphi(q)}}x+O(x).
+  \end{equation*}
+\end{proof}
+
+%Later
+
+\subsection{$L(s,\chi)\not=0$ for Quadratic Characters}
   %11/27
   \begin{lemma}
     Let $f\defeq \sum_{d|n}\chi(d)$, where $\chi$ is a character, then,
     \begin{equation*}
       \forall n\in\N, \text{$n$ is a perfect square}\Rightarrow f(n)\geq 0, f(n) \geq 1.
     \end{equation*}
+    \label{lemma_quadratic_lower_bound}
   \end{lemma}
   \begin{proof}
     Recall $n= \prod_{p|n}p^{\alpha(p)}$. Using this we have,
@@ -1911,13 +2079,14 @@ has a zero of order at least $1$. Thus this is a contradiction.
         \prod_{p|n}\left({\frac {(1-(-1)^{\alpha(p)+1})} {2}}\right)\quad \chi(p) = - 1.
       \end{cases}
     \end{align*} 
-    Note that if $\alpha(p)$ are all even for $p|n$, we have the last part of the cases equals to $1$.
+    Note that if $\alpha(p)$ are all even for $p|n$ (ie. $n$ is a perfect square), we have the last part of the cases equals to $1$. Thus we have $f(n)\geq1$.
   \end{proof}
   \begin{theorem}
     Let $f(n) = \sum_{d|n}\chi(d)$ for some character. Then we have,
     \begin{equation*}
       \sum_{n\leq x}{\frac {f(n)} {\sqrt{n}}}= 2\sqrt{x}L(1,\chi)+o(1).
     \end{equation*}
+    \label{theorem_character_approx_sum}
   \end{theorem}
   \begin{proof}
     \begin{align*}
@@ -1926,7 +2095,7 @@ has a zero of order at least $1$. Thus this is a contradiction.
       & = \sum_{\substack{d,e\leq x\\ d\leq \sqrt{x}}}{\frac {\chi(d)} {\sqrt{de}}} +\sum_{\substack{de\leq x\\d>\sqrt{x}}}{\frac {\chi(d)} {\sqrt{de}}},\\
       & = \sum_{d\leq \sqrt{x}}{\frac {\chi(d)} {\sqrt{d}}}\left(\sum_{e\leq {\frac x d}}{\frac 1 {\sqrt{e}}}\right)+\sum_{e\leq\sqrt{x}}{\frac 1 {\sqrt{e}}}\left(\sum_{\sqrt{x}<d\leq {\frac x e}}{\frac {\chi(d)} {\sqrt(d)}}\right).
     \end{align*}
-    Recall that 
+    Recall that from Proposition \ref{proposition_abel_summation},
     \begin{equation*}
       \sum_{m\leq x}{\frac 1 {\sqrt{m}}} = 2\sqrt{x}+B+o\left({\frac 1 {\sqrt{x}}}\right),
     \end{equation*}
@@ -1963,26 +2132,31 @@ has a zero of order at least $1$. Thus this is a contradiction.
     $L(1,\chi)\not=0$ for a quadratic character $\chi$. 
   \end{corollary}
   \begin{proof}
-    To derive a contradiction, assume $L(1,\chi) = 0$. Then, from the theorem 
+    To derive a contradiction, assume $L(1,\chi) = 0$. Then, from Theorem \ref{theorem_character_approx_sum} and Lemma \ref{lemma_quadratic_lower_bound}
     \begin{equation*}
       o(1) = \sum_{n\leq x}{\frac {f(n)} {\sqrt{n}}} \geq \sum_{\substack{n\leq x\\ \text{$n$ is a square}}}{\frac 1 {\sqrt{n}}} = \sum_{m\leq\sqrt{x}}{\frac 1 m} = \log\sqrt{x}+o(1).
     \end{equation*}
     Thus we obtain $o(1)\geq \log\sqrt{x}+o(1)$ which is a cotradiction.
   \end{proof}
+
+  \begin{lemma}
+    Consider the following rectangle,
 \begin{center}
   \begin{tikzpicture}
-  \draw[->] (-1,0) -- (5,0);
-  \draw[->] (0,-3)node[left]{$-T$} -- (0,3)node[left]{$T$};
-  \draw[] (2,-3) -- (2,0)node[above left]{$1-{\frac 1 {\log T}}$} --(2,3);
-  \draw[very thick, red] (1,-2) -- (1,2)
-    -- (5,2) -- (5,-2) -- cycle;
+  \draw[->] (-1,0) -- (6,0);
+  \draw[->] (0,-3)--(0,-2) node[left]{$-T$} -- (0,2)node[left]{$T$}--(0,3);
+  \draw[very thick, dotted] (0,-2) -- (1,-2);
+  \draw[very thick, dotted] (0,2) -- (1,2);
+  \draw[very thick, red] (1,-2) -- (1,0)node[above left, black]{$\sigma_0$} -- (1,2)
+    -- (5,2)--(5,0)node[above right, black]{$2$} -- (5,-2) -- cycle;
+      \draw[] (2,-3) -- (2,0)node[above right]{$1$} --(2,3);
 \end{tikzpicture}
 \end{center}
-  \begin{lemma}
-    $\vert\zeta(s)\vert = o(\log T), T\to \infty$. That is there are $K>0$ and $T_0$ such that for any $T\geq T_0\geq 1$, we have,
-    \begin{equation*}
-      \vert\zeta(s)\vert\leq K\log T.
-    \end{equation*}
+where $\sigma_0 = 1-\log T$. On the boundary of the rectangle above, we have,
+    \begin{enumerate}
+      \item $\vert\zeta(s)\vert=O(\log T),T\to\infty$,
+      \item $\vert\zeta'(s)\vert = O((\log T)^2)$.
+    \end{enumerate}
   \end{lemma}
   \begin{proof}
     The first statement is due to the first derivative of $\zeta$ and it is assgined as an exercise. For the second part,
@@ -1993,7 +2167,7 @@ has a zero of order at least $1$. Thus this is a contradiction.
       & = \sum_{n\leq T}{\frac 1 {n^s}}-{\frac {\lfloor T\rfloor} {T^s}}+s\int_1^\infty {\frac {\lfloor t\rfloor} {t^{s+1}}}dt,\\
       & = \sum_{n\leq T}{\frac 1 {n^s}}+{\frac {T^{1-s}} {s-1}} + {\frac {\{ T\}}{T^s}}-s\int_T^\infty {\frac {\{u\}} {u^{s+1}}}du.
     \end{align*}
-    Note that the right hand side is analytic where $\Re(s)>0$ and $s\not=1$. Now we will extimate the last equation above on the boundary of the red rectangle above. Let $\sigma_0 = 1-{\frac 1 {\log T}}$.
+    Note that the right hand side is analytic where $\Re(s)>0$ and $s\not=1$. Now we will estimate the last equation above on the boundary of the rectangle above.
     \begin{align*}
       \left\vert\sum_{n\leq T}{\frac 1 {n^s}}\right\vert & << \int_1^T{\frac {du} {u^{\Re(s)}}},\\
       &\leq \int_1^T{\frac {du} {u^{\sigma_0}}},\\
@@ -2002,12 +2176,7 @@ has a zero of order at least $1$. Thus this is a contradiction.
     \end{align*}
     Observe that ,
     \begin{align*}
-      1-\sigma_0 & = {\frac 1 {\log T}},\\
-      T^{1-\sigma_0} & = T^{{\frac 1 {\log T}}},\\
-      & = e.\\
-      y & = T^{{\frac 1 {\log T}}},
-      \log y &= \log T{\frac 1 {\log T}} = 1.\\
-      \Rightarrow & y = e.
+      1-\sigma_0  = {\frac 1 {\log T}},T^{1-\sigma_0} = T^{{\frac 1 {\log T}}} = \exp(\log T^{{\frac 1 {\log T}}}) = \exp(1) = e.\\
     \end{align*}
     We also have,
     \begin{align*}
@@ -2022,58 +2191,123 @@ has a zero of order at least $1$. Thus this is a contradiction.
     \end{align*}
     Finally we have,
     \begin{align*}
-      & \leq \vert s\vert\int_T^\infty {\frac {du} {u^{\Re(s)+1}}},\\
+      \left\vert -s\int_T^\infty {\frac {\{u\}} {u^{s+1}}}du\right\vert& \leq \vert s\vert\int_T^\infty {\frac {du} {u^{\Re(s)+1}}},\\
       & = {\frac {\vert s\vert} {-\Re(s)u^{\Re(s)}}}\bigg{\vert}_T^\infty,\\
       & = {\frac {\vert s\vert} {\Re(s)T^{\Re(s)}}} ,\\
       & \leq {\frac {\vert s\vert} {T^{\Re(s)}}},\\
       & \leq {\frac {\sqrt{2^2+T^2}} {T^{\sigma_0}}},\\
       & << {\frac T {T^{\sigma_0}}} = T^{1-\sigma_0} = e.
     \end{align*}
-    It is an exercise to check,
+    For the second part, for $\Re(s)>0,s\not=1$,
     \begin{align*}
-      \vert \zeta'(s)\vert &\leq o((\log T)^2),\\
-      \zeta'(s) & = \sum_{n\leq T}{\frac {-\log n} {n^s}}+{\frac {T^{1-s}(-\log T)} {s-1}}+T^{1-s}{\frac {-1} {(s-1)^2}} + 
+      \zeta'(s) = &\sum_{n\leq T}{\frac {-\log n} {n^s}}+{\frac {T^{1-s}(-\log T)} {s-1}}+T^{1-s}{\frac {-1} {(s-1)^2}}\\
+      &+{\frac {\{T\}\log T} {T^s}}-\int_T^\infty {\frac {\{u\}} {u^{s+1}}}du + s\int_T^\infty {\frac {\{u\}\log u} {u^{s+1}}}du.
     \end{align*}
-    The rest is missing, check the lecture note.
+    This is obtained simply differentiating the equation,
+    \begin{equation*}
+      \zeta(s) = \sum_{n\leq T}{\frac 1 {n^s}}+{\frac {T^{1-s}} {s-1}}-{\frac {\{T\}} {T^s}}-s\int_T^\infty {\frac {\{u\}} {u^{s+1}}}du.
+    \end{equation*}
+    The statement can be shown using all the estimates obtained to show the first part.
   \end{proof}
 
-  \begin{theorem}
-    Let $f:n\to \C$ be an analytic, $\Lambda$ be a convex open set. Let $a,b\in\Lambda$, then ther eexists $z_1,z_2\in (a,b)$ such that 
+  \begin{theorem}[Complex Mean Value Theorem]
+    Let $f:\Omega\to \C$ be an analytic, where $\Omega$ is a convex open set. Let $a,b\in\Omega$, then there exists $z_1,z_2\in (a,b)$ such that 
     \begin{equation*}
       \Re(f'(z_1)) = \Re\left({\frac {f(b)-f(a)} {b-a}}\right), \Im(f'(z_2)) = \Im\left({\frac {f(b)-f(a)} {b-a}}\right).
     \end{equation*}
+    \label{theorem_complex_mean_value}
   \end{theorem}
 
   \begin{theorem}
-    Ther eexists constants $c_1,c_2$ such that 
+    There exists constants $c_1,c_2$ such that 
     \begin{equation*}
       1 - {\frac {c_1} {(\log T)^9}} \leq \sigma\leq 2, \vert \zeta(s)\vert >{\frac {c_2} {(\log T)^7}},
     \end{equation*}
-    where $1<\vert \Im(s)\leq T$. 
+    where $1<\vert \Im(s)\vert\leq T$. 
   \end{theorem}
 
   \begin{proof}
-    Recall that 
+    Recall Lemma \ref{lemma_analytical_continuation_zeta},
     \begin{equation*}
       \vert\zeta(\sigma)^3\zeta(\sigma+it)^4\zeta(\sigma+2it)\vert\geq 1, \sigma>1.
     \end{equation*}
     Thus we have,
     \begin{equation*}
-      \vert\zeta(\sigma+it)\vert^4 \geq\vert\zeta(\sigma)\vert^3\vert\zeta(\sigma+2it)\vert^{-1},
+      \vert\zeta(\sigma+it)\vert^4 \geq\vert\zeta(\sigma)\vert^{-3}\vert\zeta(\sigma+2it)\vert^{-1}\tag{$\ast$}\label{equ_zeta_inequ},
     \end{equation*}
-    $c_1$ is some (missing) constant which will be chosen later.\
-    \par Fix the domain $II$ where $1+{\frac {c_1} {(\log T)^9}}\leq \sigma\leq 2$, $1\leq\vert t\vert \leq T$.
+    Consider 
+    \begin{equation*}
+      \sigma'_0 = 1-{\frac {c_1} {(\log T)^9}},\sigma' = 1+{\frac {c_1} {(\log T)^9}}
+    \end{equation*}
+    $c_1$ is a positive constant which will be adjusted later.
+    \begin{center}
+  \begin{tikzpicture}
+  \draw[->] (-1,0) -- (6,0);
+  \draw[->] (0,-3)--(0,-2) node[left]{$-T$}--(0,-1.5)node[left]{$-t$}--(0,1.5)node[left]{$t$} -- (0,2)node[left]{$T$}--(0,3);
+  \draw[very thick, dotted] (0,-2) -- (1,-2);
+  \draw[very thick, dotted] (0,2) -- (1,2);
+  \draw[very thick, dotted] (0,-1.5) -- (1.5,-1.5);
+  \draw[very thick, dotted] (0,1.5) -- (1.5,1.5);
+  \draw[very thick, red] (1,-2) -- (1,0)node[above left, black]{$\sigma_0$} -- (1,2)
+    -- (5,2)--(5,0)node[above right, black]{$2$} -- (5,-2) -- cycle node[midway,below]{III};
+      \draw[] (2,-3) -- (2,0)node[above right]{$1$} --(2,3);
+      \draw[very thick,  blue] (1.5,-1.5) -- (1.5,0)node[above right, black]{$\sigma'_0$} --(1.5,1.5) -- (2.5,1.5) -- (2.5,-1.5)-- cyclenode[midway,below left]{I};
+      \draw[very thick, green] (2.5,-1.5) -- (2.5,0)node[above right,black]{$\sigma'$} --(2.5,1.5)--(5,1.5)--(5,-1.5)--cyclenode[midway,below]{II};
+\end{tikzpicture}
+\end{center}
+    \par Fix the domain II where $\sigma'\leq \sigma\leq 2$, $1\leq\vert t\vert \leq T$.
     \begin{align*}
-      \zeta(s) & = {\frac s {s-1}}-s\int_1^\infty {\frac {\{u\}} {u^{s+1}}}du, \Re(s)>0, s\not =1.
+      \zeta(s) & = {\frac s {s-1}}-s\int_1^\infty {\frac {\{u\}} {u^{s+1}}}du, \Re(s)>0, s\not =1.\\
       \zeta(\sigma) & = {\frac {\sigma-1+1} {\sigma-1}} - \sigma\int_1^\infty {\frac {\{u\}} {u^{t+1}}}dt.\\
       \zeta(\sigma)  & = 1+{\frac 1 {\sigma -1}}+o(1),\\
-      \zeta(\sigma & << {\frac 1 {\sigma -1}}), \sigma\to 1^+,\\
+      \zeta(\sigma) & << {\frac 1 {\sigma -1}}\text{ as } \sigma\to 1^+,\\
       \Rightarrow & \zeta(\sigma)^{-1}>>(\sigma-1), \sigma\to 1^{+}
     \end{align*}
-    We also have, 
+    On the domain II, we have, $\sigma'_0<\sigma\leq 2,1\leq \vert t\vert\leq T$, and thus
     \begin{equation*}
-      \vert\zeta(\sigma+2it)\vert  = o(\log T), 1-{\frac 1 {\log T}}
+      \vert\zeta(\sigma+2it)\vert  = O(\log T).
     \end{equation*}
+    Substituting these to Equation \eqref{equ_zeta_inequ}, we have,
+    \begin{align*}
+      \vert \zeta(\sigma+it)\vert^4&>>(1-\sigma)^3(\log T)^{-1},\\
+      &>>{\frac {c_1^3} {(\log T)^{27}}}(\log T)^{-1}.\\
+      \Rightarrow \vert \zeta(\sigma+it)\vert & >> {\frac {c_1^{{\frac 3 4}}} {(\log T)^7}}\tag{$D2$}\label{eq_ineq_domain_2},
+    \end{align*}
+    in the domain II.
+    \par On the domain I, similarly use Theorem \ref{theorem_complex_mean_value} with 
+    \begin{equation*}
+      a = \sigma'+it,b=\sigma+it,
+    \end{equation*}
+    where,
+    \begin{equation*}
+      1-{\frac {c_1} {(\log T)^9}}\leq \sigma\leq \sigma'.
+    \end{equation*}
+    We have,
+    \begin{equation*}
+      {\frac {\zeta(\sigma'+it)-\zeta(\sigma+it)} {\sigma'-\sigma}} = \Re(\zeta(z_1))+\Im(\zeta(z_2)).
+    \end{equation*}
+    Furthermore,
+    \begin{equation*}
+      \zeta(\sigma'+it)-\zeta(\sigma+it) = O((\sigma'-\sigma)(\log T)^2).
+    \end{equation*}
+    By the definition of $\sigma'$, we have,
+    \begin{equation*}
+      \zeta(\sigma'+it) = \zeta(\sigma+it)+O\left({\frac {c_1} {(\log T)^7}}\right).\tag{$D1$}\label{eq_ineq_domain_1}
+    \end{equation*}
+    Combining Equations \eqref{eq_ineq_domain_2} and \eqref{eq_ineq_domain_1}, there are some positive constants $A_1,A_2$ such that 
+    \begin{align*}
+      \vert\zeta(\sigma+it)\vert & \geq \vert\zeta(\sigma'+it)\vert-{\frac {A_1c_1} {(\log T)^7}},\\
+      & \geq {\frac {A_2c_1^{{\frac 3 4}}} {(\log T)^7}}-{\frac {A_1c_1} {(\log T)^7}}.
+    \end{align*}
+    Now take $c_1$ sufficiently small that in the region,
+    \begin{equation*}
+      \sigma_0'\leq \sigma\leq \sigma', 1\leq \vert t\vert \leq T,
+    \end{equation*}
+    we have,
+    \begin{equation*}
+      \vert\zeta(\sigma+it)\vert \geq {\frac {c_2} {(\log T)^7}}.
+    \end{equation*}
+    Again combining this with Inequality \ref{eq_ineq_domain_1}, we obtain the statement.
   \end{proof}
   \begin{corollary}
     There exists some constants $C$ such that 
