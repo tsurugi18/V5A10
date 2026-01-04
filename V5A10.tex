@@ -43,6 +43,8 @@
 \newtheorem{conjecture}{Conjecture}[section] 
 \newtheorem{example}{Example}[section] 
 \newtheorem{exercise}{Exercise}[section] 
+\newtheorem{claim}{Claim}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
 
 \RedeclareMathOperator{\Re}{Re}
 \RedeclareMathOperator{\Im}{Im}
@@ -2310,15 +2312,148 @@ where $\sigma_0 = 1-\log T$. On the boundary of the rectangle above, we have,
     Again combining this with Inequality \ref{eq_ineq_domain_1}, we obtain the statement.
   \end{proof}
   \begin{corollary}
-    There exists some constants $C$ such that 
+    \label{corollary_bound_zeta_derivative}
+    There exists some constant $C$ such that 
     \begin{equation*}
-      {\frac {\zeta'(s)} {\zeta(s)}} = o((\log T)^9).
+      {\frac {\zeta'(s)} {\zeta(s)}} = O((\log T)^9).
     \end{equation*}
     For $1-{\frac {c} {(\log T)^9}}\leq \Re(s)\leq 2$ and $1\leq \vert\Im(s)\vert\leq T$, we have,
     \begin{equation*}
       {\frac {\zeta'(s)} {\zeta(s)}}=\sum_{n\geq 1}{\frac {\Lambda(n)} {n^s}}.
     \end{equation*}
   \end{corollary}
+
+  \begin{notation}
+    Let $c\in\R$ and $f:\C\supseteq\Omega\to \C$. Then we denote,
+    \begin{equation*}
+      \int_{(c)}f(s)ds = \lim_{T\to\infty}\int_{c-iT}^{c+iT}f(s)ds.
+    \end{equation*}
+  \end{notation}
+
+  \begin{lemma}
+    \label{lemma_y_s_conv}
+    \begin{align*}
+      {\frac 1 {2\pi i}}\int_{(c)}y^s{\frac {ds} s} = \begin{cases}
+        0,\quad(0<y<1),\\
+        {\frac 1 2},\quad(y=1),\\
+        1,\quad(y>1).
+      \end{cases}
+    \end{align*}
+  \end{lemma}
+
+  \begin{lemma}
+    Set,
+    \begin{equation*}
+      f(s)\defeq  \sum_{n=1}^\infty {\frac {a_n} {n^s}}.
+    \end{equation*}
+    Suppose this is absolutely convergence in $\Re(s)>c-\varepsilon$ for some $c\in\R,\varepsilon>0$ and $x$ is not an integer, then 
+    \begin{equation*}
+      \sum_{n<x}a_n = {\frac 1 {2\pi i}}\int_{(c)}f(s){\frac {x^s} s}ds.
+    \end{equation*}
+    \label{lemma_partial_sum_integration}
+  \end{lemma}
+
+  \begin{proof}
+    Since $f(s)$ is a limit of a continuous function series which is absolutely convergent on $\Re(s)>c-\varepsilon$, thus this is uniformly convergent in a compact subset of its domain of convergence. Thus we can exchange the integral and the sum namely,
+    \begin{equation*}
+      {\frac 1 {2\pi i}}\int_{(c)}\left(\sum_{n=1}^\infty {\frac {a_n} {n^s}}\right){\frac {x^s}s}ds = {\frac 1 {2\pi i}}\sum_{n=1}^\infty a_n\int_{(c)}\left({\frac x n}\right)^s{\frac {ds} s}.
+    \end{equation*}
+    By Lemma \ref{lemma_y_s_conv}, and ${\frac x n}>1\Leftrightarrow n<x$, we derive the statement.
+  \end{proof}
+
+  \begin{corollary}
+    Let $c>1$ and $x$ be a non-integer, then we have,
+    \begin{equation*}
+      \psi(x) = {\frac 1 {2\pi i}}\int_{(c)}-{\frac {\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds.
+    \end{equation*}
+    \label{corollary_second_chebyschev_partial_sum}
+  \end{corollary}
+
+  \begin{proof}
+    Follows from Remark \ref{remark_second_chebyschev_mangoldot} and Theorem \ref{theorem_log_zeta_mangoldot} and apply Lemma \ref{lemma_partial_sum_integration}.
+  \end{proof}
+
+  \begin{theorem}
+    There is a positive constant $c'>0$ such that 
+    \begin{equation*}
+      \psi(x) = x+O(x\exp(-c'\log(x))).
+    \end{equation*}
+  \end{theorem}
+\setcounter{claim}{0}
+  \begin{proof}
+    Let $a = 1+{\frac c {\log T}}$ for some $c,T>1$ where $T$ is sufficiently large and will be chosen later. By Corollary \ref{corollary_second_chebyschev_partial_sum}, we have,
+    \begin{equation*}
+      \psi(x) = {\frac 1 {2\pi i}}\int_{a-iT}^{a+iT}-{\frac {\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds + {\frac 1 {2\pi i}}\int_{(a)}-{\frac {\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds- {\frac 1 {2\pi i}}\int_{a-iT}^{a+iT}-{\frac {\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds.
+    \end{equation*}
+    \begin{claim}
+     \begin{equation*}
+       \left\vert{\frac 1 {2\pi i}}\int_{(a)}-{\frac {\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds- {\frac 1 {2\pi i}}\int_{a-iT}^{a+iT}-{\frac {\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds\right\vert<\begin{cases}
+        x^a\min\{1,T^{-1},\vert\log x\vert^{-1}\},\quad(x\not=1),\\
+        {\frac a T},\quad(x=1).
+       \end{cases}
+     \end{equation*}
+    \end{claim}
+    \begin{claimproof}
+    %later
+    \end{claimproof}
+    Let 
+    \begin{equation*}
+      \psi(x) = \underbrace{{\frac 1 {2\pi i}}\int_{a-iT}^{a+iT}-{\frac {\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds}_{=I_1} + \underbrace{{\frac 1 {2\pi i}}\int_{(a)}-{\frac {\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds- {\frac 1 {2\pi i}}\int_{a-iT}^{a+iT}-{\frac {\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds}_{=I_2}.
+    \end{equation*}
+    Again using Corollary \ref{corollary_second_chebyschev_partial_sum} and the claim, we have,
+    \begin{align*}
+      I_2 & = {\frac 1 {2\pi i}}\left(\int_{(a)}-\int_{a-iT}^{a+iT}\right)\left(\sum_{n=1}^\infty{\frac {\Lambda(n)} {n^s}}\right){\frac {x^s} s}ds,\\
+      & = {\frac 1 {2\pi i}}\sum_{n=1}^\infty \Lambda(n)\left(\left(\int_{(a)}-\int_{a-iT}^{a+iT}\right)\left({\frac x n}\right)^s{\frac {ds} s}\right),\\
+      & = \sum_{n=1}^\infty\Lambda(n)O\left(\left({\frac x n}\right)^a\min\left(1,T^{-1}\left\vert\log\left({\frac x n}\right)\right\vert^{-1}\right)\right),\\
+      & = O\left(\sum_{n=1}^\infty\Lambda(n)\left({\frac x n}\right)^a\min\left(1,T^{-1}\left\vert\log\left({\frac x n}\right)\right\vert^{-1}\right)\right).
+    \end{align*}
+    Fix $x$ and let us consider two ranges $\left[{\frac x 2},{\frac {3x} 2}\right]$ and $\left(-\infty,{\frac x 2}\right)\cup\left({\frac {3x} 2},\infty\right)$. 
+    If $n$ sits in the second range 
+    \begin{equation*}
+      {\frac {\log{\frac n x}} {{\frac n x}-1}}\geq 2\log{\frac 3 2}.
+    \end{equation*}
+    And if $n$ sits in the first interval, we have, 
+    \begin{equation*}
+      \left\vert\log{\frac x n}\right\vert <<\left\vert{\frac n x}-1\right\vert^{-1}.
+    \end{equation*}
+    Using this we have,
+    \begin{align*}
+      \sum_{n\in\left[{\frac x 2},{\frac {3x} 2}\right]}\Lambda(n)\left({\frac x n}\right)^a\min\left(1,T^{-1}\left\vert\log\left({\frac x n}\right)\right\vert^{-1}\right)&<<\sum_{n\in\left[{\frac x 2},{\frac {3x} 2}\right]}\Lambda(n)\left({\frac x n}\right)^a\left\vert{\frac n x}-1\right\vert^{-1}\\
+      &<<{\frac {\log x} T}\sum_{n\in\left[{\frac x 2},{\frac {3x} 2}\right]}{\frac 1 {\left\vert {\frac n x}-1\right\vert}}.
+    \end{align*}
+    Observe that 
+    \begin{align*}
+      \sum_{n\in\left[{\frac x 2},x\right)}{\frac 1 {{\frac n x}+1}}&<<\int_{{\frac x 2}}^{\lfloor x\rfloor}{\frac {dt} {1-{\frac t x}}},\\
+      \sum_{n\in\left(x,{\frac {3x} 2}\right]}{\frac 1 {{\frac n x}-1}}&<<\int^{{\frac {3x} 2}}_{\lceil x\rceil}{\frac {dt} {{\frac t x}-1}}.\\
+      \Rightarrow &  \sum_{n\in\left[{\frac x 2},x\right)}{\frac 1 {{\frac n x}+1}}+\sum_{n\in\left(x,{\frac {3x} 2}\right]}{\frac 1 {{\frac n x}+1}}<<x\log x.
+    \end{align*}
+    Thus we conclude, as $x\to \infty$,
+    \begin{equation*}
+      \sum_{n\in\left[{\frac x 2},{\frac {3x} 2}\right]}{\frac 1 {\left\vert {\frac n x}-1\right\vert}}<<{\frac {x(\log x)^2} {T}}.
+    \end{equation*}
+    Let us turn our focus to the second range. We have $\left\vert \log{\frac x n}\right\vert>\log{\frac 3 2}$. Thus 
+    \begin{align*}
+      \sum_{n<{\frac x 2},{\frac {3x} 2}<n}\Lambda(n)\left({\frac x n}\right)^a\min\left(1,T^{-1}\left\vert\log\left({\frac x n}\right)\right\vert^{-1}\right)&<< {\frac {x^a} T}\sum_{n<{\frac x 2},{\frac {3x} 2}<n}{\frac {\Lambda(n)} {n^a}},\\
+      &\leq {\frac {x^a} T}\sum_{n=1}^\infty{\frac {\Lambda(n)} {n^a}}.
+    \end{align*}
+    Recall that we have,
+    \begin{equation*}
+      -{\frac {\zeta'(a)} {\zeta(a)}} = \sum_{n=1}^\infty {\frac {\Lambda(n)} {n^a}}.
+    \end{equation*}
+    Using Theorem \ref{thorem_zeta_zeta_derivatie_residue}, we see, as $a\to1^+$,
+    \begin{equation*}
+      \left\vert{\frac {\zeta'(a)} {\zeta(a)}}\right\vert<<{\frac 1 {a-1}}.
+    \end{equation*}
+    Using Corollary \ref{corollary_bound_zeta_derivative}, we see,
+    \begin{equation*}
+      {\frac {x^a} T}{\frac 1 {a-1}}<<{\frac {x^a} {T}}(\log T)^9.
+    \end{equation*}
+    Combining all, we derive,
+    \begin{equation*}
+      \psi(s)={\frac 1 {2\pi i}}\int_{a-iT}^{a+iT}{\frac {-\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds+O\left({\frac {x(\log x)^2} {T}}+{\frac {x^a} T}(\log T)^9\right).
+    \end{equation*}
+  \end{proof}
+
   %12/4 Second part of the lecture 
   \begin{proof}
     \par Recall Cauchy's Residue theorem, suppose $f:\Omega\to\C$ is meromorphic where $\Omega$ is simply connected. 
