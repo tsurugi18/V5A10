@@ -16,6 +16,7 @@
 \newcommand\RedeclareMathOperator{%
   \@ifstar{\def\rmo@s{m}\rmo@redeclare}{\def\rmo@s{o}\rmo@redeclare}%
 }
+\newcommand{\midarrow}{\tikz \draw[-triangle 90] (0,0) -- +(.1,0);}
 % this is taken from \renew@command
 \newcommand\rmo@redeclare[2]{%
   \begingroup \escapechar\m@ne\xdef\@gtempa{{\string#1}}\endgroup
@@ -29,7 +30,6 @@
 }
 \@onlypreamble\RedeclareMathOperator
 \makeatother
-\newcommand{\midarrow}{\tikz \draw[-triangle 90] (0,0) -- +(.1,0);}
 
 \newtheorem{theorem}{Theorem} [section] 
 \newtheorem{proposition}{Proposition}[section] 
@@ -144,7 +144,7 @@ $\pi:\N\to\N$ be a function such that
 \begin{notation}
   Given $f,g:\R\to \C$, 
   \begin{equation*}
-    f(x) = O(g(x0))
+    f(x) = O(g(x))
   \end{equation*}
   means that 
   \begin{equation*}
@@ -155,8 +155,9 @@ $\pi:\N\to\N$ be a function such that
 \begin{notation}
   Let $f,g:\R\to\C$ be functions. $f\sim g$ denotes that 
   \begin{equation*}
-    \lim_{n\to\infty}{\frac {f(x)} {g(x)}}.
+    \lim_{n\to\infty}{\frac {f(x)} {g(x)}}=c,
   \end{equation*}
+  for some constant $c$.
 \end{notation}
 
 \begin{notation}
@@ -166,7 +167,7 @@ $\pi:\N\to\N$ be a function such that
   \end{equation*}
   denotes that 
   \begin{equation*}
-    \Li(x) = {\frac x {\ln x}}\sum_{k=1}^{N-1}{\frac {k!} {(\ln x)^k}}+O({\frac {x} {(\ln x)^{N+1}}}).
+    \Li(x) = {\frac x {\ln x}}\sum_{k=1}^{N-1}{\frac {k!} {(\ln x)^k}}+O\left({\frac {x} {(\ln x)^{N+1}}}\right).
   \end{equation*}
   and as $x\to\infty$, this holds for any $N\geq1$. 
 \end{notation}
@@ -203,17 +204,6 @@ By the integration by parts, we see that it's asymptotic expansion is
     \psi(x) = \sum_{\substack{p\leq x\\ m=\max\{n\in\N\sep p^n\leq x\}}}m\ln p.
   \end{equation*}
 \end{remark}
-
-\begin{definition}[Möbius Function]
-  Let $n\in\N$, we define,
-  \begin{equation*}
-    \mu(n) = \begin{cases}
-      1,\quad (n=1),\\
-      (-1)^m,\quad (n\text{ is square free and has $n$ distinct prime divisors}),\\
-      0,\quad (\otherwise).
-    \end{cases}
-  \end{equation*}
-\end{definition}
 
 \begin{definition}[Möbius Function]
 \begin{equation*}
@@ -269,7 +259,7 @@ By multiplying ${\frac 1 {2^s}}$, we obtain
 \end{equation*}
 We get
 \begin{equation*}
-(1-{\frac 1 {2^s}})\zeta(s) = \sum_{n\in\N} {\frac 1 {(2n+1)^s}}.
+  \left(1-{\frac 1 {2^s}}\right)\zeta(s) = \sum_{n\in\N} {\frac 1 {(2n+1)^s}}.
 \end{equation*}
 Continuing this procedure, we get the following proposition.
 \end{remark}
@@ -322,7 +312,7 @@ $\zeta(1+it) \not=0$ if $t\in\R,t\not=0$. $\zeta(s) \not=0$ for $0<s<1$.
 
 \begin{definition}[Functional Equation]
 \begin{equation*}
-\zeta(1-s) = 2(2\pi)^{-s}\cos({\frac {\pi s} 2}) \Gamma(s)\zeta(s)
+\zeta(1-s) = 2(2\pi)^{-s}\cos\left({\frac {\pi s} 2}\right) \Gamma(s)\zeta(s)
 \end{equation*}
 \end{definition}
 
@@ -333,15 +323,15 @@ $\Gamma(s)$ is defined for $\Re(s)>0$ and can be analytically continued to the w
 \begin{remark}
 For $s=-2m$ where $m\in \N$, we see $\zeta(s) = 0$. 
 \begin{align*}
-\zeta(0) &= {\frac 2 {2^\pi}}\lim_{s\to 1}\cos({\frac {\pi s} 2})\zeta(s) \\
-&=\lim_{s\to 1}{\frac {\cos({\frac {\pi s} 2})} {s-1}}\lim_{s\to 1}(s-1)\zeta(s) \\
+\zeta(0) &= {\frac 2 {2\pi}}\lim_{s\to 1}\cos\left({\frac {\pi s} 2}\right)\zeta(s) \\
+&={\frac 1 \pi}\lim_{s\to 1}{\frac {\cos({\frac {\pi s} 2})} {s-1}}\lim_{s\to 1}(s-1)\zeta(s) \\
 &= {\frac 1 \pi}\times {\frac {-\pi} 2}\times 1 \\
 & = -{\frac 1 2}.\\
 \end{align*}
 \end{remark}
 
 \begin{definition}
-The subset of the complex plane with its real part between $0$ and $1$. The critical line is the line where $\Re(s) = {\frac 1 2}$.
+The critical strip is the subset of the complex plane with its real part between $0$ and $1$. The critical line is the line where $\Re(s) = {\frac 1 2}$.
 \end{definition}
 
 \begin{conjecture}[Riemann Hypothesis]
@@ -394,7 +384,6 @@ For any $q<x$, we have
 \end{equation*}
 \end{theorem}
 
-\section{Week 2}
 
 \begin{remark}
   \begin{equation*}
@@ -411,6 +400,8 @@ For any $q<x$, we have
   for all $N\geq 1$. Thus $\Li(x)$ can be expressed in terms of polynomials in ${\frac x {\ln (x)}}$, by keep replacing the greatest temr with the above approximation.
 \end{remark}
 
+\section{Arithmetic Functions}
+\subsection{Multiplicative Functions}
 \begin{definition}
   A function $f:\N\to\C$ is said to be 
   \begin{enumerate}[1).]
@@ -505,11 +496,11 @@ For any $q<x$, we have
 
 \begin{proof}
   \begin{equation*}
-    \sum_{d|n}\mu(d)f\left({\frac n d}\right) = \sum_{d|n}\mu\sum_{e|{\frac n d}} g(e).
+    \sum_{d|n}\mu(d)f\left({\frac n d}\right) = \sum_{d|n}\mu(d)\sum_{e|{\frac n d}} g(e).
   \end{equation*}
   $e|{\frac n d}$ if and only if $de|n$ thus obtain, 
   \begin{equation*}
-    \sum_{d|n}\mu(d)f\left({\frac n d}\right) = \sum_{d|n}\mu\sum_{de|n} g(e).
+    \sum_{d|n}\mu(d)f\left({\frac n d}\right) = \sum_{d|n}\mu(d)\sum_{de|n} g(e).
   \end{equation*}
   In particular, we get the expression 
   \begin{equation*}
@@ -538,6 +529,7 @@ For any $q<x$, we have
   \begin{equation*}
     \vert(\Z/n\Z)^\times\vert = \varphi(n). 
   \end{equation*}
+  Later%later
 \end{proof}
 
 \begin{theorem}
@@ -587,7 +579,7 @@ For any $q<x$, we have
 \end{theorem}
 
 \begin{proof}
-  The equivalence is a direct corollary of Möbius inversion formula. For the latter, Write 
+  The equivalence is a direct corollary of Möbius inversion formula (ie. Proposition \ref{proposition_inversion_formula}). For the latter, Write 
   \begin{equation*}
     n = \prod_{i=1}^k p_i^{\alpha_i}.
   \end{equation*}
@@ -695,6 +687,10 @@ we get this equals to ${\frac 1 2 }\ln2$.
   \end{align*}
   We have $\lim_{n\to\infty}{\frac {\log(n)} {n^\varepsilon}}=1$ and the last equation is convergent if and only if $\sigma-\varepsilon>1$. Thus we have $\sigma>1+\varepsilon$.
 \end{remark}
+
+\begin{definition}
+  Let $D\subseteq\C$ be open. A meromorphic function is $f:D\to\C$ which is analytic on $D$ except a discrete set of poles of $f$.
+\end{definition}
 \begin{remark}
   ${\frac {\zeta'(s)} {\zeta(s)}}$ is a meromorphic functions except $s=1$ and where $\zeta(s)$ vanishes. Indeed, 
   For general ${\frac f g}$, it is analytic if $f,g$ are analytic and $g\not=0$. 
@@ -733,9 +729,9 @@ Recall that for $\vert z\vert \geq 1$, we have,
   \end{equation*}
   Therefore,
   \begin{align*}
-    \left\vert\prod_{x\leq x}\sum_{\nu=0}^\infty f(p^\nu)p^{-\nu x} - \sum_{n\in\N}{\frac {f(n)} {n^s}}\right\vert & = \left\vert\sum_{n\in A}{\frac {f(n)} {n^s}}-\sum_{n\in\N}{\frac {f(n)} {n^s}}\right\vert,\\
-    & = \left\vert\sum_{n\in \N\backslash A}{\frac {f(n)} {n^s}}\right\vert,\\
-    &\leq \sum_{n\not\in A}{\frac {\vert f(n)\vert} {n^{\Re(s)}}},\\
+    \left\vert\prod_{p\leq x}\sum_{\nu=0}^\infty f(p^\nu)p^{-\nu s} - \sum_{n\in\N}{\frac {f(n)} {n^s}}\right\vert & = \left\vert\sum_{n\in A(x)}{\frac {f(n)} {n^s}}-\sum_{n\in\N}{\frac {f(n)} {n^s}}\right\vert,\\
+    & = \left\vert\sum_{n\in \N\backslash A(x)}{\frac {f(n)} {n^s}}\right\vert,\\
+    &\leq \sum_{n\not\in A(x)}{\frac {\vert f(n)\vert} {n^{\Re(s)}}},\\
     &\leq \sum_{n>x}{\frac {\vert f(n)\vert} {n^{\Re(s)}}}\to 0.
   \end{align*}
   The last limit is due to that it is a tail of a an absolutely convergent series. 
@@ -797,7 +793,7 @@ Recall that for $\vert z\vert \geq 1$, we have,
   \begin{enumerate}[1).]
     \item $\nu(n) \defeq \sum_{p|n}1$, a number of primer divisors of $n$,
     \item $d(n)\defeq \sum_{d|n}1$, the number of divisors of $n$,
-    \item $\sigma\defeq \sum_{d|n}d$, the sum of all the divisors of $n$.
+    \item $\sigma(n)\defeq \sum_{d|n}d$, the sum of all the divisors of $n$.
   \end{enumerate}
 \end{definition}
 
@@ -818,7 +814,7 @@ Recall that for $\vert z\vert \geq 1$, we have,
 
 \begin{lemma}
   \begin{equation*}
-    \sum_{k=2}^n \leq \log(n)+1.
+    \sum_{k=2}^n{\frac 1 k} \leq \log(n+1).
   \end{equation*}
   \label{harmonic_series_upper_bound}
 \end{lemma}
@@ -852,7 +848,6 @@ Recall that for $\vert z\vert \geq 1$, we have,
   \begin{align*}
     \sigma(n) = \sum_{d|n}{\frac n d},\\
     & = n\sum_{d|n}{\frac 1 d},\\
-    & = n\left(1+\sum_{d\geq 2}^n{\frac 1 d}\right),\\
     &\leq n\left(1+\sum_{d=2}^n{\frac 1 d}\right),\\
     & \leq(1+\log(n)).
   \end{align*}
@@ -866,10 +861,17 @@ Recall that for $\vert z\vert \geq 1$, we have,
   \end{equation*}
   That is 
   \begin{equation*}
-    \left\vert\sum_{k=1}^n{\frac 1 k} - \log(k)\right\vert << 1.
+    \left\vert\sum_{k=1}^n{\frac 1 k} - \log(n)\right\vert << 1.
   \end{equation*}
   Hint: Replace ${\frac 1 t}$ by an increasing function and derive the similar inequality to Lemma \ref{harmonic_series_upper_bound}.
 \end{exercise}
+
+\begin{proof}
+  By Lemma \ref{harmonic_series_upper_bound}, we have,
+  \begin{equation*}
+    \left\vert\sum_{k=1}^n{\frac 1 k} - \log(n)\right\vert \leq \left\vert1+\log(n) - \log(n)\right\vert \leq 1.
+  \end{equation*}
+\end{proof}
 
 \begin{lemma}
   \begin{equation*}
@@ -900,7 +902,7 @@ We have an improved inequality,
   \end{equation*}
   Then,
   \begin{equation*}
-    \prod_{i\in A}{\frac {\alpha_i+1} {p_i^{\varepsilon\alpha_i}}} \leq\prod_{i=1}^k {\frac {\alpha_i+1} {2^{\varepsilon\alpha_i}}}\leq 1.
+    \prod_{i\in A}{\frac {\alpha_i+1} {p_i^{\varepsilon\alpha_i}}} \leq\prod_{i\in A} {\frac {\alpha_i+1} {2^{\alpha_i}}}\leq 1.
   \end{equation*}
   For $p_i^\varepsilon<2$, we observe,
   \begin{equation*}
@@ -935,9 +937,9 @@ We have an improved inequality,
   \begin{equation*}
     \sum_{n\leq x}d(n) = \sum_{n\leq x}\sum_{d|n}1.
   \end{equation*}
-  $d|n $ if and only if there is $e$ such that $de=n$. Thus using this we obtain,
+  $d|n $ if and only if there is $e$ such that $de=n$. Using this we obtain,
   \begin{equation*}
-    \sum_{n\leq x}d(n) = \sum_{\substack{e,d\\de \leq x}}1 = \sum_{d\leq x}\sum_{e\leq {\frac x d}}1 = \sum_{d\leq x}\left[{\frac x d}\right].
+    \sum_{n\leq x}d(n) = \sum_{\substack{(e,d)\\de \leq x}}1 = \sum_{d\leq x}\sum_{e\leq {\frac x d}}1 = \sum_{d\leq x}\left[{\frac x d}\right].
   \end{equation*}
   Using the definition of $[x]$, we have,
   \begin{equation*}
@@ -948,7 +950,7 @@ We have an improved inequality,
 \begin{definition}
   Let $f:\N\to\C$, we say the average order of $f$ is $g:\R\to \C$ if 
   \begin{equation*}
-    {\frac{\sum_{n\leq x}}{f(n)} x}\sim g(x).
+    {\frac{{\sum_{n\leq x}}{f(n)}} x}\sim g(x).
   \end{equation*}
 \end{definition}
 
@@ -966,6 +968,8 @@ Proposition \ref{average_order_d} can be restated as follows.
     \item What is the optimal bound for $d(n)$? 
   \end{enumerate}
 \end{exercise}
+
+%later
 
 \begin{theorem}
   There exists $c_1,c_2>0$ such that 
@@ -985,7 +989,7 @@ Proposition \ref{average_order_d} can be restated as follows.
   \end{equation*}
   Thus we obtain,
   \begin{equation*}
-    {\frac {\sigma(n)} n} = {\frac {\prod_{p|n}(1+p+\cdots+p^{\alpha(p)})} {\prod_{p|n} p^{\alpha(p)}}} = \prod_{p|n} \left({\frac {{\frac 1 {p^\alpha(p)+1}}-1} {{\frac 1 p} - 1}}\right)
+    {\frac {\sigma(n)} n} = {\frac {\prod_{p|n}(1+p+\cdots+p^{\alpha(p)})} {\prod_{p|n} p^{\alpha(p)}}} = \prod_{p|n} \left({\frac {{\frac 1 {p^{\alpha(p)+1}}}-1} {{\frac 1 p} - 1}}\right)
   \end{equation*}
   By multiplying two we get,
   \begin{equation*}
@@ -1000,30 +1004,54 @@ Proposition \ref{average_order_d} can be restated as follows.
 
 %11/6
 
+\begin{lemma}
+  For $x\geq1$ and $d$ an integer such that $d\leq x$, we have,
+  \begin{equation*}
+  \left[{\frac x d}\right]\left(\left[{\frac x d}\right]+1\right) = {\frac {x^2} {d^2}}+o\left({\frac x d}\right).
+\end{equation*}
+\label{lemma_integer_part_square_estimate}
+\end{lemma}
+
+\begin{proof}
+  \begin{align*}
+    \left[{\frac x d}\right]\left(\left[{\frac x d}\right]+1\right) & = \left({\frac x d}-\left\{{\frac x d}\right\}\right)\left(\left({\frac x d}-\left\{{\frac x d}\right\}\right)+1\right),\\
+    & = {\frac {x^2}{d^2}}-2\left\{{\frac x d}\right\}{\frac x d}+\left(\left\{{\frac x d}\right\}\right)^2+{\frac x d}+\left\{{\frac x d}\right\},\\
+    & = {\frac {x^2}{d^2}}+O(1)\cdot{\frac x d}+O(1).
+  \end{align*}
+\end{proof}
+
 \begin{theorem}
-  The average order of $\varphi$ is ${\frac {3n} {\pi^2}}$.
+  The average order of $\varphi$ is ${\frac {3x} {\pi^2}}$.
 \end{theorem}
 \begin{proof}
 
 \begin{align*}
-  \sum_{n\leq x} \phi(n) &= \sum_{n\leq x}n\sum_{d|n}{\frac {\mu(d)} d},\\
+  \sum_{n\leq x} \varphi(n) &= \sum_{n\leq x}n\sum_{d|n}{\frac {\mu(d)} d},\\
   & = \sum_{\substack{d,e\\ de \leq x}}e\mu(d),\\
   & = \sum_{d\leq x} \mu(d)\left(\sum_{e\leq {\frac x d}}e\right),\\
-  & = {\frac 1 2}\sum_{d\leq x}\mu(d)\left(\left[{\frac x d}\left(\left[{\frac x d}\right]+1\right)\right]\right),\\
+\end{align*}
+Since $\sum_{e\leq{\frac x d}}e$ is a sum of an arithmetic progression, we have,
+\begin{equation*}
+  \sum_{e\leq{\frac x d}}e = {\frac 1 2}\left[{\frac x d}\right]\left(\left[{\frac x d}\right]+1\right).
+\end{equation*}
+Substituting this, we obtain,
+\begin{align*}
+  \sum_{n\leq x} \varphi(n)& = {\frac 1 2}\sum_{d\leq x}\left(\mu(d)\left[{\frac x d}\right]\left(\left[{\frac x d}\right]+1\right)\right).\\
 \end{align*}
 Note that 
 \begin{equation*}
-  {\frac x d} = \left[{\frac x d}\right] + \left\{{\frac x d}\right\} = \left[{\frac x d}\right] + o(1).
+  {\frac x d} = \left[{\frac x d}\right] + \left\{{\frac x d}\right\} = \left[{\frac x d}\right] + O(1).
 \end{equation*}
-It is assined as an exercise to confirm that 
+Using Lemma \ref{lemma_integer_part_square_estimate}, that is,
 \begin{equation*}
   \left[{\frac x d}\right]\left(\left[{\frac x d}\right]+1\right) = {\frac {x^2} {d^2}}+o\left({\frac x d}\right).
 \end{equation*}
+We then have,
 \begin{align*}
-  & = {\frac 1 2}\sum_{d\leq x}\mu(d)\left({\frac {x^2} {d^x}}+o\left({\frac x d}\right)\right),\\
-  & = {\frac {x^2} 2}\sum_{d\leq x}{\frac {\mu(d)} {d^2}}+o\left(x\sum_{d\leq x}{\frac {\mu(d)} d}\right),\\
-  & = {\frac {x^2} 2}\left(\sum_{d\geq 1}{\frac {\mu(d)} {d^2}}-\sum_{d\geq x}{\frac {\mu(d)} {d^2}}\right)+o\left(x\sum_{d\geq x}{{\frac {\mu(d)} d}} \right),\\
-  & = {\frac {x^2} 2}{\frac 1 {\zeta(2)}}-  {\frac {x^2} 2}\sum_{d\geq x}{\frac {\mu(d)} d^2}+o\left(x\sum_{d\leq x}{\frac {\mu(d)} d}\right).
+  \sum_{n\leq x} \varphi(n)& = {\frac 1 2}\sum_{d\leq x}\mu(d)\left({\frac {x^2} {d^x}}+O\left({\frac x d}\right)\right),\\
+  & = {\frac {x^2} 2}\sum_{d\leq x}{\frac {\mu(d)} {d^2}}+O\left(x\sum_{d\leq x}{\frac {\mu(d)} d}\right),\\
+  & = {\frac {x^2} 2}\left(\sum_{d\geq 1}{\frac {\mu(d)} {d^2}}-\sum_{d\geq x}{\frac {\mu(d)} {d^2}}\right)+O\left(x\sum_{d\geq x}{{\frac {\mu(d)} d}} \right),\\
+  & = {\frac {x^2} 2}{\frac 1 {\zeta(2)}}-  {\frac {x^2} 2}\sum_{d\geq x}{\frac {\mu(d)} d^2}+O\left(x\sum_{d\leq x}{\frac {\mu(d)} d}\right).
 \end{align*}
 We have,
 \begin{align*}
@@ -1037,19 +1065,21 @@ and,
 \end{align*}
 Using these we have,
 \begin{align*}
-  & = {\frac {x^2} 2}{\frac 1 {\zeta(2)}}+o(x) + o(x\ln x),\\
-  & = {\frac {x^2} {2\zeta(2)}}+o(x\ln x).
+  \sum_{n\leq x} \varphi(n)& = {\frac {x^2} 2}{\frac 1 {\zeta(2)}}+O(x) + O(x\ln x),\\
+  & = {\frac {x^2} {2\zeta(2)}}+O(x\ln x).
 \end{align*}
 We conclude that 
 \begin{equation*}
-  x\to \infty\Rightarrow {\frac {\sum_{n\leq x} \phi(n)} {x^2}}\to {\frac 1 {2\zeta(2)}}.
+   {\frac {\sum_{n\leq x} \varphi(n)} {x^2}}\stackrel{x\to \infty}{\to} {\frac 1 {2\zeta(2)}}.
 \end{equation*}
 
 In particular,
 \begin{equation*}
-  {\frac {\sum_{n\leq x}\phi(n)} {x}}\sim {\frac x {2\zeta(2)}} = {\frac {x \cdot 6}{2\pi^2} }.
+  {\frac {\sum_{n\leq x}\varphi(n)} {x}}\sim {\frac x {2\zeta(2)}} = {\frac {x \cdot 6}{2\pi^2} }.
 \end{equation*}
 \end{proof}
+
+%Current,current
 
 \subsection{Abel's Summation Formula}
 Recall the harmonic series $\sum_{n\in\N}{\frac 1 n}$ is divergent. Our next goal is to find such $A_x$ that 
@@ -2396,7 +2426,7 @@ where $\sigma_0 = 1-\log T$. On the boundary of the rectangle above, we have,
     \begin{claimproof}
     %later
     \end{claimproof}
-    Let 
+    \par Let 
     \begin{equation*}
       \psi(x) = \underbrace{{\frac 1 {2\pi i}}\int_{a-iT}^{a+iT}-{\frac {\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds}_{=I_1} + \underbrace{{\frac 1 {2\pi i}}\int_{(a)}-{\frac {\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds- {\frac 1 {2\pi i}}\int_{a-iT}^{a+iT}-{\frac {\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds}_{=I_2}.
     \end{equation*}
@@ -2452,27 +2482,21 @@ where $\sigma_0 = 1-\log T$. On the boundary of the rectangle above, we have,
     \begin{equation*}
       \psi(s)={\frac 1 {2\pi i}}\int_{a-iT}^{a+iT}{\frac {-\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds+O\left({\frac {x(\log x)^2} {T}}+{\frac {x^a} T}(\log T)^9\right).
     \end{equation*}
-  \end{proof}
-
-  %12/4 Second part of the lecture 
-  \begin{proof}
     \par Recall Cauchy's Residue theorem, suppose $f:\Omega\to\C$ is meromorphic where $\Omega$ is simply connected. 
-    \begin{example}
-      Halfplane $\R^n$ and $\R^n\backslash\{0\}$, for $n\geq 3$ and convex.
-    \end{example}
     For $a_i,1\leq i\leq n$ poles in $U\subseteq\Omega$ simple closed curve. Then,
     \begin{equation*}
       {\frac 1 {2\pi i}}\int_U f(s)ds = \sum_{i=1}^n \Res(f,a_i)+\constant.
     \end{equation*}
+    Consider the following closed path $R_T$ which we traverse counterclockwise.
     \begin{center}
   \begin{tikzpicture}
   \draw[->] (-1,0) -- (6,0);
   \draw[->] (0,-3) -- (0,3);
-  \draw (0,2)node[left]{$T$};
-  \draw (0,-2)node[left]{$-T$};
+  \draw[very thick, dotted] (0,2)node[left]{$T$}--(1,2);
+  \draw[very thick, dotted] (0,-2)node[left]{$-T$}--(1,-2);
   \draw (0,2)node{$-$};
   \draw (0,-2)node{$-$};
-  \draw[very thick, red] (1,-2) -- (1,2)
+  \draw[very thick] (1,-2) -- (1,2)
     -- (5,2) -- (5,-2) -- cycle;
   \draw (1,0)node[above left]{$b$};
   \draw (5,0)node[above right]{$a$};
@@ -2480,13 +2504,13 @@ where $\sigma_0 = 1-\log T$. On the boundary of the rectangle above, we have,
 \draw (3,0)node[above]{$1$};
 \end{tikzpicture}
 \end{center}
-\par where $a = {\frac 1+{\frac c {(\log(T))^9}}},b = {\frac 1-{\frac c {(\log(T))^9}}}$ $\Re(s)>0,s\not=1, \Re(s)>b$.
+\par where $a = 1+{\frac c {(\log(T))^9}},b = 1-{\frac c {(\log(T))^9}}$ $\Re(s)>0,s\not=1, \Re(s)>b$.
 We claim that ${\frac {\zeta'(s)} {\zeta(s)}}$ can be analytically continued to $\Re(s)\geq b$ except simple pole at $s=i$ with residue $-1$(See lecture 5 for the justification of such poles).
 \begin{align*}
   {\frac 1 {2\pi i}}\int_{R_T}{\frac {-\zeta'(s)} {\zeta(s)}}{\frac {x^s} s}ds & = \Res_{s=1}\left({\frac {-\zeta'(s)} {\zeta(s)}}\right),\\
   & = x.
 \end{align*}
-\par Now consider $R_T$ which is the closed path drew red in the graph.
+\par Now consider $R_T$ which is the closed path.
 \begin{equation*}
   \int_{R_T} = \int_{a-iT}^{a+iT}+\int_{a+iT}^{b+iT}+\int_{b+iT}^{b-iT}+\int_{b-iT}^{a-iT}.
 \end{equation*}
@@ -2515,7 +2539,7 @@ Now back to the beginning,
 Choose $T$ to be such that $2c\log x = \log^{10}T,x=e^{{\frac {\log^{10}T} x}}$.
 \begin{align*}
   x^{{\frac c {\log^9T}}}=e^{{\frac {\log T} 2}} & = \sqrt{T}.\\
-  x^{1-{\frac c {\log^9 T}}}\cdot\log^{10}T+{\frac {x\log^2 x} T}+{\frac {x^{1+{\frac c {\log^{9}T}}}} {T}}\log^9T&\\
+  x^{1-{\frac c {\log^9 T}}}\cdot\log^{10}T+&{\frac {x\log^2 x} T}+{\frac {x^{1+{\frac c {\log^{9}T}}}} {T}}\log^9T&\\
   & = x\cdot T^{-{\frac 1 2}}\log^10 T+{\frac {x\log^2 x} T}+x{\frac {\sqrt{T}} T}\log^{10}T\left({\frac x {\sqrt{T}}}\right)(\log^{10}T + {\frac {\log^2x}{\sqrt{x}}}+\log^9T),\\
   &<<{\frac x {T^s}}=xe^{-c(\log x)^{{\frac 1 {10}}}}.
 \end{align*}
@@ -2527,6 +2551,7 @@ Choose $T$ to be such that $2c\log x = \log^{10}T,x=e^{{\frac {\log^{10}T} x}}$.
   \end{equation*}
 \end{definition}
 \begin{remark}
+  Suppose $\Re(s) = \sigma$ then,
   \begin{align*}
     \vert\Gamma(s)\vert &\leq \int_0^\infty \vert t^{s-1}\vert e^{-t}dt,\\
     & = \int_0^\infty t^{\sigma-1}e^{-t}dt,\\
@@ -2576,15 +2601,15 @@ Note that in the numerator, we have $\sigma>-2$. $\Gamma(s)$ is analytic when $\
 \begin{align*}
   \lim_{s\to-1}(s+1)\Gamma(s) = {\frac {\Gamma(-1)} {-1}} = -1.
 \end{align*}
-Iterate the process, we have the following theorem,
+Iterating the process, we have the following theorem,
 \begin{theorem}
   $\Gamma(s)$ can be analytically continued to $\C$ except simple poles at $s = -k$ where $k\in\Z_{\geq 0}$ with residue ${\frac {(-1)^k} {k!}}$.
 \end{theorem}
 \begin{remark}
   \begin{align*}
     \Gamma(s)\Gamma(1-s) & = {\frac {\pi} {\sin\pi s}}, s\in\C.\\
-    \lim_{s\to m}\Gamma(s)\Gamma(1-s)\sin\pi s = \pi s.
-    \Gamma(s)\Gamma\left(s+{\frac 1 2 }\right) = \sqrt{\pi}2^{1-2s}\Gamma(2s),\forall s\in\C.
+    \lim_{s\to m}\Gamma(s)\Gamma(1-s)\sin\pi s &= \pi s.\\
+    \Gamma(s)\Gamma\left(s+{\frac 1 2 }\right) &= \sqrt{\pi}2^{1-2s}\Gamma(2s),\forall s\in\C.
   \end{align*}
 \end{remark}
 \begin{exercise}
@@ -2618,7 +2643,7 @@ Iterate the process, we have the following theorem,
     & = \sum_{n\in\N}\left(\int_0^\infty x^{{\frac \sigma 2}-1}e^{-n^2\pi x}dx\right),\\
     & = \sum_{n=1}^\infty \pi^{-{\frac {\sigma} 2}}\Gamma\left({\frac \sigma 2}\right)n^{-\sigma},\\
     & = \pi^{-{\frac \sigma 2}}\Gamma\left({\frac \sigma 2}\right)\zeta(s),\sigma>1,\\
-    & < \infty.
+    & < \infty.\\
     \pi^{-{\frac s 2}}\Gamma\left({\frac s 2}\right)\zeta(s) & = \int_0^\infty x^{{\frac s 2}-1}\left(\sum_{n\in\N}e^{-n^2\pi x}\right).
   \end{align*}
   \par Step 2, using Poisson summation formula and $\sigma>1$, let $F\in L^1(\R)$, ie $F:\R\to\C$ and 
@@ -2644,7 +2669,7 @@ Iterate the process, we have the following theorem,
     & << \int_1^\infty e^{-\pi xt }dt,\\
     & << {\frac {e^{-\pi x}} {x}}, x>0.
   \end{align*}
-  Set $\theta\defeq = \sum_{n\in\Z}e^{n^2\pi x}$ then,
+  Set $\theta\defeq  \sum_{n\in\Z}e^{n^2\pi x}$ then,
   \begin{align*}
     \theta(x) &= 1+2\sum_{n\in\N}e^{-n^2\pi x}.\\
     \sum_{n\in\N}e^{-n^2\pi x}&= {\frac {\theta(x) - 1} 2}, x>0.
@@ -2703,10 +2728,14 @@ Iterate the process, we have the following theorem,
   Note that $\zeta(s)$ has an analytic continuation to $\C$ except simple pole at $s$.
   %Missing part below
   \begin{align*}
-    \lim_{s\to 1}\zeta(1-s) &= \pi^{-1}\lim_{s\to 1}{\frac {\cos{\frac {\pi s} 2} \zeta(s)(s-1)} {s-1}},\\
+    \lim_{s\to 1}\zeta(1-s) &= \pi^{-1}\lim_{s\to 1}{\frac {\cos{\frac {\pi s} 2} \zeta(s)(s-1)} {s-1}}.\\
+    \lim_{s\to 1}{\frac {\cos{\frac {\pi s} 2}} {s-1}} & = \lim_{s\to 0}{\frac {\cos\left({\frac \pi 2}(1-s)\right)} {-s}},\\
+    & = \lim_{s\to0}{\frac {\sin{\frac \pi 2}s} {-s\cdot{\frac \pi 2}}}{\frac \pi 2},\\
+    & = -{\frac \pi 2}.\\
+    \Rightarrow& \lim_{s\to 1}\zeta(1-s) = -{\frac 1 2}.
   \end{align*}
   \begin{align*}
-    \zeta(-2n) & = 
+    \zeta(-2n) & = \pi^{-(2n+1)}2^{1-2n-1}\cos\left({\frac \pi 2}(2n+1)\right)\Gamma(2n+1)\zeta(2n+1)=0.
   \end{align*}
   Recall \begin{align*}
   \zeta(s) & = \sum_{n\in\N}{\frac 1 {n^s}},\\
@@ -2714,34 +2743,116 @@ Iterate the process, we have the following theorem,
   \end{align*}
   If $s$ is real,
   \begin{align*}
-  \vert \zeta(s)-{\frac s {s-1}}\vert &\leq \vert s\vert\int_1^\infty {\frac {\{t\}} {t^{\sigma+1}}}dt,
+  \left\vert \zeta(s)-{\frac s {s-1}}\right\vert &\leq \vert s\vert\int_1^\infty {\frac {\{t\}} {t^{\sigma+1}}}dt,\\
   & < {\frac {\vert s\vert }\sigma} = {\frac \sigma \sigma}=1.
   \end{align*}
   Thus we obtain,
   \begin{align*}
   -1+{\frac s {s-1}}&<\zeta(s)<1+{\frac s {s-1}}\\
-    {\frac 1 {s-1}}<\zeta(s)<{\frac {2s-1} {s-1}},\\
+    {\frac 1 {s-1}}&<\zeta(s)<{\frac {2s-1} {s-1}},\\
     -1<(1-s)\zeta(s)&<1-2s<0\quad\text{ if } {\frac 1 2}<s<1\\
     \Rightarrow & \zeta(s)\not=0,\quad \text{ if } {\frac 1 2}<s<1.
   \end{align*}
 \end{proof}
+%Current-Time-Stamp
 %1218
-\begin{notation}
-  Given $\chi\mod{q}$, we set,
-  \begin{equation*}
-    \tau(\chi) = \sum_{k=1}^q \chi(k)e^{{\frac {2\pi ik} q}}.
-  \end{equation*}
-\end{notation}
+
 
 %Missing above,
 \subsection{Primitive characters}
+Suppose $q_0|q$. Then we have a natural map 
+\begin{equation*}
+  \Z/q\Z\to \Z/q_0\Z
+\end{equation*}
+
 \begin{definition}
-  A character $\chi$ is called primitive if its conductor is %missing,
+  Let $\chi\tmod{q}$ be a character and $q_0|q$. If there exists a character $\chi^*\tmod{q_0}$ making the following diagram commutative, 
+  \begin{center}
+    \begin{tikzcd}
+(\Z/q\Z)^\times \arrow[d, "f"'] \arrow[r, "\chi"] & \C^\times \\
+(\Z/q_0\Z)^\times \arrow[ru, "\chi^*"']           &          
+\end{tikzcd}
+  \end{center}
+  we say $\chi$ factors through $(\Z/q_0\Z)$ or $\chi^*$ induces $\chi$. If $q_0$ is minimal among positive such numbers, we say $q_0$ is a conductor of $\chi$.
+\end{definition}
+
+\begin{definition}
+  A character $\chi\tmod{q}$ is called primitive if its conductor is $q$ only. Otherwise the character is imprimitive. 
 \end{definition}
 
 \begin{example}
-  Take $\chi:(\Z/8\Z)^\times\to\C^times$.
+  Take $\chi:(\Z/8\Z)^\times\to\C^\times$ such that 
+    \begin{center}
+\centering
+\begin{tabular}{l|l}
+$n$ & $\chi(n)$ \\ \hline
+$1$ & $1$       \\
+$3$ & $-1$      \\
+$5$ & $1$       \\
+$7$ & $-1$     
+\end{tabular}
+\end{center}
+Then $4$ is a conductor with $\chi^*:(\Z/4\Z)^\times\to\C^\times$,
+    \begin{center}
+\centering
+\begin{tabular}{l|l}
+$n$ & $\chi^*(n)$ \\ \hline
+$1$ & $1$       \\
+$3$ & $-1$       
+\end{tabular}
+\end{center}
 \end{example}
+
+\begin{example}
+  Take $\chi:(\Z/6\Z)^\times\to\C^\times$ such that 
+    \begin{center}
+\centering
+\begin{tabular}{l|l}
+$n$ & $\chi(n)$ \\ \hline
+$1$ & $1$       \\
+$5$ & $-1$       \\
+\end{tabular}
+\end{center}
+Then $4$ is a conductor with $\chi^*:(\Z/3\Z)^\times\to\C^\times$,
+    \begin{center}
+\centering
+\begin{tabular}{l|l}
+$n$ & $\chi^*(n)$ \\ \hline
+$1$ & $1$       \\
+$2$ & $-1$       
+\end{tabular}
+\end{center}
+\end{example}
+
+\begin{remark}
+  All principal characters $\tmod {q}$ for $q>1$ are imprimitive by construction.
+\end{remark}
+
+We set as usual $s=\sigma+it$ for $\sigma,t\in\R$. 
+
+\begin{lemma}
+  Suppose $\chi\tmod q$ is induced by $\chi^*\tmod q_0^*$. We then have,
+  \begin{equation*}
+    \sigma>1\Rightarrow L(s,\chi) = L(s,\chi^*)\prod_{p\mid q}\left(1-{\frac {\chi^*(p)} {p^s}}\right).
+  \end{equation*}
+  \label{lemma_induced_character_L}
+\end{lemma}
+
+\begin{proof}We know that for $\sigma>1$,
+  \begin{equation*}
+    L(s,\chi) = \prod_{p\nmid q}\left(1-{\frac {\chi(p)} {p^s}}\right)^{-1}.
+  \end{equation*}
+  Also 
+  \begin{align*}
+    L(s,\chi^*) &= \prod_{p\nmid q_0}\left(1-{\frac {\chi(p)} {p^s}}\right)^{-1},\\
+    & = \prod_{\substack{p\nmid q_0\\p\nmid q}}\left(1-{\frac {\chi^*(p)} {p^s}}\right)^{-1}\prod_{\substack{p\nmid q_0\\p\mid q}}\left(1-{\frac {\chi^*(p)} {p^s}}\right)^{-1},\\
+    & = L(s,\chi)\prod_{\substack{p\nmid q_0\\p\mid q}}\left(1-{\frac {\chi^*(p)} {p^s}}\right)^{-1}.
+  \end{align*}
+\end{proof}
+
+\begin{remark}
+  Using Identity theorem, Lemma \ref{lemma_induced_character_L} holds for all $s\in \C$.
+\end{remark}
 
 \begin{lemma}
   Suppose $x\in\left[0,{\frac 1 2}\right]$, then 
@@ -2919,4 +3030,443 @@ Use that $\theta(x,\overline{\chi})<<e^{-{\frac {\pi x} q}}$ and $\vert\tau(\chi
   \end{enumerate}
   When $0<\sigma<1$, 
 \end{proof}
+%1/8 First part missing,
+
+\begin{definition}[Entire function of finite order]
+  An entire functio n$f(z)$ is saiad to be of finite order if there is $\alpha>0$ such that
+  \begin{equation*}
+    \vert f(z)\vert<<e^{\vert z\vert^\alpha},
+  \end{equation*}
+  as $\vert z\vert\to\infty$. The order of $f$ is the infimum of such $\alpha$.
+\end{definition}
+\begin{example}We have the following examples,
+  \begin{enumerate}
+    \item $e^z\to1$,
+    \item $\sin z\to1$,
+    \item $\cos z\to 1$,
+    \item $e^{z^n}\to n$.
+  \end{enumerate}
+  For the trigonometric functions use $\sin z = {\frac {e^{iz}-e^{-iz}} {2i}}$ and similarly for $\cos$.
+\end{example}
+\begin{remark}
+  Is $\vert \sin z\vert<z,z\in\C$? To show this consider,
+  \begin{equation*}
+    f(z) =\begin{cases}
+      {\frac {\sin z} z},z\not=0,
+      1, z=0.
+    \end{cases}
+  \end{equation*}
+  And apply Liouville's theorem.
+\end{remark}
+\begin{theorem}[Special case of Hadamard's factorization theorem]
+  Let $f(z)$ be an entire function of order $1$ and $(z_j)_{j\in\N}$ be such that $z_j\in\C\backslash\{0\}$, and $f(z_j) = 0$.Then there are some constants $A,B$ such that 
+  \begin{equation*}
+    f(z) = e^{A+Bz}\prod_{j\geq1}\left(1-{\frac z {z_j}}\right)e^{{\frac z {z_j}}}.
+  \end{equation*}
+\end{theorem}
+\begin{theorem}
+  Let $f$ be an entire function of order $\alpha\in\Z$ without any zeros. Then we have,
+  \begin{equation*}
+    f(z) = e^{p(z)},
+  \end{equation*}
+  where $p$ is some polynomial of degree $\alpha$.
+\end{theorem}
+Recall the completed zeta function,
+
+\begin{definition}
+  \begin{equation*}
+    \xi(s)\defeq (s-1)\pi^{{\frac {-s} {2}}}\Gamma\left({\frac s 2}+1\right)\zeta(s).
+  \end{equation*}
+  We know,
+  \begin{enumerate}
+    \item $\xi(s)$ has an order $1$,
+    \item $\zeta(s)$ has infinitely zeros in the critical strip.
+    \item $\xi(s) = e^{As+B}\prod_{\substack{\rho,\xi(\rho)=0\\ 0<\Re(\rho)<1}}\left(1-{\frac s \rho}\right)e^{{\frac z \rho}}$, where $A,B$ ae some constant.
+  \end{enumerate}
+\end{definition}
+
+\begin{remark}
+  Zeros of $\xi(s)$ are precisely the non-trivials zeros of $\zeta(s)$.
+\end{remark}
+
+\begin{theorem}
+  There eists a constant $c>0$ such that for $\sigma,t\in\R$ $s = \sigma+it$, $\sigma\geq 1-{\frac {c} {\log(\vert t\vert+2)}}$, we have,
+  \begin{equation*}
+    \zeta(s)\not=0.
+  \end{equation*}
+\end{theorem}
+
+Taking derivatives, we obtain,
+
+\begin{align*}
+  {\frac {\xi'(s)} {\xi(s)}} & = {\frac 1 {s-1}}-{\frac 1 2}\log\pi + {\frac {\Gamma'\left({\frac s 2}+1\right)} {2\Gamma\left({\frac s 2}+1\right)}}+{\frac {\zeta'(s)} {\zeta(s)}},\\
+  {\frac {\xi'(s)} {\xi(s)}} & = A+\sum_{\substack{\zeta(\rho)=0\\0<\Re(\rho)<1}}\left({\frac 1 {s-\rho}}+{\frac 1 \rho}\right).
+\end{align*}
+Note that ${\frac s 2}\Gamma\left({\frac s 2}\right)=\Gamma\left({\frac s 2}+1\right)$. Thus we obtain,
+\begin{equation*}
+  -{\frac {\zeta'(s)} {\zeta}} = {\frac 1 {s-1}}-A-{\frac {\log\pi} 2}+{\frac 1 2}{\frac {\Gamma'\left({\frac s 2}+1\right)} {\Gamma\left({\frac s 2}+1\right)}}-\sum_{\rho}\left({\frac 1 {s-\rho}}+{\frac 1 \rho}\right).
+\end{equation*}
+We then get,
+\begin{equation*}
+  \Re\left(-{\frac {\zeta'(s)} {\zeta}}\right) = \Re\left({\frac 1 {s-1}}\right)-A-{\frac {\log\pi} 2}+{\frac 1 2}\Re\left({\frac {\Gamma'\left({\frac s 2}+1\right)} {\Gamma\left({\frac s 2}+1\right)}}\right)-\sum_{\rho}\Re\left({\frac 1 {s-\rho}}+{\frac 1 \rho}\right).
+\end{equation*}
+Recall that for $s=\sigma+it,\sigma,t\in\R$, we have,
+\begin{equation*}
+  -{\frac {\zeta'(s)} {\zeta(s)}} = \sum_{n\geq 1}{\frac {\Lambda(n)} {n^s}}, \sigma\geq1.
+\end{equation*}
+And also,
+\begin{equation*}
+  {\frac {-3\zeta'(\sigma)} {\zeta(\sigma)}} - \Re\left({\frac {\zeta'(\sigma+it)} {\zeta(\sigma+it)}}\right)-\Re\left({\frac{\zeta'(\sigma+2it)} {\zeta(\sigma+2it)}}\right).
+\end{equation*}
+Check that 
+\begin{equation*}
+  \sum_{n=1}^\infty {\frac {\Lambda(n)} {n^\sigma}}(3+4\cos(t\log n)+\cos(2t\log n))>0,\sigma>1.
+\end{equation*}
+For $1<\sigma<2,t\geq1$, we have,
+\begin{equation*}
+  \Re\left({\frac 1 {s-1}}\right) = {\frac {\sigma-1} {\vert s-1\vert^2}} <{\frac 1 {t^2}}<1.
+\end{equation*}
+\begin{align*}
+  \Re\left({\frac 1 {s-\rho}}+{\frac 1 \rho}\right) & = \Re\left({\frac {\overline{s-\rho}} {\vert s-\rho\vert^2}}+{\frac {\overline{\rho}} {\vert\rho\vert^2}}\right),\\
+  & = {\frac {\sigma-\beta} {\vert s-\rho\vert^2}}+{\frac \beta {\vert \rho\vert^2}}>0,
+\end{align*}
+where $\beta=\Re(\rho)$. We have,
+\begin{equation*}
+  {\frac {\Gamma'\left({\frac s 2}+1\right)} {\Gamma\left({\frac s 2}+1\right)}}<B\log\left({\frac {\vert t\vert} 2}+2\right),\forall t\in\R.
+\end{equation*}
+We have the following equations,
+\begin{equation*}
+  \Gamma(z)\sim\sqrt{{\frac {2\pi} z}}\left({\frac z e}\right)^z,\vert z\vert\to\infty.
+\end{equation*}
+\begin{equation*}
+  {\frac 1 {\Gamma(z)}} = e^{\gamma z}z\prod_{n=1}^\infty \left(1+{\frac z n}\right)e^{-{\frac 2 n}},
+\end{equation*}
+where $\gamma$ is the Euler's constant.
+\par Now consider $1\leq \sigma\leq 2$, we have,
+\begin{equation*}
+  \left\vert{\frac {\Gamma'(s)} {\Gamma(s)}}\right\vert<B\log(\vert t\vert+2),
+\end{equation*}
+where $B$ is some constant for all $t\in\ R$.
+From above expressions, we obtain,
+\begin{equation*}
+  \Re\left({\frac {-\zeta'(s)} {\zeta(s)}}\right)<B'\log\left({\frac {\vert t\vert} {2}+2}\right),\forall t\geq1.
+\end{equation*}
+Let $\rho=\beta+it$, be any non-trivial zero of $\zeta(s)$.
+\begin{equation*}
+  \Re\left({\frac {-\zeta'(s)} {\zeta(s)}}\right)<B'\log\left({\frac {\vert t\vert} 2}+2\right)-{\frac 1 {\sigma-\beta}}, t\geq1.
+\end{equation*}
+Recall for $\sigma>0$, 
+\begin{equation*}
+  {\frac {\zeta'(s)} {\zeta(s)}} = {\frac 1 {s-1}}+g(s),
+\end{equation*}
+where$g(s)$ is some analyti function. For $1\leq\sigma\leq 2$, 
+\begin{align*}
+  {\frac {-\zeta'(\sigma)} {\zeta(\sigma)}} = {\frac 1 {\sigma-1}}-g(\sigma),\\
+  &<{\frac 1 {\sigma-1}}+c,
+\end{align*}
+where $C$ is some constant.
+\begin{align*}
+  0<{\frac {-3\zeta'(\sigma)} {\zeta(\sigma)}}-4\Re\left({\frac {\zeta'(\sigma+it)} {\zeta(\sigma+it)}}\right)-\Re\left({\frac {\zeta'(\sigma+2it)} {\zeta(\sigma+2it)}}\right).
+\end{align*}
+We then obtain,
+\begin{equation*}
+  0<3\left({\frac 1 {\sigma-1}}+C\right)+4B'\log(\vert t\vert+2)+B'\log(\vert t\vert+2)-{\frac 1{\sigma-\beta}}.
+\end{equation*}
+Note that
+\begin{equation*}
+  {\frac 1 {\sigma-\beta}}<{\frac 3 {\sigma-1}}+B''\log(\vert t\vert +2),t\geq1.
+\end{equation*}
+Take $\sigma = 1+{\frac {\varepsilon} {\log(\vert t\vert+2)}}$, where $\varepsilon>0$, sufficiently small which will be chosen later. 
+\begin{equation*}
+  \beta<1-{\frac {\varepsilon(1-B''\varepsilon)} {\log(\vert t\vert+2)}},t\geq1.
+\end{equation*}
+So far we have shown that  for $t\geq1$ and 
+\begin{equation*}
+  \sigma\geq 1-{\frac c {\log(\vert t\vert+2)}},
+\end{equation*}
+we have $\zeta(s)\not=0$. For some constant $C>0$. 
+\par For $\vert t\vert\leq1$, since $\zeta9s)$ be analytic except $s=1$, there exists a constant $c_1>0$ such that 
+\begin{equation*}
+  \sigma>1-c_1\Rightarrow \zeta(s)\not=0.
+\end{equation*}
+If 
+\begin{equation*}
+  1-c_1\leq 1-{\frac {c_2} {\log(\vert t\vert+2)}},
+\end{equation*}
+then we have,
+\begin{equation*}
+  c_1\geq {\frac {c_2} {\log(\vert t\vert+2)}},\vert t\vert<1.
+\end{equation*}
+Choose $c_2=c_1\log2$. Take $c' = \min(c_1,c_1\log 2)$.
+\par Above proof can be generalized to $L(s,\chi)$ where $\chi$ is a non-trivial character.
+\begin{theorem}
+  Let $\chi$ be a non-trivial character. Then there si $c_1>0$ such that for $s=\sigma+it,\sigma,t\in\R$, we have,
+  \begin{equation*}
+    \sigma\geq1_{\frac {c_1} {\log(q(\vert t\vert+2))}}.
+  \end{equation*}
+\end{theorem}
+\begin{theorem}[Siegel zeros]
+  There exists an absolute constant $c_2>0$ such that $L(s,\chi)$ where $\chi$ is quadratic $\tmod q$ has at most one zero in the region,
+  \begin{equation*}
+    \sigma>1-{\frac {\delta} {\log q}},\vert t\vert<{\frac {\delta} {\log q}},
+  \end{equation*}
+  where $0<\delta<c_2$.
+  If such a zero exists, it is real, simple and often called Siegel zero.
+\end{theorem}
+Recall the completed Dirichlet $L$-function,
+\begin{equation*}
+  \xi(s,\chi)\defeq\left( {\frac q \pi}\right)^{{\frac {s+a} 2}}\Gamma\left({\frac {s+a} 2}\right)L(s,\chi).
+\end{equation*}
+See the lecture note from 12/16. Where 
+\begin{equation*}
+  a =\begin{cases}
+    0,\quad\chi(-1)=1,\\
+    1,\quad\chi(-1)=-1.
+  \end{cases}
+\end{equation*}
+We have $\xi(s,\chi)$ is of order $1$ and 
+\begin{equation*}
+  \xi(s,\chi) = e^{A_1+B_1s}\prod_{\substack{\rho,L(\rho,\chi)=0\\0\leq\Re(\rho)<1}}\left(1-{\frac s \rho}\right)e^{{\frac s \rho}}.
+\end{equation*}
+Furthermore $L(s,\chi)$ has inifinitely many zero in the critical strip.
+\begin{remark}
+  \begin{equation*}
+    L(s,\chi) = L(s,\chi^*)\prod_{p|q}\left(1_{\frac {\chi^*(p)} {p^s}}\right),s\in\C
+  \end{equation*}
+  Then $L(s,\chi)=0$ if and only if $L(s,\chi^*)=0$ when $\sigma\not=0$.
+\end{remark}
+Recall
+\begin{align*}
+  \xi(s) = {\frac {s(s-1)} {2}}\pi^{{\frac {-s} 2}}\Gamma\left({\frac s 2}\right)\zeta(s).
+\end{align*}
+%some calculations at the end is missing see the photos.
+%1/15
+\begin{definition}
+  \begin{equation*}
+    N(T) = \vert\{\rho=\beta+i\gamma\sep \zeta(\rho)=0, \beta\in(0,1),\gamma\in(0,T)\}\vert.
+  \end{equation*}
+\end{definition}
+\begin{theorem}
+  As $T\to \infty$, we have,
+  \begin{equation*}
+    N(T+1)-N(T)<<\log T.
+  \end{equation*}
+\end{theorem}
+\begin{proof}
+  Enough to show that as $T\to \infty$.
+  \begin{equation*}
+    \sum_{\substack{\rho=\beta+i\gamma\\\zeta(\rho) = 0\\\beta\in(0,1)}}{\frac 1 {1+(T-\gamma)^2}}<<\log T
+  \end{equation*}
+  Observe that,
+  \begin{align*}
+    N(T+1)-N(T) = \sum_{\substack{\rho=\beta+i\gamma\\\beta\in(0,1)\\\zeta(\rho) = 0\\ T<\gamma<T+1}}\leq\sum.
+  \end{align*}
+  Recall %specify the part,
+  we have,
+  \begin{equation*}
+    -\Re\left({\frac {\zeta'(s)} {\zeta(s)}}\right)<A\log(\vert t\vert+2)-\sum_{\rho=\beta+i\gamma}\Re\left({\frac 1 {s-p}}-{\frac 1 p}\right).
+  \end{equation*}
+  where $s=\sigma+it$ for $\sigma\in[1,2],\vert t\vert>1$ and $A$ is some constant. Substitute $s=2+iT$ in the equation, we have,
+  \begin{equation*}
+    \Re\left({\frac 1 {s-\rho}}\right)=\Re\left({\frac {(\overline{s-\rho})} {\vert s-\rho\vert^2}}\right).
+  \end{equation*}
+  Put $s=2+iT$ and $\rho=\beta+i\gamma$, we have,
+  \begin{equation*}
+    \Re\left({\frac {(\overline{s-\rho})} {\vert s-\rho\vert^2}}\right)={\frac {2-\beta}{(2-\beta)^2+(T-\gamma)^2}}\geq{\frac 1 {4+(T-\gamma)^2}}.
+  \end{equation*}
+  Also,
+  \begin{equation*}
+    \Re\left({\frac 1 \rho}\right) = {\frac {\beta} {\vert\rho\vert^2}}>0.
+  \end{equation*}
+  By the previous equation, we get%specify,
+  \begin{equation*}
+    \sum_{\substack{\rho=\beta+i\gamma\\ \beta\in(0,1)\\\zeta(\rho)=0}}\Re\left({\frac 1 {2+iT-\rho}}\right)< A\log(T+2)+\Re\left({\frac {\zeta'(2+iT)}{\zeta(2+iT)}}\right)<<\log T.
+  \end{equation*}
+  Recall that for $\sigma>1$,
+  \begin{align*}
+    {\frac {\zeta'(s)}{\zeta(s)}}&=\sum_{n\in\N}{\frac {\Lambda(n)} {n^s}},\\
+    \left\vert{\frac {\zeta'(2+iT)} {\zeta(2+iT)}}\right\vert &\leq\sum_{n\in \N}{\frac {\Lambda(n)} {n^s}}<\infty.
+  \end{align*}
+  Therefore,
+  \begin{equation*}
+    \sum_{\rho}\Re\left({\frac 1 {2+iT-\rho}}\right) = \sum_{\rho}{\frac 1 {4+(T-\gamma)^2}},
+  \end{equation*}
+  and 
+  \begin{equation*}
+    4+(T-\gamma)^2\leq 4(1+(T-\gamma)^2).
+  \end{equation*}
+\end{proof}
+\begin{theorem}
+  As $T\to \infty$,
+  \begin{equation*}
+    N(T) = {\frac {T} {2\pi}}\log{\frac T {2\pi}}-{\frac T {2\pi}}+O(\log(T)).
+  \end{equation*}
+  That is, as $T\to\infty$,
+  \begin{equation*}
+    N(T)\sim {\frac T {2\pi}}\log T.
+  \end{equation*}
+  Analogously, $\chi\tmod q$, as $T\to\infty$,
+  \begin{equation*}
+    N(T,\chi) = \sum_{\substack{\rho=\beta+i\gamma\\L(\rho,\chi)=0\\\beta\in(0,1)\\\vert\gamma\vert<T}}1 \sim {\frac T {\pi}}\log qT.
+  \end{equation*}
+\end{theorem}
+\begin{exercise}
+  \begin{equation*}
+    N(T,\chi)' = \sum_{\substack{\rho=\beta+i\gamma\\L(\rho,\chi)=0\\\beta\in(0,1)\\0<gamma<T}}1 \sim {\frac T {2\pi}}\log qT.
+  \end{equation*}
+\end{exercise}
+Recall by Remark \ref{remark_second_chebyschev_mangoldot}, we have,
+\begin{equation*}
+  \psi(x) \defeq  \sum_{n\leq x}\Lambda(n).
+\end{equation*}
+Also recall that Theorem \ref{thorem_zeta_zeta_derivatie_residue}, ${\frac {\zeta'(s)} {\zeta(s)}}$ has a simple pole at $s=1$ with residue $-1$. 
+\par Let $s=a$ be a zero of $\zeta(s)$ of order $n\in\N$. Then 
+\begin{equation*}
+  \zeta(s) = (s-a)^ng(s),
+\end{equation*}
+where $g(s)$ is analytic and $g(a)\not=0$. Taking $\log$-derivative of both sides , we have,
+\begin{equation*}
+  {\frac {\zeta'(s)} {\zeta(s)}} = {\frac {n} {s-a}}+{\frac {g'(a)} {g(a)}}.
+\end{equation*}
+Resiue of ${\frac {\zeta'(s)} {\zeta(s)}}$ at $0$ of $zeta(s)$ is precisely the multiplicity of that zero.
+Recall from the proof of Theorem \ref{theorem_prime_number}, we have,
+\begin{equation*}
+  \psi(x) = {\frac 1 {2\pi i}}\int_{a-iT}^{a+iT}-{\frac {\zeta'(s)} {\zeta(s)}}{\frac {x^s} {s}}ds+O\left(\sum_{n\in\N}\Lambda(n)\left({\frac x n}\right)\min(1,T^{-1}\left\vert\log {\frac x n}\right\vert^{-1})\right),
+\end{equation*}
+where $x$ is not an integer and $T,a\geq1$. Similarly to the proof of Theorem \ref{theorem_prime_number}, take 
+\begin{equation*}
+  a=1+{\frac 1 {\log x}}.
+\end{equation*}
+we then get, as $x\to\infty$,
+\begin{equation*}
+  \psi(x) = {\frac 1 {2\pi i}}\int_{a-iR}^{a+iR}-{\frac {\zeta'(s)}{\zeta(s)}}{\frac {x^s} s}dx+O\left({\frac {x\log^2x}{R}}\right).
+\end{equation*}
+Now consider the following closed path
+\begin{center}
+  \begin{tikzpicture}
+  \draw[->] (-3,0) -- (4,0);
+  \draw[->] (0,-3)--(0,-2) node[left]{$-R$} -- (0,2)node[left]{$R$}--(0,3);
+  \draw[very thick, black] (-2,-2) -- (-2,0)node[above left, black]{$-U$} -- (-2,2)
+    -- (3,2)--(3,0)node[above right, black]{$a$} -- (3,-2) -- cycle;
+\end{tikzpicture}
+\end{center}
+where $U$ is some odd integer. By Cauchy's residue theorem, we have,
+\begin{align*}
+   {\frac 1 {2\pi i}}\int_{C_R}-{\frac {\zeta'(s)}{\zeta(s)}}{\frac {x^s} s}ds &= \text{sum of residues of ${\frac {\zeta'(s)}{\zeta(s)}}$ in $C_R$},\\
+   & = \overbrace{x}^{\text{contribution of poles of $\zeta(s)$}} - \underbrace{{\frac {\zeta'(0)}{\zeta(0)}}}_{\text{contribution of $s=0$}} +\overbrace{\sum_{0<2m<U}{\frac {x^{-2m}} {2m}}}_{\text{contribution of non-trivial zeros of $\zeta(s)$}}-\underbrace{\sum_{\substack{\rho=\beta+i\gamma\\\zeta(\rho)=0\\\vert\gamma\vert<R}}{\frac {x^\rho} {\rho}}}_{\text{contribution of trivial zeros of $\zeta(s)$}}.
+\end{align*}
+Note that,
+\begin{equation*}
+  \int_{C_R}=\int_{a-iR}^{a+iR}+\underbrace{\int_{T_1,T_2,T_3}}_{=I}.
+\end{equation*}
+We then have %specify the equations
+\begin{equation*}
+  \psi(x) = x-{\frac {\zeta'(0)} {\zeta(0)}}+\sum_{0<2m<U}{\frac {x^{-2m}} {2m}}-\sum_{\substack{\rho=\beta+i\gamma\\\zeta(\rho)=0\\\beta\in(0,1)\\\vert\gamma\vert<R}}{\frac {x^\rho} {\rho}}-I+O\left({\frac {x\log^2x}{R}}\right).
+\end{equation*}
+\begin{exercise}
+  Show that 
+  \begin{align*}
+    I &= {\frac 1 {2\pi}}\int_{I_1+I_2+I_3}-{\frac {\zeta'(s)}{\zeta(s)}}{\frac {x^s} {s}}ds,
+    & = O\left({\frac {x\log^2 R}{R\log x}}+{\frac {R\log U}{Ux^R}}\right).
+  \end{align*}
+\end{exercise}
+Suppose we have above equality, then we have,
+\begin{equation*}
+  \psi(x) = x-{\frac {\zeta'(0)} {\zeta(0)}}+\sum_{0<2m<U}{\frac {x^{-2m}} {2m}}-\sum{\frac {x^\rho} {\rho}}+O\left({\frac {x\log^2R}{R\log x}}+{\frac {R\log U} {Ux^R}}+{\frac {x\log^2x} R}\right).
+\end{equation*}
+Recall $U$ is an odd integer. Take $U\to\infty$, we have,
+\begin{equation*}
+  \psi(x) = x-{\frac {\zeta'(0)} {\zeta(0)}}+\log(1-x^{-2})-\sum_{\rho}{\frac {x^\rho} {\rho}}+O\left({\frac {x\log^2R}{R\log x}}+{\frac {x\log^2x} R}\right).
+\end{equation*}
+Taking $R\to\infty$, we have,
+\begin{equation*}
+  \psi(x) = x-{\frac {\zeta'(0)}{\zeta(0)}}+\log(1-x^{-2})-\sum_{\rho}{\frac {x^\rho} {\rho}}.
+\end{equation*}
+\begin{definition}
+  \begin{equation*}
+  \psi(x,\chi) \defeq\sum{n\leq x}\Lambda(n)\chi(n).
+  \end{equation*}
+\end{definition}
+Recall we had,
+\begin{equation*}
+\psi(x,q,a) \defeq\sum_{\substack{n\leq x\\n=a\tmod q}}\Lambda(n),
+\end{equation*}
+where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\infty$,
+\begin{equation*}
+\psi(x,q,a) \sim {\frac {x} {\varphi(q)}}.
+\end{equation*}
+\begin{exercise}
+  Show that for $(a,q)=1$, we have,
+  \begin{equation*}
+    \psi(x,q,a) = {\frac 1 {\varphi(q)}}\sum_{\chi\tmod q}\psi(x,\chi)\overline{\chi(a)}.
+  \end{equation*}
+\end{exercise}
+\begin{theorem}
+  As $x\to\infty$, we have,
+  \begin{equation*}
+    \psi(x) = x+O(xe^{-c\sqrt{\log x}}),
+  \end{equation*}
+  where $c>0$ is some constant.
+\end{theorem}
+\begin{proof}
+  Recalling zero free regions of $\zeta$, we have for $s=\sigma+it$, 
+  \begin{equation*}
+    \sigma>1-{\frac c {\log R}}\Rightarrow\zeta(s) \not=0,
+  \end{equation*}
+  where $c$ is some constant and $R=\Im(s)$. From this we have,
+  \begin{equation*}
+    \left\vert\sum_{\vert\gamma\vert<R}{\frac {x^\rho} {\rho}}\right\vert \leq x^{1-{\frac {c} {\log R}}}\sum_{\substack{\rho=\beta+i\gamma\\\zeta(\rho)=0\\\beta\in(0,1)\\\vert\gamma\vert<R}}{\frac 1 {\vert \rho\vert}}<<x^{1-{\frac c {\log R}}}\sum_{\substack{\beta\in(0,1)\\\gamma\in(0,R)\\\zeta(\beta+i\gamma)=0}}{\frac 1 {\sqrt{\beta^2+\gamma^2}}}.
+  \end{equation*}
+  Set 
+  \begin{equation*}
+    g(t) = {\frac {1} {\sqrt{\beta^2+t^2}}},
+  \end{equation*}
+  and 
+  \begin{equation*}
+    a_t\defeq \sum_{\substack{\beta\in(0,1)\\\gamma\in(0,t)\\\zeta(\beta+i\gamma)=0}}1.
+  \end{equation*}
+  We now have,
+  \begin{align*}
+    \sum_{\substack{\beta\in(0,1)\\\gamma\in(0,R)\\\zeta(\beta+i\gamma)=0}}{\frac 1 {\sqrt{\beta^2+\gamma^2}}}& ={\frac {N(R)} {\sqrt{\beta^2+\gamma^2}}}+\int_0^R{\frac {tN(R)} {(\beta^2+\gamma^2)^{{\frac 3 2}}}}dt\\
+    & <<{\frac {N(R)}{R}}+\int_0^R{\frac {N(t)} {t^2}}dt,\\
+    & = \log R+\int_0^2{\frac {\log t} {t}}+\int_2^R\cdots,\\
+    & = \log^2R.
+  \end{align*}
+  Combining all we get,
+  \begin{equation*}
+    \left\vert\sum_{\vert\gamma\vert<R}{\frac {x^\rho}{\rho}}\right\vert<<x^{1-{\frac c {\log R}}}\log^2R.
+  \end{equation*}
+  Choose $\log R = c_2(\log\overline{x})^{{\frac 1 2}}$ we have,
+  \begin{equation*}
+    \psi(x) = x+O(xe^{-c\sqrt{\log x}}).
+  \end{equation*}
+  Using Riemann hypotehsis, choose $R= \sqrt{x}$, we then have as $x\to\infty$,
+  \begin{equation*}
+    \psi(x) = x+O(\sqrt{x}\log^2x)+{\frac {R\log U}{Ux^R}}+{\frac {x\log^2 x}{ R}}.
+  \end{equation*}
+\end{proof}
+\begin{theorem}[Siegel-Walfisz]
+  For any $N\in\R$ there is $c_N>0$ such that as $x\to\infty$,
+  \begin{equation*}
+    \psi(x,q,a) = {\frac x {\varphi(q)}}+O(xe^{-c_N\sqrt{\log x}}),
+  \end{equation*}
+  where $q\leq (\log x)^N$. This is uniform in $q$. 
+\end{theorem}
+\begin{exercise}
+  Show that Rieman hypothesis is equivalent to that as $x\to\infty$,
+  \begin{equation*}
+    \psi(x) = x+O(\sqrt{x}\log^2x).
+  \end{equation*}
+\end{exercise}
+\begin{theorem}
+  Riemann hypothesis implies that for $(a,q) = 1$, we have, as $x\to\infty$,
+  \begin{equation*}
+    \psi(x;q,a) = {\frac x {\varphi(q)}}+O(\sqrt{x}\log^2qx).
+  \end{equation*}
+\end{theorem}
+\begin{remark}For $(a,q)=1$, fixed we have as $x\to\infty$.
+  \begin{equation*}
+    \pi(x,q,a)<{\frac {2x} {\varphi\log {\frac x q}}},q<x.
+  \end{equation*}
+\end{remark}
 \end{document}
