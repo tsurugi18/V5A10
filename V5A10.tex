@@ -295,9 +295,9 @@ Let $A$ be a compact subset of a complex plane where $\Re(s)>1$. Then there exis
 The Riemann zeta function can be analytically continued to the whole plane except for $s=1$. 
 \end{fact}
 
-\begin{definition}[Gamma Function]
+\begin{definition}[Gamma function] We define the Gamma function $\Gamma:\C\to\C$ as
   \begin{equation*}
-    \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt.
+    \Gamma(s)\defeq \int_0^\infty t^{s-1}e^{-t}dt, \Re(s)>0.
   \end{equation*}
 \end{definition}
 
@@ -313,12 +313,12 @@ $\zeta(1+it) \not=0$ if $t\in\R,t\not=0$. $\zeta(s) \not=0$ for $0<s<1$.
 
 \begin{remark}[Functional Equation]
 \begin{equation*}
-\zeta(1-s) = 2(2\pi)^{-s}\cos\left({\frac {\pi s} 2}\right) \Gamma(s)\zeta(s)
+\zeta(1-s) = 2(2\pi)^{-s}\cos\left({\frac {\pi s} 2}\right) \Gamma\left({\frac s 2}\right)\zeta(s)
 \end{equation*}
 \end{remark}
 
 \begin{remark}
-$\Gamma(s)$ is defined for $\Re(s)>0$ and can be analytically continued to the whole place except for $\C\backslash\{-2n\:|\: n\geq 0\}$. 
+$\Gamma(s)$ is defined for $\Re(s)>0$ and can be analytically continued to the whole place except for $\C\backslash\{-n\:|\: n\in\Z_{\geq0}\}$. 
 \end{remark}
 
 \begin{remark}
@@ -684,7 +684,7 @@ we get this equals to ${\frac 1 2 }\ln2$.
 \begin{remark}
   \begin{align*}
     \sum_{n\in\N} \left\vert{\frac {\Lambda(s)} {n^s}}\right\vert &\leq \sum_{n\in\N}{\frac {\log(n)} {n^\sigma}},\\
-    &<<\sum_{n\in\N}{\frac {n^\varepsilon} {n^\sigma}},\\
+    &\ll \sum_{n\in\N}{\frac {n^\varepsilon} {n^\sigma}},\\
     & = \sum_{n\in\N}{\frac 1 {n^{\sigma-\varepsilon}}}.
   \end{align*}
   We have $\lim_{n\to\infty}{\frac {\log(n)} {n^\varepsilon}}=1$ and the last equation is convergent if and only if $\sigma-\varepsilon>1$. Thus we have $\sigma>1+\varepsilon$.
@@ -694,7 +694,7 @@ we get this equals to ${\frac 1 2 }\ln2$.
   Let $D\subseteq\C$ be open. A meromorphic function is $f:D\to\C$ which is analytic on $D$ except a discrete set of poles of $f$.
 \end{definition}
 \begin{remark}
-  ${\frac {\zeta'(s)} {\zeta(s)}}$ is a meromorphic functions except $s=1$ and where $\zeta(s)$ vanishes. Indeed, 
+  ${\frac {\zeta'(s)} {\zeta(s)}}$ is a meromorphic functions with a pole at $s=1$ and where $\zeta(s)$ vanishes. Indeed, 
   For general ${\frac f g}$, it is analytic if $f,g$ are analytic and $g\not=0$. 
   \begin{enumerate}[1).]
     \item $\zeta(s)$ is analytic except $s=1$. 
@@ -763,8 +763,8 @@ Recall that for $\vert z\vert \geq 1$, we have,
 
 \begin{example}
   \begin{align*}
-    \sum_{n\in\N}{\frac {\mu(n)} {n^s}} & = \prod_{p}\left(1+{\frac {\mu(p)} {p^s}}\right),\\
-    & = \prod_{p}\left(1-{\frac 1 {p^s}}\right),\\
+    \sum_{n\in\N}{\frac {\mu(n)} {n^s}} & = \prod_{p}\left(1+{\frac {\mu(p)} {p^s}}\right)^{-1},\\
+    & = \prod_{p}\left(1-{\frac 1 {p^s}}\right)^{-1},\\
     & = {\frac 1 {\zeta(s)}}.
   \end{align*}
 \end{example}
@@ -801,7 +801,7 @@ Recall that for $\vert z\vert \geq 1$, we have,
 
 \begin{lemma}
   \begin{equation*}
-    \nu(n)<<\log(n).
+    \nu(n)\ll \log(n).
   \end{equation*}
 \end{lemma}
 
@@ -842,7 +842,7 @@ Recall that for $\vert z\vert \geq 1$, we have,
 
 \begin{lemma}
   \begin{equation*}
-    \sigma(n) << n(1+\log(n))\sim n\log(n).
+    \sigma(n) \ll  n(1+\log(n))\sim n\log(n).
   \end{equation*}
 \end{lemma}
 
@@ -863,7 +863,7 @@ Recall that for $\vert z\vert \geq 1$, we have,
   \end{equation*}
   That is 
   \begin{equation*}
-    \left\vert\sum_{k=1}^n{\frac 1 k} - \log(n)\right\vert << 1.
+    \left\vert\sum_{k=1}^n{\frac 1 k} - \log(n)\right\vert \ll  1.
   \end{equation*}
   Hint: Replace ${\frac 1 t}$ by an increasing function and derive the similar inequality to Lemma \ref{harmonic_series_upper_bound}.
 \end{exercise}
@@ -889,7 +889,7 @@ We have an improved inequality,
 \begin{proposition}
   for $\varepsilon>0$, we have,
   \begin{equation*}
-    d(n)<< n^\varepsilon.
+    d(n)\ll  n^\varepsilon.
   \end{equation*}
 \end{proposition}
 
@@ -965,7 +965,7 @@ Proposition \ref{average_order_d} can be restated as follows.
 \begin{exercise}
   Examine the following statements.
   \begin{enumerate}
-    \item Is it true that $d(n)<<\log n$?
+    \item Is it true that $d(n)\ll \log n$?
     \item Do we have $d(n) = O(n^\varepsilon)$ for any $\varepsilon>0$?
     \item What is the optimal bound for $d(n)$? 
   \end{enumerate}
@@ -1058,12 +1058,12 @@ We then have,
 We have,
 \begin{align*}
   \left\vert\sum_{d\geq x}{\frac {\mu(d)} {d^2}}\right\vert & \leq \sum_{d\geq x}{\frac 1 {d^2}}\\
-  & << \int_x^\infty {\frac {dt} {t^2}},\\
-  & << {\frac 1 x}.
+  & \ll  \int_x^\infty {\frac {dt} {t^2}},\\
+  & \ll  {\frac 1 x}.
 \end{align*}
 and,
 \begin{align*}
-  \left\vert\sum_{d\leq x}{\frac {\mu(d)} d}\right\vert << \ln x.
+  \left\vert\sum_{d\leq x}{\frac {\mu(d)} d}\right\vert \ll  \ln x.
 \end{align*}
 Using these we have,
 \begin{align*}
@@ -1094,9 +1094,9 @@ exists.
 \begin{remark}[Euler-Mascheroni constant]
   By taking $A_x=\log(x)$, we have
   \begin{equation*}
-    \lim_{n\to\infty}\left(\sum_{n\leq x}{\frac 1 n}-\log(x)\right) =\psi,
+    \lim_{n\to\infty}\left(\sum_{n\leq x}{\frac 1 n}-\log(x)\right) =\gamma,
   \end{equation*}
-  exists. Such $\psi$ is called Euler-Mascheroni constant.
+  exists. Such $\gamma$ is called Euler-Mascheroni constant.
 \end{remark}
 
 \begin{remark}[Euler Kronecer constant]
@@ -1318,20 +1318,20 @@ Therefore we obtain,
 \end{remark}
 
 \begin{definition}
-  Let $q\in\N$ and $q\geq 3$. A Dirichlet character is a group homomorphism modulo $q$ is a group homomorphism
+  Let $q\in\N$ and $q\geq 3$. A character is a group homomorphism modulo $q$ is a group homomorphism
   \begin{equation*}
     \chi':(\Z/q\Z)^\times\to \C^\times.
   \end{equation*}
-\end{definition}
-
-\begin{remark}
-  Given a Dirichlet character $\chi':(\Z/q\Z)^\times \to \C^\times$. We ca define a character $\chi:\Z\to\C^\times $ as follows.
+  Given a character $\chi':(\Z/q\Z)^\times \to \C^\times$. We can define a Dirichlet character modulo $q$, $\chi:\Z\to\C^\times $ as follows.
   \begin{equation*}
     \chi(a) \defeq \begin{cases}
       \chi'(\overline{a}), \quad (a,q)=1,\\
       0,\quad (a,q) \not=1.
     \end{cases}
   \end{equation*}
+\end{definition}
+
+\begin{remark}
   From Remark \ref{cardinality_finite_abelian_character}, there are exactly $\varphi(q)$ many Dirichlet characters modulo $q$. Furthermore, 
   \begin{equation*}
     \chi(a)^{\varphi(q)} = \chi'(\overline{a})^{\varphi(q)} = \chi'(\overline{a}^{\varphi(q)}) = \chi'(\overline{1}) = 1.
@@ -1462,7 +1462,7 @@ Thus we conclude,
   %later need revision
   \label{theorem_polya_vinogradov}
 \begin{equation*}
-  \sum_{n\leq x}\chi(n)<<\sqrt{q}\ln q, (\chi\not=\chi_0\mod q).
+  \sum_{n\leq x}\chi(n)\ll \sqrt{q}\ln q, (\chi\not=\chi_0\mod q).
 \end{equation*}
 notice that the above expression is bounded by $\sqrt{q}\ln\ln q$. Furthermore, this is uniform in $q$ that is the constant does not depend on $q$.
 \end{theorem}
@@ -1503,7 +1503,7 @@ Suppose $\zeta(s)\not=0$, where $\Re(s)>0$, then Euler product exists.
   \end{equation*}
   Again using the assumption, we have,
   \begin{equation*}
-    \int_1^\infty \left\vert{\frac {A(t)} {t^{s+1}}}\right\vert dt<<\int_1^\infty t^{\delta-\Re(s)-1}dt = {\frac {t^{\delta-\Re(s)}} {\delta-\Re(s)}}\bigg{|}_0^\infty = {\frac 1 {\delta-\Re(s)}}.
+    \int_1^\infty \left\vert{\frac {A(t)} {t^{s+1}}}\right\vert dt\ll \int_1^\infty t^{\delta-\Re(s)-1}dt = {\frac {t^{\delta-\Re(s)}} {\delta-\Re(s)}}\bigg{|}_0^\infty = {\frac 1 {\delta-\Re(s)}}.
   \end{equation*}
   Thus the integral is convergent.
 \end{proof}
@@ -1619,7 +1619,7 @@ Suppose $\zeta(s)\not=0$, where $\Re(s)>0$, then Euler product exists.
   \end{definition}
 
  \begin{remark}
-  We have,
+  Suppose $\chi\not=\chi_0$. We have,
    \begin{align*}
     L(s,\chi) & = 0\quad\text{ if } s=0,-2,-4, \text{ when $\chi$ is an even character}.\\
     L(s,\chi) & = 0\quad\text{ if } s=-1,-3,-5, \text{ when $\chi$ is an odd character}.\\
@@ -1835,7 +1835,7 @@ has a zero of order at least $1$. Thus this is a contradiction.
   \end{align*}
   Since $\zeta$ has a pole at $1$, so does its log. Observe that at $s=1$,
   \begin{equation*}
-    \sum_{p}{\frac 1 {p^s}}+\sum_{n\geq 2}{\frac 1 {np^{ns}}} \leq \sum_{p}\sum_{n\geq 2}{\frac 1 {p^n}} = \sum_{p}{\frac 1 {p^2}}{\frac 1 {1-{\frac 1 p}}} = \sum_{p} {\frac 1 {p(p-1)}} << \sum_{n\in\N}{\frac 1 {n^2}}.
+    \sum_{p}{\frac 1 {p^s}}+\sum_{n\geq 2}{\frac 1 {np^{ns}}} \leq \sum_{p}\sum_{n\geq 2}{\frac 1 {p^n}} = \sum_{p}{\frac 1 {p^2}}{\frac 1 {1-{\frac 1 p}}} = \sum_{p} {\frac 1 {p(p-1)}} \ll  \sum_{n\in\N}{\frac 1 {n^2}}.
   \end{equation*} 
   Thus $\lim_{s\to1^+}\sum_{p}{\frac 1 {p^s}}$ must be infinity.
 \end{proof}
@@ -2019,7 +2019,7 @@ has a zero of order at least $1$. Thus this is a contradiction.
   \end{enumerate}
   Then we have,
   \begin{equation*}
-    \sum_{n\leq x}b_n = Rx+O(x).
+    \sum_{n\leq x}b_n = Rx+o(x).
   \end{equation*}
   That is 
   \begin{equation*}
@@ -2097,9 +2097,9 @@ We immitate the proof of Theorem \ref{theomre_zeta_inverse}. Using Theorem \ref{
   \begin{equation*}
     \lim_{s\to1}(s-1)\left(-{\frac 1{\varphi(q)}}\sum_{\substack{\chi\tmod q\\\chi\not=\chi_0}}{\frac {L'(s,\chi)} {L(s,\chi)}}-{\frac 1 {\varphi(q)}}{\frac {L'(s,\chi_0)} {L(s,\chi_0)}}\right) = {\frac 1 {\varphi(q)}}.
   \end{equation*}
-  Now Using Theorem \ref{theorem_ikehara_wiener}, and apply $b_n=\Lambda(n)$ $f = \varphi(q)\sum_{n\equiv a\tmod q}{\frac {\Lambda(n)}{n^s}}$, we get,
+  Now using Theorem \ref{theorem_ikehara_wiener}, and apply $b_n=\Lambda(n)$ $f = \varphi(q)\sum_{n\equiv a\tmod q}{\frac {\Lambda(n)}{n^s}}$, we get,
   \begin{equation*}
-    \psi(x,q,a) = \sum_{n\leq x}\Lambda(n) = {\frac 1 {\varphi(q)}}x+O(x).
+    \psi(x,q,a) = \sum_{n\leq x}\Lambda(n) = {\frac 1 {\varphi(q)}}x+o(x).
   \end{equation*}
 \end{proof}
 
@@ -2156,7 +2156,7 @@ We immitate the proof of Theorem \ref{theomre_zeta_inverse}. Using Theorem \ref{
     \begin{align*}
       \sum_{e\leq\sqrt{x}}{\frac 1 {\sqrt{e}}}\left(\sum_{\sqrt{x}<d\leq {\frac x e}}{\frac {\chi(d)} {\sqrt{(d)}}}\right) & = \sum_{e\leq x}{\frac 1 {\sqrt{e}}}\left(O\left({\frac 1 {x^{{\frac 1 r}}}}\right)\right),\\
       & = \left(O\left({\frac 1 {x^{{\frac 1 r}}}}\right)\right)\sum_{e\leq x}{\frac 1 {\sqrt{e}}},\\
-      \sum_{e\leq \sqrt{x}}{\frac 1 {\sqrt{x}}}&<< \int_1^{\sqrt{x}}{\frac 1 {\sqrt{t}}}dt = x^{{\frac 1 4}}.
+      \sum_{e\leq \sqrt{x}}{\frac 1 {\sqrt{x}}}&\ll  \int_1^{\sqrt{x}}{\frac 1 {\sqrt{t}}}dt = x^{{\frac 1 4}}.
     \end{align*}
     Thus we conclude,
     \begin{equation*}
@@ -2228,10 +2228,10 @@ where $\sigma_0 = 1-\log T$. On the boundary of the rectangle above, we have,
     \end{align*}
     Note that the right hand side is analytic where $\Re(s)>0$ and $s\not=1$. Now we will estimate the last equation above on the boundary of the rectangle above.
     \begin{align*}
-      \left\vert\sum_{n\leq T}{\frac 1 {n^s}}\right\vert & << \int_1^T{\frac {du} {u^{\Re(s)}}},\\
+      \left\vert\sum_{n\leq T}{\frac 1 {n^s}}\right\vert & \ll  \int_1^T{\frac {du} {u^{\Re(s)}}},\\
       &\leq \int_1^T{\frac {du} {u^{\sigma_0}}},\\
       & = {\frac {T^{1-\sigma_0}} {1-\sigma_0}},\\
-      &<<\log T.
+      &\ll \log T.
     \end{align*}
     Observe that ,
     \begin{align*}
@@ -2255,7 +2255,7 @@ where $\sigma_0 = 1-\log T$. On the boundary of the rectangle above, we have,
       & = {\frac {\vert s\vert} {\Re(s)T^{\Re(s)}}} ,\\
       & \leq {\frac {\vert s\vert} {T^{\Re(s)}}},\\
       & \leq {\frac {\sqrt{2^2+T^2}} {T^{\sigma_0}}},\\
-      & << {\frac T {T^{\sigma_0}}} = T^{1-\sigma_0} = e.
+      & \ll  {\frac T {T^{\sigma_0}}} = T^{1-\sigma_0} = e.
     \end{align*}
     For the second part, for $\Re(s)>0,s\not=1$,
     \begin{align*}
@@ -2319,7 +2319,7 @@ where $\sigma_0 = 1-\log T$. On the boundary of the rectangle above, we have,
     \begin{align*}
       \zeta(s) & = {\frac s {s-1}}-s\int_1^\infty {\frac {\{u\}} {u^{s+1}}}du, \Re(s)>0, s\not =1.\\
       \zeta(\sigma) & = {\frac {\sigma-1+1} {\sigma-1}} - \sigma\int_1^\infty {\frac {\{u\}} {u^{\sigma+1}}}du.\\
-      & << {\frac 1 {\sigma -1}}\text{ as } \sigma\to 1^+,\\
+      & \ll  {\frac 1 {\sigma -1}}\text{ as } \sigma\to 1^+,\\
       \Rightarrow & \zeta(\sigma)^{-1}>>(\sigma-1), \sigma\to 1^{+}
     \end{align*}
     On the domain II, we have, $\sigma'_0<\sigma\leq 2,1\leq \vert t\vert\leq T$. Using Lemma \ref{lemma_zeta_zeta_derivative_growth_domain},
@@ -2477,26 +2477,26 @@ where $\sigma_0 = 1-\log T$. On the boundary of the rectangle above, we have,
     \end{equation*}
     And if $n$ sits in the first interval, we have, 
     \begin{equation*}
-      \left\vert\log{\frac x n}\right\vert <<\left\vert{\frac n x}-1\right\vert^{-1}.
+      \left\vert\log{\frac x n}\right\vert \ll \left\vert{\frac n x}-1\right\vert^{-1}.
     \end{equation*}
     Using this we have,
     \begin{align*}
-      \sum_{n\in\left[{\frac x 2},{\frac {3x} 2}\right]}\Lambda(n)\left({\frac x n}\right)^a\min\left(1,T^{-1}\left\vert\log\left({\frac x n}\right)\right\vert^{-1}\right)&<<\sum_{n\in\left[{\frac x 2},{\frac {3x} 2}\right]}\Lambda(n)\left({\frac x n}\right)^a T^{-1}\left\vert{\frac n x}-1\right\vert^{-1}\\
-      &<<{\frac {\log x} T}\sum_{n\in\left[{\frac x 2},{\frac {3x} 2}\right]}{\frac 1 {\left\vert {\frac n x}-1\right\vert}}.
+      \sum_{n\in\left[{\frac x 2},{\frac {3x} 2}\right]}\Lambda(n)\left({\frac x n}\right)^a\min\left(1,T^{-1}\left\vert\log\left({\frac x n}\right)\right\vert^{-1}\right)&\ll \sum_{n\in\left[{\frac x 2},{\frac {3x} 2}\right]}\Lambda(n)\left({\frac x n}\right)^a T^{-1}\left\vert{\frac n x}-1\right\vert^{-1}\\
+      &\ll {\frac {\log x} T}\sum_{n\in\left[{\frac x 2},{\frac {3x} 2}\right]}{\frac 1 {\left\vert {\frac n x}-1\right\vert}}.
     \end{align*}
     Observe that 
     \begin{align*}
-      \sum_{n\in\left[{\frac x 2},x\right)}{\frac 1 {{\frac n x}+1}}&<<\int_{{\frac x 2}}^{\lfloor x\rfloor}{\frac {dt} {1-{\frac t x}}},\\
-      \sum_{n\in\left(x,{\frac {3x} 2}\right]}{\frac 1 {{\frac n x}-1}}&<<\int^{{\frac {3x} 2}}_{\lceil x\rceil}{\frac {dt} {{\frac t x}-1}}.\\
-      \Rightarrow &  \sum_{n\in\left[{\frac x 2},x\right)}{\frac 1 {{\frac n x}+1}}+\sum_{n\in\left(x,{\frac {3x} 2}\right]}{\frac 1 {{\frac n x}+1}}<<x\log x.
+      \sum_{n\in\left[{\frac x 2},x\right)}{\frac 1 {{\frac n x}+1}}&\ll \int_{{\frac x 2}}^{\lfloor x\rfloor}{\frac {dt} {1-{\frac t x}}},\\
+      \sum_{n\in\left(x,{\frac {3x} 2}\right]}{\frac 1 {{\frac n x}-1}}&\ll \int^{{\frac {3x} 2}}_{\lceil x\rceil}{\frac {dt} {{\frac t x}-1}}.\\
+      \Rightarrow &  \sum_{n\in\left[{\frac x 2},x\right)}{\frac 1 {{\frac n x}+1}}+\sum_{n\in\left(x,{\frac {3x} 2}\right]}{\frac 1 {{\frac n x}+1}}\ll x\log x.
     \end{align*}
     Thus we conclude, as $x\to \infty$,
     \begin{equation*}
-      \sum_{n\in\left[{\frac x 2},{\frac {3x} 2}\right]}{\frac 1 {\left\vert {\frac n x}-1\right\vert}}<<{\frac {x(\log x)^2} {T}}.
+      \sum_{n\in\left[{\frac x 2},{\frac {3x} 2}\right]}{\frac 1 {\left\vert {\frac n x}-1\right\vert}}\ll {\frac {x(\log x)^2} {T}}.
     \end{equation*}
     Let us turn our focus to the second range. We have $\left\vert \log{\frac x n}\right\vert>\log{\frac 3 2}$. Thus 
     \begin{align*}
-      \sum_{n<{\frac x 2},{\frac {3x} 2}<n}\Lambda(n)\left({\frac x n}\right)^a\min\left(1,T^{-1}\left\vert\log\left({\frac x n}\right)\right\vert^{-1}\right)&<< {\frac {x^a} T}\sum_{n<{\frac x 2},{\frac {3x} 2}<n}{\frac {\Lambda(n)} {n^a}},\\
+      \sum_{n<{\frac x 2},{\frac {3x} 2}<n}\Lambda(n)\left({\frac x n}\right)^a\min\left(1,T^{-1}\left\vert\log\left({\frac x n}\right)\right\vert^{-1}\right)&\ll  {\frac {x^a} T}\sum_{n<{\frac x 2},{\frac {3x} 2}<n}{\frac {\Lambda(n)} {n^a}},\\
       &\leq {\frac {x^a} T}\sum_{n=1}^\infty{\frac {\Lambda(n)} {n^a}}.
     \end{align*}
     Recall that we have,
@@ -2505,11 +2505,11 @@ where $\sigma_0 = 1-\log T$. On the boundary of the rectangle above, we have,
     \end{equation*}
     Using Theorem \ref{thorem_zeta_zeta_derivatie_residue}, we see, as $a\to1^+$,
     \begin{equation*}
-      \left\vert{\frac {\zeta'(a)} {\zeta(a)}}\right\vert<<{\frac 1 {a-1}}.
+      \left\vert{\frac {\zeta'(a)} {\zeta(a)}}\right\vert\ll {\frac 1 {a-1}}.
     \end{equation*}
     Using Corollary \ref{corollary_bound_zeta_derivative}, we see,
     \begin{equation*}
-      {\frac {x^a} T}{\frac 1 {a-1}}<<{\frac {x^a} {T}}(\log T)^9.
+      {\frac {x^a} T}{\frac 1 {a-1}}\ll {\frac {x^a} {T}}(\log T)^9.
     \end{equation*}
     Combining all, we derive,
     \begin{equation*}
@@ -2553,16 +2553,16 @@ We then have,
 \end{equation*}
 \begin{align*}
   \left\vert{\frac 1 {2\pi i}}\int_{a+iT}^{b+iT}{\frac {-\zeta(s)}{\zeta(s)}}{\frac {x^s} {s}}ds\right\vert &= \left\vert{\frac 1 {2\pi i}}\int_a^b{\frac {-\zeta(u+iT)}{\zeta(u+iT)}}{\frac {x^{(u+iT)}} {(u+iT)}}du\right\vert,\\
-  & <<\int_a^b\left\vert{\frac {-\zeta'(u+iT)} {\zeta(u+iT)}}\right\vert{\frac {x^u} {\vert u+iT\vert}}du,\quad(\vert u+iT\vert^2\geq1)\\
-  &\stackrel{\text{Theorem \ref{theorem_zeta_modulo_lower_bound}}}{<<}{\frac {\log^9T} T}x^a\int_b^a du,\\
-  &<<{\frac {x^a} T}.
+  & \ll \int_a^b\left\vert{\frac {-\zeta'(u+iT)} {\zeta(u+iT)}}\right\vert{\frac {x^u} {\vert u+iT\vert}}du,\quad(\vert u+iT\vert^2\geq1)\\
+  &\stackrel{\text{Theorem \ref{theorem_zeta_modulo_lower_bound}}}{\ll }{\frac {\log^9T} T}x^a\int_b^a du,\\
+  &\ll {\frac {x^a} T}.
 \end{align*}
 Now we have,
 \begin{align*}
   \left\vert\int_{b-iT}^{b+iT}{\frac {-\zeta'(s)} {\zeta(s)}}{\frac {x^s} {s}}ds\right\vert & = \left\vert{\frac 1 {2\pi}}\int_{-T}^T{\frac {\zeta'(b+iu)} {\zeta(b+iu)}}{\frac {x^{b+iu}} {b+iu}}du\right\vert,\\
-  & << \log^9T\int_{-T}^T{\frac {x^b} {\sqrt{b^2+u^2}}}du,\\
-  &<< x^b\log^9T\int_{0}^T{\frac {du} {\sqrt{b^2+u^2}}}du,\\
-  & << x^b\log^9T\int_1^T{\frac {du} u},\\
+  & \ll  \log^9T\int_{-T}^T{\frac {x^b} {\sqrt{b^2+u^2}}}du,\\
+  &\ll  x^b\log^9T\int_{0}^T{\frac {du} {\sqrt{b^2+u^2}}}du,\\
+  & \ll  x^b\log^9T\int_1^T{\frac {du} u},\\
   & = x^b\log^{10}T.
 \end{align*}
 Now back to the beginning,
@@ -2575,16 +2575,11 @@ Choose $T$ to be such that $2c\log x = \log^{10}T,x=e^{{\frac {\log^{10}T} {2c}}
   x^{1-{\frac c {\log^9 T}}}&\cdot\log^{10}T+{\frac {x\log^2 x} T}+{\frac {x^{1+{\frac c {\log^{9}T}}}} {T}}\log^9T&\\
   & = x\cdot T^{-{\frac 1 2}}\log^{10} T+{\frac {x\log^2 x} T}\\
   &+x{\frac {\sqrt{T}} T}\log^{10}T\left({\frac x {\sqrt{T}}}\right)(\log^{10}T + {\frac {\log^2x}{\sqrt{x}}}+\log^9T),\\
-  &<<{\frac x {T^s}}=xe^{-c(\log x)^{{\frac 1 {10}}}}.
+  &\ll {\frac x {T^s}}=xe^{-c(\log x)^{{\frac 1 {10}}}}.
 \end{align*}
 %later
   \end{proof}
   %12/11
-\begin{definition}[Gamma function] We define the Gamma function $\Gamma:\C\to\C$ as
-  \begin{equation*}
-    \Gamma(s)\defeq \int_0^\infty t^{s-1}e^{-t}dt, \sigma>0.
-  \end{equation*}
-\end{definition}
 \begin{remark}
   Suppose $\Re(s) = \sigma$ then,
   \begin{align*}
@@ -2592,8 +2587,8 @@ Choose $T$ to be such that $2c\log x = \log^{10}T,x=e^{{\frac {\log^{10}T} {2c}}
     & = \int_0^\infty t^{\sigma-1}e^{-t}dt,\\
     & = \left(\int_0^1+\int_1^\infty\right)t^{\sigma-1}e^{-t}dt,\\
     &\leq \int_0^1t^{\sigma-1}dt + \int_1^\infty t^{\sigma-1}e^{-t}dt, \left({\frac {t^n} {e^t}}\stackrel{t\to\infty}{\to}0\right).\\
-    &<< {\frac 1 \sigma}+\int_1^\infty t^{\sigma-1}t^{-2\sigma}dt,\\
-    &<< {\frac 1 \sigma}.
+    &\ll  {\frac 1 \sigma}+\int_1^\infty t^{\sigma-1}t^{-2\sigma}dt,\\
+    &\ll  {\frac 1 \sigma}.
   \end{align*}
   \label{remark_bound_gamma}
 \end{remark}
@@ -2612,8 +2607,8 @@ Choose $T$ to be such that $2c\log x = \log^{10}T,x=e^{{\frac {\log^{10}T} {2c}}
 In Remark \ref{remark_bound_gamma}, suppose $a\leq\Re(s)\leq b$ then the last two inequalities will be,
 \begin{align*}
   \int_0^1t^{\sigma-1}dt + \int_1^\infty t^{\sigma-1}e^{-t}dt&\\
-    &<<_b {\frac 1 \sigma}+\int_1^\infty t^{b-1}t^{-2b}dt,\\
-    &<<_b {\frac 1 \sigma}+{\frac 1 b} = {\frac 1 a}+{\frac 1 b}.
+    &\ll _b {\frac 1 \sigma}+\int_1^\infty t^{b-1}t^{-2b}dt,\\
+    &\ll _b {\frac 1 \sigma}+{\frac 1 b} = {\frac 1 a}+{\frac 1 b}.
 \end{align*}
 Thus we observe that in $\sigma>0$, using integration by parts,
 \begin{align*}
@@ -2709,9 +2704,9 @@ Iterating the process, we have the following theorem,
   Using Exercise \ref{exercise_fourier_poisson_summation} and set $\alpha=0$, we have,
   \begin{align*}
     \sum_{n\in\Z}e^{-n^2{\frac \pi s}} & = \sqrt{s}\sum_{n\in\Z}e^{-n^2 \pi x}.\\
-    \sum_{n\in\Z}e^{-n^2\pi x}& << \sum_{n\in\N}e^{-n\pi x},\\
-    & << \int_1^\infty e^{-\pi xt }dt,\\
-    & << {\frac {e^{-\pi x}} {x}}, x>0.
+    \sum_{n\in\Z}e^{-n^2\pi x}& \ll  \sum_{n\in\N}e^{-n\pi x},\\
+    & \ll  \int_1^\infty e^{-\pi xt }dt,\\
+    & \ll  {\frac {e^{-\pi x}} {x}}, x>0.
   \end{align*}
   Set $\theta(x)\defeq  \sum_{n\in\Z}e^{n^2\pi x}$ then,
   \begin{align*}
@@ -2744,9 +2739,9 @@ Iterating the process, we have the following theorem,
   \par Step 4, 
   \begin{align*}
     \int_1^\infty \vert x^{{\frac s 2}}+x^{{\frac {1-s} 2}}\vert \vert w(x)\vert {\frac {dx} x} &\leq \int_1^\infty (x^{{\frac {\sigma 2}-1}}+x^{{\frac {1-\sigma} 2}-1})\vert w(x)\vert dx,\\
-    &<< \int_1^\infty {\frac {(x^{{\frac \sigma 2}-1}+x^{{\frac {1-\sigma} 2}-1})} {e^{\pi x}}}dx,\sigma\in\R,\\
-    &<< \int_1^\infty {\frac {e^x} {e^{\pi x}}}dx,
-    & << 1.
+    &\ll  \int_1^\infty {\frac {(x^{{\frac \sigma 2}-1}+x^{{\frac {1-\sigma} 2}-1})} {e^{\pi x}}}dx,\sigma\in\R,\\
+    &\ll  \int_1^\infty {\frac {e^x} {e^{\pi x}}}dx,
+    & \ll  1.
   \end{align*}
   $\int_1^\infty \vert x^{{\frac s 2}}+x^{{\frac {1-s} 2}}\vert \vert w(x)\vert {\frac {dx} x}$ is analytic in $\C$. 
   \begin{align*}
@@ -2762,7 +2757,7 @@ Iterating the process, we have the following theorem,
   \end{equation*}
   Using the construction of $w(s)$ we have,
   \begin{equation*}
-    \vert w(x)\vert <<\vert \theta(x)\vert << {\frac {e^{-\pi x}} x},\forall x>0.
+    \vert w(x)\vert \ll \vert \theta(x)\vert \ll  {\frac {e^{-\pi x}} x},\forall x>0.
   \end{equation*}
   Also we have,
   \begin{align*}
@@ -2974,7 +2969,7 @@ By Lemma \ref{lemma_gauss_sum_character}, we have,
 \begin{theorem}[Pólya-Vinogradov]$\:$\\
   Let $\chi\tmod q$ be a primitive character. We have,
   \begin{equation*}
-    \left\vert\sum_{n\leq x}\chi(n)\right\vert<<\sqrt{q}\log q.
+    \left\vert\sum_{n\leq x}\chi(n)\right\vert\ll \sqrt{q}\log q.
   \end{equation*}
   This inequality is uniform in $q$.
 \end{theorem}
@@ -3010,11 +3005,11 @@ By Lemma \ref{lemma_gauss_sum_character}, we have,
   \begin{align*}
     \sum_{k=1}^{q-1}{\frac 1 {\vert\sin{\frac {\pi k} q}\vert}} & = \sum_{1\leq k\leq{\frac q 2}}{\frac 1 {\vert\sin{\frac {\pi k} q}\vert}}+\sum_{{\frac q 2}<k}^{q-1}{\frac 1 {\vert\sin{\frac {\pi k} q}\vert}},\\
     & = 2\sum_{1\leq k\leq{\frac q 2}}{\frac 1 {\vert\sin{\frac {\pi k} q}\vert}},\\
-    &\leq \sum_{1\leq k\leq{\frac q 2}}{\frac k q} << q\log{\frac q 2}<<q\log q.
+    &\leq \sum_{1\leq k\leq{\frac q 2}}{\frac k q} \ll  q\log{\frac q 2}\ll q\log q.
   \end{align*}
   Recall Theorem \ref{theorem_gauss_sum_primitive}, we have $\vert\tau(\chi)\vert=\sqrt{q}$ as $\chi$ is primitive. Therefore, for $q>1$, we have,
   \begin{equation*}
-    \left\vert\sum_{n\leq x}\chi(n)\right\vert<<\sqrt{q}\log q,
+    \left\vert\sum_{n\leq x}\chi(n)\right\vert\ll \sqrt{q}\log q,
   \end{equation*}
   uniformly in $q$ as $x\to\infty$.
 \end{proof}
@@ -3069,7 +3064,7 @@ Set
 \begin{equation*}
   \xi(s,\chi) \defeq {\frac {\tau(\chi)} {2\sqrt{q}}}\int_1^\infty x^{{\frac {1-s} 2}}\theta(x,\overline{\chi}){\frac {dx} x}+{\frac 1 2}\int_1^\infty \int_0^1x^{{\frac s 2}}\theta(x,\chi){\frac {dx} x}.
 \end{equation*}
-Use that $\theta(x,\overline{\chi})<<e^{-{\frac {\pi x} q}}$ and $\vert\tau(\chi)\vert=\sqrt{q}$. It turns out that $\xi$ is uniformly bounded on compact subsets of $\C$ and in particular, this is entire.
+Use that $\theta(x,\overline{\chi})\ll e^{-{\frac {\pi x} q}}$ and $\vert\tau(\chi)\vert=\sqrt{q}$. It turns out that $\xi$ is uniformly bounded on compact subsets of $\C$ and in particular, this is entire.
 \begin{lemma}
   \begin{equation*}
     \xi(1-s,\chi) = {\frac {\tau(\chi)} {\sqrt{q}}}\xi(s,\overline{\chi}).
@@ -3105,7 +3100,7 @@ Use that $\theta(x,\overline{\chi})<<e^{-{\frac {\pi x} q}}$ and $\vert\tau(\chi
 \begin{definition}[Entire function of finite order]
   An entire functio n$f(z)$ is saiad to be of finite order if there is $\alpha>0$ such that
   \begin{equation*}
-    \vert f(z)\vert<<e^{\vert z\vert^\alpha},
+    \vert f(z)\vert\ll e^{\vert z\vert^\alpha},
   \end{equation*}
   as $\vert z\vert\to\infty$. The order of $f$ is the infimum of such $\alpha$.
 \end{definition}
@@ -3135,7 +3130,7 @@ Use that $\theta(x,\overline{\chi})<<e^{-{\frac {\pi x} q}}$ and $\vert\tau(\chi
   \end{equation*}
 \end{theorem}
 \begin{theorem}
-  Let $f$ be an entire function of order $\alpha\in\Z$ without any zeros. Then we have,
+  Let $f$ be an entire function of order $\alpha\in\Z$ without any zeros and assume $f(1)\leq0$. Then we have,
   \begin{equation*}
     f(z) = e^{p(z)},
   \end{equation*}
@@ -3319,13 +3314,13 @@ Recall
 \begin{theorem}
   As $T\to \infty$, we have,
   \begin{equation*}
-    N(T+1)-N(T)<<\log T.
+    N(T+1)-N(T)\ll \log T.
   \end{equation*}
 \end{theorem}
 \begin{proof}
   Enough to show that as $T\to \infty$.
   \begin{equation*}
-    \sum_{\substack{\rho=\beta+i\gamma\\\zeta(\rho) = 0\\\beta\in(0,1)}}{\frac 1 {1+(T-\gamma)^2}}<<\log T
+    \sum_{\substack{\rho=\beta+i\gamma\\\zeta(\rho) = 0\\\beta\in(0,1)}}{\frac 1 {1+(T-\gamma)^2}}\ll \log T
   \end{equation*}
   Observe that,
   \begin{align*}
@@ -3350,7 +3345,7 @@ Recall
   \end{equation*}
   By the previous equation, we get%specify,
   \begin{equation*}
-    \sum_{\substack{\rho=\beta+i\gamma\\ \beta\in(0,1)\\\zeta(\rho)=0}}\Re\left({\frac 1 {2+iT-\rho}}\right)< A\log(T+2)+\Re\left({\frac {\zeta'(2+iT)}{\zeta(2+iT)}}\right)<<\log T.
+    \sum_{\substack{\rho=\beta+i\gamma\\ \beta\in(0,1)\\\zeta(\rho)=0}}\Re\left({\frac 1 {2+iT-\rho}}\right)< A\log(T+2)+\Re\left({\frac {\zeta'(2+iT)}{\zeta(2+iT)}}\right)\ll \log T.
   \end{equation*}
   Recall that for $\sigma>1$,
   \begin{align*}
@@ -3485,7 +3480,7 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
   \end{equation*}
   where $c$ is some constant and $R=\Im(s)$. From this we have,
   \begin{equation*}
-    \left\vert\sum_{\vert\gamma\vert<R}{\frac {x^\rho} {\rho}}\right\vert \leq x^{1-{\frac {c} {\log R}}}\sum_{\substack{\rho=\beta+i\gamma\\\zeta(\rho)=0\\\beta\in(0,1)\\\vert\gamma\vert<R}}{\frac 1 {\vert \rho\vert}}<<x^{1-{\frac c {\log R}}}\sum_{\substack{\beta\in(0,1)\\\gamma\in(0,R)\\\zeta(\beta+i\gamma)=0}}{\frac 1 {\sqrt{\beta^2+\gamma^2}}}.
+    \left\vert\sum_{\vert\gamma\vert<R}{\frac {x^\rho} {\rho}}\right\vert \leq x^{1-{\frac {c} {\log R}}}\sum_{\substack{\rho=\beta+i\gamma\\\zeta(\rho)=0\\\beta\in(0,1)\\\vert\gamma\vert<R}}{\frac 1 {\vert \rho\vert}}\ll x^{1-{\frac c {\log R}}}\sum_{\substack{\beta\in(0,1)\\\gamma\in(0,R)\\\zeta(\beta+i\gamma)=0}}{\frac 1 {\sqrt{\beta^2+\gamma^2}}}.
   \end{equation*}
   Set 
   \begin{equation*}
@@ -3498,13 +3493,13 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
   We now have,
   \begin{align*}
     \sum_{\substack{\beta\in(0,1)\\\gamma\in(0,R)\\\zeta(\beta+i\gamma)=0}}{\frac 1 {\sqrt{\beta^2+\gamma^2}}}& ={\frac {N(R)} {\sqrt{\beta^2+\gamma^2}}}+\int_0^R{\frac {tN(R)} {(\beta^2+\gamma^2)^{{\frac 3 2}}}}dt\\
-    & <<{\frac {N(R)}{R}}+\int_0^R{\frac {N(t)} {t^2}}dt,\\
+    & \ll {\frac {N(R)}{R}}+\int_0^R{\frac {N(t)} {t^2}}dt,\\
     & = \log R+\int_0^2{\frac {\log t} {t}}+\int_2^R\cdots,\\
     & = \log^2R.
   \end{align*}
   Combining all we get,
   \begin{equation*}
-    \left\vert\sum_{\vert\gamma\vert<R}{\frac {x^\rho}{\rho}}\right\vert<<x^{1-{\frac c {\log R}}}\log^2R.
+    \left\vert\sum_{\vert\gamma\vert<R}{\frac {x^\rho}{\rho}}\right\vert\ll x^{1-{\frac c {\log R}}}\log^2R.
   \end{equation*}
   Choose $\log R = c_2(\log\overline{x})^{{\frac 1 2}}$ we have,
   \begin{equation*}
@@ -3887,7 +3882,7 @@ Similarly, we observe that
 \begin{exercise}
   Show that 
   \begin{equation*}
-    \sum_{n\leq x}{\frac n {\varphi(n)}}<<O(x).
+    \sum_{n\leq x}{\frac n {\varphi(n)}}\ll O(x).
   \end{equation*}
 \end{exercise}
 \begin{proof}
@@ -3901,7 +3896,7 @@ Similarly, we observe that
 \begin{exercise}
   Show that 
   \begin{equation*}
-    \sum_{n\leq x}{\frac 1 {\varphi(n)}}<<\log x.
+    \sum_{n\leq x}{\frac 1 {\varphi(n)}}\ll \log x.
   \end{equation*}
 \end{exercise}
 \begin{proof}
@@ -3918,7 +3913,7 @@ Similarly, we observe that
   \end{equation*}
 \end{exercise}
 \begin{proof}
-  Remains to show that $\log x<<\sum_{n\leq x}{\frac 1 {\varphi(n)}}$.%later
+  Remains to show that $\log x\ll \sum_{n\leq x}{\frac 1 {\varphi(n)}}$.%later
 \end{proof}
 \begin{exercise}
   Show that for a character $\chi\tmod q$ and $(n,q)=1$, we have,
