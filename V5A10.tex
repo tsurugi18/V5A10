@@ -218,6 +218,7 @@ By the integration by parts, we see that it's asymptotic expansion is
 \end{definition}
 
 \begin{remark}
+  \label{remark_prime_number_theorem_equivalence}
 The prime number theorem is equivalent to the following statements.
 \begin{enumerate}[1).]
 \item $\psi(x)\sim x$.
@@ -1711,7 +1712,7 @@ Suppose $\zeta(s)\not=0$, where $\Re(s)>0$, then Euler product exists.
   Recall that $\zeta(s)$ has a pole at $1$ and observe that $f(1) = 1, f'(s)$ is finite thus the last statement follows.
 \end{proof}
 \begin{theorem}
-  Let $\chi$ be a non-trivial non-real Dirichlet character of modulo $q$, then 
+  Let $\chi$ be a non-real Dirichlet character of modulo $q$, then 
   \begin{equation*}
     L(1,\chi)\not=0.
   \end{equation*}
@@ -2656,7 +2657,7 @@ Iterating the process, we have the following theorem,
   is convergent.
   \label{exercise_fourier_poisson_summation}
 \end{exercise}
-\begin{theorem}
+\begin{theorem}[Poisson Summation Formula]
   Let $\sigma>1$ and $F\in L^1(\R)$, ie $F:\R\to\C$ and 
   \begin{equation*}
     \int_{-\infty}^\infty \vert F(t)\vert dt<\infty.
@@ -2667,7 +2668,7 @@ Iterating the process, we have the following theorem,
   \end{equation*}
   is absolutely and uniformly convergent in $u$. Also we have,
   \begin{equation*}
-    \sum_{n\in\Z}\vert \hat{F}(n)\vert\leq\infty,
+    \sum_{n\in\Z}\vert \hat{F}(n)\vert<\infty,
   \end{equation*}
   then 
   \begin{equation*}
@@ -3265,10 +3266,11 @@ then we have,
 Choose $c_2=c_1\log2$. Take $c' = \min(c_1,c_1\log 2)$.
 \par Above proof can be generalized to $L(s,\chi)$ where $\chi$ is a non-trivial character.
 \begin{theorem}
-  Let $\chi$ be a non-trivial character. Then there is $c_1>0$ such that for $s=\sigma+it,\sigma,t\in\R$, we have,
+  Let $\chi$ be a non-real character. Let $s=\sigma+it,\sigma,t\in\R$ such that $L(s,\chi)=0$, then there is $c_1>0$ satisfying
   \begin{equation*}
-    \sigma\geq1+{\frac {c_1} {\log(q(\vert t\vert+2))}}.%later check sign
+    \sigma\geq1-{\frac {c_1} {\log(q(\vert t\vert+2))}}.%later check sign
   \end{equation*}
+  \label{theorem_non_trivial_zeros_lower_bound}
 \end{theorem}
 \begin{theorem}[Siegel zeros]
   There exists an absolute constant $c_2>0$ such that $L(s,\chi)$ where $\chi$ is quadratic $\tmod q$ has at most one zero in the region,
@@ -3278,6 +3280,9 @@ Choose $c_2=c_1\log2$. Take $c' = \min(c_1,c_1\log 2)$.
   where $0<\delta<c_2$.
   If such a zero exists, it is real, simple and often called Siegel zero.
 \end{theorem}
+\begin{remark}
+  Theorem \ref{theorem_non_trivial_zeros_lower_bound} also holds for more general characters such as a character with no Siegel zeros.
+\end{remark}
 Recall the completed Dirichlet $L$-function,
 \begin{equation*}
   \xi(s,\chi)\defeq\left( {\frac q \pi}\right)^{{\frac {s+a} 2}}\Gamma\left({\frac {s+a} 2}\right)L(s,\chi).
@@ -3536,7 +3541,8 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
 \end{remark}
 \section{Exercise Solutions}
 \subsection{Lecture 1 $\sim$ 4}
-\begin{exercise}
+\begin{exercise}[1.2.7]
+  \label{exercise_1.2.7}
   Show that 
   \begin{equation*}
     \sum_{n=1}^\infty {\frac {\vert \mu(n)\vert} {n^s}} = {\frac {\zeta(s)} {\zeta(2s)}}.
@@ -3561,7 +3567,7 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
   \end{equation*}
 \end{proof}
 
-\begin{exercise}
+\begin{exercise}[1.5.10]
   Let $\pi(x;z)$ be the number of $n\leq x$ such that it is coprime to all $p\leq z$. Then we have,
   \begin{equation*}
     \pi(x;z)=x\prod_{p\leq z}\left(1-{\frac 1 p}\right)+O(2^z).
@@ -3570,7 +3576,7 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
 \begin{proof}[Solution.]
   We have,
   \begin{align*}
-    \pi(x;z)&=\sum_{p_1,p_2,\cdots,p_k\leq z}(-1)^{k+1}\left[{\frac{x}{p_1p_2\cdots p_k}}\right],\\
+    \pi(x;z)&=\sum_{k=0,\cdots}\sum_{p_1,p_2,\cdots,p_k\leq z}(-1)^{k+1}\left[{\frac{x}{p_1p_2\cdots p_k}}\right],\\
     &=\sum_{p_1,p_2,\cdots,p_k\leq z}(-1)^{k}\left({\frac{x}{p_1p_2\cdots p_k}}-\left\{{\frac{x}{p_1p_2\cdots p_k}}\right\}\right),\\
     & = x\prod_{p\leq z}\left(1-{\frac 1 p}\right)+\sum_{p_1,\cdots,p_k\leq z}(-1)^{k+1}\left\{{\frac{x}{p_1p_2\cdots p_k}}\right\},\\
   \end{align*}
@@ -3579,7 +3585,7 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
     \left\vert\sum_{p_1,\cdots,p_k\leq z}(-1)^k\left\{{\frac{x}{p_1p_2\cdots p_k}}\right\}\right\vert\leq\sum_{k=0}^{[z]}{[z]\choose k} = 2^{[z]}\leq 2^z.
   \end{equation*}
 \end{proof}
-\begin{exercise}
+\begin{exercise}[1.5.11]
   Show that
   \begin{equation*}
     \sum_{p\leq x}{\frac 1 p}\geq \log\log x+c,
@@ -3601,7 +3607,7 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
   \end{equation*}
 \end{proof}
 \setcounter{claim}{0}
-\begin{exercise}
+\begin{exercise}[1.5.12]
   Show that 
   \begin{equation*}
     \pi(x)=O\left({\frac x {\log\log x}}\right).
@@ -3622,11 +3628,11 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
     \end{equation*}
     Thus substituting $x={\frac 1 p}$, we obtain,
     \begin{equation*}
-      -\log\left(1-{\frac 1 p}\right)  = {\frac 1 p }+\sum_{n=2}^\infty {\frac 1 {np^n}} \leq {\frac 1 p} +{\frac {{\frac 1 {p^2}}} {1-{\frac 1 p}}} = {\frac 1 p}+{\frac 1 {p^2}}.
+      -\log\left(1-{\frac 1 p}\right)  = {\frac 1 p }+\sum_{n=2}^\infty {\frac 1 {np^n}} \leq {\frac 1 p} +{\frac {{\frac 1 {p^2}}} {1-{\frac 1 p}}} \leq {\frac 1 p}+{\frac 2 {p^2}}.
     \end{equation*}
     Therefore,
     \begin{equation*}
-      -\sum_{p\leq z}\log\left(1-{\frac 1 p}\right) \leq \sum_{p\leq z}{\frac 1 p}+\zeta(2).
+      -\sum_{p\leq z}\log\left(1-{\frac 1 p}\right) \leq \sum_{p\leq z}{\frac 1 p}+2\zeta(2).
     \end{equation*}
   \end{claimproof}
   \par Using $\pi(x,z)$, we have,
@@ -3643,8 +3649,30 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
   \end{equation*}
   This completes the proof.
 \end{proof}
+\begin{exercise}[3.1.2]
+  Prove that $\theta(2m+1)-\theta(m)\leq 2m\log 2$. Deduce that $\theta(n)\leq 2n\log 2$.
+\end{exercise}
+\begin{proof}[Solution.]
+  Observe that 
+  \begin{equation*}
+    \theta(2) = \log2.
+  \end{equation*}
+  And by definition, we may assume $n$ is odd. Note that ${2m+1\choose m}$ is divisible by all primes between $m+1$ and $2m+1$.
+  \begin{equation*}
+    {2m+1\choose m}+{2m+1\choose m+1}\leq 2^{2m+1}\Rightarrow 2{2m+1\choose m}\leq 2^{2m+1}.
+  \end{equation*}
+  Thus we hae,
+  \begin{equation*}
+    \theta(2m+1)-\theta(m)\leq 2m\log2.
+  \end{equation*}
+  Suppose $\theta(m)\leq 2m\log 2$. Then 
+  \begin{equation*}
+    \theta(2m+1)\leq 4m\log2\leq 2(2m+1)\log2.
+  \end{equation*}
+  Thus by induction, we proved the statement.
+\end{proof}
 \setcounter{claim}{0}
-\begin{exercise}
+\begin{exercise}[3.1.4]
   Show that 
   \begin{equation*}
     e^{\psi(2n+1)}\int_0^1 x^n(1-x)^ndx,
@@ -3683,7 +3711,92 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
   \end{align*}
 \end{proof}
 
-\begin{exercise}
+\begin{exercise}[3.1.5]
+  Show that for all sufficiently large $x$, there are $A,B>0$, such that
+  \begin{equation*}
+    {\frac {Ax} {\log x}}\leq \pi(x)\leq {\frac {Bx} {\log x}}.
+  \end{equation*}
+\end{exercise}
+
+\begin{proof}[Solution.]
+We have,
+\begin{equation*}
+  (\pi(x)-\pi(\sqrt{x}))\log\sqrt{x}\leq2x\log 2.
+\end{equation*}
+Thus we get,
+\begin{equation*}
+  \pi(x)\leq {\frac {4x\log 2}{\log x}}+\pi(\sqrt{x}).
+\end{equation*}
+Note that $\pi(\sqrt{x})\leq \sqrt{x}$. Therefore,
+\begin{equation*}
+  \pi(x)=O\left({\frac {x} {\log x}}\right).
+\end{equation*}
+%------- These parts need more explanations -------%
+We hae $\psi\gg x$, thus we get,
+\begin{equation*}
+  \psi(x)-\theta(x)=O(\sqrt{x}\log^2x).
+\end{equation*}
+Hence $\theta\gg x$.
+\end{proof}
+
+\begin{exercise}[3.1.8]
+  Prove that
+  \begin{equation*}
+    \sum_{p\leq x}{\frac 1 p} = \log\log x +O(1).
+  \end{equation*}
+  \label{exercise_3.1.8}
+\end{exercise}
+
+\begin{proof}[Solution.]
+By Remark \ref{remark_prime_number_theorem_equivalence}, we have 
+\begin{equation*}
+  \psi(x) \sim x.
+\end{equation*}
+Also by Remark \ref{remark_second_chebyschev_mangoldot}, we have,
+\begin{equation*}
+  \psi(x) = \sum_{n\leq x}\Lambda(n).
+\end{equation*}
+Using Proposition \ref{proposition_abel_summation}, we get,
+\begin{align*}
+  \sum_{n\leq x}{\frac {\Lambda(n)} n} & = {\frac {\psi(x)} x} + \int_1^x {\frac {\psi(t)} {t^2}}dt,\\
+  & =\log x+O(1).
+\end{align*}
+\end{proof}
+
+\begin{exercise}[3.1.12]
+  Show that under the assumption,
+  \begin{equation*}
+    \lim_{x\to\infty}{\frac {\pi(x)} {{\frac x {\log x}}}} = \alpha,
+  \end{equation*}
+  we have,
+  \begin{equation*}
+    \sum_{p\leq x}{\frac 1 p} = \alpha\log\log x+o(\log\log x).
+  \end{equation*}
+  Furthermore, in this case, we have $\alpha=1$.
+\end{exercise}
+
+\begin{proof}[Solution.]
+  Set 
+  \begin{equation*}
+    \chi(n) = \begin{cases}
+      1,\quad(n=p),\\
+      0,\quad(\text{otherwise}).
+    \end{cases}
+  \end{equation*}
+  Then $\pi(n) = \sum_{m\leq x}\chi(m)$. Therefore,
+  \begin{equation*}
+    \sum_{p\leq x}{\frac 1 p} = {\frac {\pi(x)} x}+\int_1^x{\frac {\pi(t)} {t^2}}dt.
+  \end{equation*}
+  Using Exercise \ref{exercise_3.1.8}, we have 
+  \begin{align*}
+    \sum_{p\leq x}{\frac 1 p}& = {\frac {\pi(x)} x}+\int_2^x{\frac {\pi(t)} {t^2}}dt,\\
+    & = {\frac \alpha {\log x}}+\int_1^x{\frac {\alpha} {t\log t}}dt,\\
+    & = {\frac \alpha {\log x}}+\alpha\log\log(x)-\alpha\log\log(2).\\
+    &\Rightarrow \alpha=1.
+  \end{align*}
+\end{proof}
+
+\begin{exercise}[2.4.6]
   Let $\chi \tmod q$ be a non-principal character. Then we have,
   \begin{equation*}
     \sum_{n>x}{\frac {\chi(n)} n} = O\left({\frac 1 x}\right).
@@ -3704,7 +3817,9 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
   \end{align*}
 \end{proof}
 
-\begin{exercise}
+
+\begin{exercise}[2.4.7]
+  \label{exercise_2.4.7}
   Show that for a non-principal character $\chi\tmod q$, we have,
   \begin{equation*}
     \sum_{n\leq x}\sum_{d\mid n}\chi(d)=xL(1,\chi)+O(\sqrt{x}).
@@ -3722,7 +3837,7 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
   By the previous exercise. We conclude the solution.
 \end{proof}
 
-\begin{exercise}
+\begin{exercise}[2.4.8]
   For non-principal real character $\chi\tmod q$, show that $L(1,\chi)\not=0$.
 \end{exercise}
 \begin{proof}[Solution.]
@@ -3749,7 +3864,7 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
   This is a contradiction.
 \end{proof}
 
-\begin{exercise}
+\begin{exercise}[2.5.11]
   Let $\chi\tmod q$ be a non-principal character then,
   \begin{equation*}
     \sum_{n\leq x}\sum_{d\mid n}\chi(d) = xL(1,\chi)+O(q\sqrt{x}).
@@ -3760,7 +3875,7 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
   Previous exercise and $\varphi(q)\leq q$.
 \end{proof}
 
-\begin{exercise}
+\begin{exercise}[4.1.1]
   Show that for $x>1$ and $c>0$, we have
   \begin{equation*}
     {\frac 1 {2\pi i}}\int_{(c)}{\frac {x^s} s}ds = 1.
@@ -3789,7 +3904,7 @@ Let us examine the second term, for some small $\delta>0$,
 \end{align*}
 As $\delta$ is arbitrary, we conclude the proof.
 \end{proof}
-\begin{exercise}
+\begin{exercise}[4.1.2]
   Show that for $x\in(0,1)$ and $c>0$, we have
   \begin{equation*}
     {\frac 1 {2\pi i}}\int_{(c)}{\frac {x^s} s}ds = 0.
@@ -3814,7 +3929,7 @@ Similarly, we observe that
   \int_{-{\frac {\pi} 2}+\delta}^{{\frac {\pi} 2}-\delta}x^{R\cos\theta}d\theta\leq \pi x^{R\cos\left({\frac \pi 2}-\delta\right)} = \pi x^{R\sin\delta}\stackrel{R\to\infty}{\to}0.
 \end{equation*}
 \end{proof}
-\begin{exercise}
+\begin{exercise}[4.1.3]
   Show that for $c>0$, we have
   \begin{equation*}
     {\frac 1 {2\pi i}}\int_{(c)}{\frac {1} s}ds = {\frac 1 2}.
@@ -3831,7 +3946,15 @@ Similarly, we observe that
   \end{align*}
   As $R$ goes to infinity, the left hand side equals to ${\frac 1 {\pi }}\lim_{u\to\infty}\arctan u={\frac 1 2}$.
 \end{proof}
-\begin{exercise}
+
+\begin{exercise}[4.1.4]
+  
+\end{exercise}
+\begin{proof}[Solution.]
+  
+\end{proof}
+\begin{exercise}[4.3.4]
+  \label{exercise_4.3.4}
   Show that 
   \begin{equation*}
     M(x)\defeq\sum_{n\leq x}\mu(n) = O(x\exp(-c(\log x)^{{\frac 1 {10}}})),
@@ -3853,7 +3976,30 @@ Similarly, we observe that
   \end{equation*}
   and consider $R\to\infty$.
 \end{proof}
-\begin{exercise}
+\begin{exercise}[4.3.5]
+  Let $E(x)$ be the number of square free integers less than or equal to $x$ with even number of prime factors. Show that 
+  \begin{equation*}
+    E(x) = {\frac 3 {\pi^2}}x+O(x\exp(-c\log^{{\frac 1 {10}}}x)).
+  \end{equation*}
+\end{exercise}
+\begin{proof}[Solution.]
+  Consider,
+  \begin{equation*}
+    a_n = {\frac{\mu(n)^2(1+\mu(n))}{2}}.
+  \end{equation*}
+  $a_n=1$ if $n$ is square-free and has even number of prime factors otherwise $0$. Let $Q(x)$ be the number of square free integers less than or equal to $x$. Then 
+  \begin{align*}
+    E(x) &=\sum_{n\leq x}a_n,\\
+    & = {\frac 1 2}\sum_{n\leq x}\mu(n)^2+{\frac 1 2}\mu_{n\leq x}\mu(n),\\
+    & = {\frac {Q(x)} 2}+{\frac {M(x)} 2}.
+  \end{align*}
+  The second term is shown by Exercise \ref{exercise_4.3.4}. Remains to show the first term. By Exercise \ref{exercise_1.2.7}, we have,
+  \begin{equation*}
+    Q(x) =O\left({\frac {6} {\pi^2}}\log x\right).
+  \end{equation*}
+  We then conclude the solution.
+\end{proof}
+\begin{exercise}[4.4.2]
   Show that for any $s$ with $\Re(s)=1$, we have,
   \begin{equation*}
     \sum_{n=1}^\infty {\frac {\mu(n)} {n^s}}
@@ -3879,10 +4025,10 @@ Similarly, we observe that
     & \leq c'\exp\left(-{\frac c 2}(\log N)^{{\frac 1 {10}}}\right)\stackrel{N\to\infty}{\to}0.
   \end{align*}
 \end{proof}
-\begin{exercise}
+\begin{exercise}[4.4.12]
   Show that 
   \begin{equation*}
-    \sum_{n\leq x}{\frac n {\varphi(n)}}\ll O(x).
+    \sum_{n\leq x}{\frac n {\varphi(n)}}\ll x.
   \end{equation*}
 \end{exercise}
 \begin{proof}
@@ -3893,7 +4039,7 @@ Similarly, we observe that
     & \leq x\prod_{p\leq x}{\frac 1 {\left(1-{\frac 1 p}\right)}}.
   \end{align*}
 \end{proof}
-\begin{exercise}
+\begin{exercise}[4.4.13]
   Show that 
   \begin{equation*}
     \sum_{n\leq x}{\frac 1 {\varphi(n)}}\ll \log x.
@@ -3906,7 +4052,7 @@ Similarly, we observe that
     & = C+C\log x.
   \end{align*}
 \end{proof}
-\begin{exercise}
+\begin{exercise}[4.4.14]
   Prove that 
   \begin{equation*}
     \sum_{n\leq x}{\frac 1 {\varphi(n)}}\sim c\log x.
@@ -3915,7 +4061,7 @@ Similarly, we observe that
 \begin{proof}
   Remains to show that $\log x\ll \sum_{n\leq x}{\frac 1 {\varphi(n)}}$.%later
 \end{proof}
-\begin{exercise}
+\begin{exercise}[5.3.2]
   Show that for a character $\chi\tmod q$ and $(n,q)=1$, we have,
   \begin{equation*}
     \chi(n)\tau(\overline{\chi}) = \sum_{k=1}^q\overline{\chi}(n)e^{{\frac {2\pi i k n} q}}.
@@ -3933,6 +4079,7 @@ Similarly, we observe that
     L(1,\chi) = \sum_{n\leq x}{\frac {\chi(n)} {n}}+O\left({\frac {\sqrt{q}\log q} {x}}\right).
   \end{equation*}
 \end{exercise}
+
 
 \begin{proof}
   By Proposition \ref{proposition_abel_summation},
@@ -3952,7 +4099,61 @@ Similarly, we observe that
     \int_x^{\infty}{\frac {A(t)} {t^2}}dt \leq {\frac {\sqrt{q}\log q} {x}}.
   \end{equation*}
 \end{proof}
-\begin{exercise}
+\begin{exercise}[5.4.3]
+  Show that 
+  \begin{equation*}
+    \pi^{-\left({\frac {s+1} 2}\right)}q^{\left({\frac {s+1} 2}\right)}\Gamma\left({\frac {s+1} 2}\right)n^{-s}=\int_0^\infty ne^{-{\frac{\pi n^2x} q}}x^{{\frac {s+1} 2}}{\frac {dx} x}.
+  \end{equation*}
+  Suppose $\chi\tmod q$ is odd and set,
+  \begin{equation*}
+    \theta_1(x,n) = \sum_{n\in\Z}n\chi(n)e^{-{\frac{\pi n^2x} q}}.
+  \end{equation*}
+  Then we have,
+  \begin{equation*}
+    \pi^{-\left({\frac {s+1} 2}\right)}q^{\left({\frac {s+1} 2}\right)}\Gamma\left({\frac {s+1} 2}\right)L(s,\chi)={\frac 1 2}\int_0^\infty \theta_1(x,\chi)x^{{\frac {s+1} 2}}{\frac {dx} x}.
+  \end{equation*}
+\end{exercise}
+\begin{proof}[Solution.]
+  By setting $s\to s-1$, we turn the first equation into
+  \begin{equation*}
+    \pi^{-\left({\frac {s} 2}\right)}q^{\left({\frac {s} 2}\right)}\Gamma\left({\frac {s} 2}\right)n^{-s}=\int_0^\infty e^{-{\frac{\pi n^2x} q}}x^{{\frac {s+1} 2}}{\frac {dx} x}.
+  \end{equation*}
+  This is derived from the definition of $\Gamma$ and change of variables by $t\to {\frac {\pi n^2x} q}$.
+  The second equation is due to the parity of $\chi$ that is,
+  \begin{equation*}
+    \theta_1(x,n) = \sum_{n\in\Z}n\chi(n)e^{-{\frac{\pi n^2x} q}} = \sum_{n\in\Z}(n\chi(n)-n\chi(-n))e^{-{\frac{\pi n^2x} q}}.
+  \end{equation*}
+\end{proof}
+\begin{exercise}[5.4.4]
+  
+\end{exercise}
+\begin{proof}[Solution.]
+  
+\end{proof}
+
+\begin{exercise}[5.4.5]
+  
+\end{exercise}
+\begin{proof}[Solution.]
+  
+\end{proof}
+\begin{exercise}[5.5.7]
+  Suppose $\chi$ is a primitive character then we have,
+  \begin{equation*}
+    L(1,\chi) = \sum_{n\leq x}{\frac {\chi(n)} n}+O\left({\frac {\sqrt{q}\log q} x}\right).
+  \end{equation*}
+\end{exercise}
+\begin{proof}[Solution.]
+  We have,
+  \begin{equation*}
+    L(1,\chi)= \sum_{n\leq x}{\frac {\chi(n)} n}+\sum_{n> x}{\frac {\chi(n)} n}.
+  \end{equation*}
+  Also by Proposition \ref{proposition_abel_summation}, we have,
+  \begin{align*}
+    L(1,\chi)\leq \int_1^\infty \left({\frac {\sqrt{q}\log q} {x^2}}\right).
+  \end{align*}
+\end{proof}
+\begin{exercise}[5.5.8]
   Show that 
   \begin{equation*}
     \sum_{\chi\not=\chi_0}L(1,\chi) = \varphi(q)+O(\sqrt{q}\log q).
@@ -3968,7 +4169,7 @@ Similarly, we observe that
     \sum_{\chi\not=\chi_0}L(1,\chi) = \varphi(q)\sum_{(n,q)=1}{\frac 1 n}-\sum_{n=1}^q{\frac 1 n}+O(\sqrt{q}\log q).
   \end{equation*}
 \end{proof}
-\begin{exercise}
+\begin{exercise}[5.5.9]
   Let $s\in\C$ be such that $\Re(s)=\sigma>0$. Then for any $x$ and a non-trivial character $\chi$, show that
   \begin{equation*}
     L(s,\chi)=\sum_{n\leq x}{\frac {\chi(n)} {n^s}}+O\left({\frac {\vert s\vert\sqrt{q}\log q}{\sigma x^\sigma}}\right).
@@ -3980,7 +4181,7 @@ Similarly, we observe that
     \sum_{n>x}{\frac {\chi(n)} {n^s}}\leq \vert s\vert \int_x^\infty {\frac {\sqrt{q}\log q} {t^{\sigma+1}}}dt.
   \end{equation*}
 \end{proof}
-\begin{exercise}
+\begin{exercise}[5.5.10]
   For $\sigma>{\frac 1 2}$, show that 
   \begin{equation*}
     \sum_{\chi\not=\chi_0}L(\sigma,\chi) = \varphi(q)+O(q^{{\frac 3 2}-\sigma}).
@@ -3992,7 +4193,7 @@ Similarly, we observe that
      \sum_{\chi\not=\chi_0}L(\sigma,\chi) = \varphi(q) + O(q^{1-\sigma})+O(q^{{\frac 3 2}-\sigma}).
   \end{equation*}
 \end{proof}
-\begin{exercise}
+\begin{exercise}[5.5.14]
   For a prime $p$ and a quadratic character $\chi$, we have,
   \begin{equation*}
     \tau(\chi) = \begin{cases}

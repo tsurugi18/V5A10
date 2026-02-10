@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.19)  7 FEB 2026 20:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.19)  10 FEB 2026 19:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -477,7 +477,7 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 [2]
 
 [3]
-Overfull \hbox (4.86212pt too wide) detected at line 373
+Overfull \hbox (4.86212pt too wide) detected at line 374
 \OML/cmm/m/it/10 ^^Y\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ; \OML/cmm/m/it/10 q; a\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10 jf[]gj
  []
 
@@ -489,7 +489,7 @@ Overfull \hbox (4.86212pt too wide) detected at line 373
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 483.
+(amsmath)                 on input line 484.
 
 
 
@@ -540,7 +540,7 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 [28]
 
 [29]
-Overfull \hbox (59.33739pt too wide) detected at line 1653
+Overfull \hbox (59.33739pt too wide) detected at line 1654
 []
  []
 
@@ -549,7 +549,7 @@ Overfull \hbox (59.33739pt too wide) detected at line 1653
 [30]
 
 [31]
-Overfull \hbox (2.01826pt too wide) in paragraph at lines 1780--1783
+Overfull \hbox (2.01826pt too wide) in paragraph at lines 1781--1784
 \OT1/cmr/m/n/10 Then at $\OML/cmm/m/it/10 s \OT1/cmr/m/n/10 = 1$, $\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s\OT1/cmr/m/n/10 )[]$ has a pole of or-der $\OML/cmm/m/it/10 e\OT1/cmr/m/n/10 (2\OML/cmm/m/it/10 k \OT1/cmr/m/n/10 + 1)$ and $[][] \OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ijt[]\OT1/cmr/m/n/10 )[]$
  []
 
@@ -586,24 +586,24 @@ Overfull \hbox (2.01826pt too wide) in paragraph at lines 1780--1783
 [46]
 
 [47]
-Overfull \hbox (2.12936pt too wide) detected at line 2449
+Overfull \hbox (2.12936pt too wide) detected at line 2450
 \OML/cmm/m/it/10  \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = [] [][] \OMS/cmsy/m/n/10 ^^@[][]\OML/cmm/m/it/10 ds \OT1/cmr/m/n/10 + [] [][] \OMS/cmsy/m/n/10 ^^@[][]\OML/cmm/m/it/10 ds \OMS/cmsy/m/n/10 ^^@ [] [][] ^^@[][]\OML/cmm/m/it/10 ds:
  []
 
 
-Overfull \hbox (57.38187pt too wide) detected at line 2456
+Overfull \hbox (57.38187pt too wide) detected at line 2457
 [] \OML/cmm/m/it/10 < []
  []
 
 
-Overfull \hbox (11.57358pt too wide) detected at line 2465
+Overfull \hbox (11.57358pt too wide) detected at line 2466
 \OML/cmm/m/it/10  \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = [] + [] \OML/cmm/m/it/10 :
  []
 
 
 
 [48]
-Overfull \hbox (18.26907pt too wide) detected at line 2486
+Overfull \hbox (18.26907pt too wide) detected at line 2487
 []
  []
 
@@ -622,7 +622,7 @@ Overfull \hbox (18.26907pt too wide) detected at line 2486
 [54]
 
 [55]
-Overfull \hbox (64.50711pt too wide) detected at line 2738
+Overfull \hbox (64.50711pt too wide) detected at line 2739
 []
  []
 
@@ -647,7 +647,7 @@ Overfull \hbox (64.50711pt too wide) detected at line 2738
 [64]
 
 [65]
-Overfull \hbox (18.53833pt too wide) detected at line 3177
+Overfull \hbox (18.53833pt too wide) detected at line 3178
 [] [] \OT1/cmr/m/n/10 = [] [] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 ^^@ [] \OT1/cmr/m/n/10 + [] [] [] \OMS/cmsy/m/n/10 ^^@ [] [] [] \OML/cmm/m/it/10 :
  []
 
@@ -663,25 +663,25 @@ Overfull \hbox (18.53833pt too wide) detected at line 3177
 
 [70]
 
-LaTeX Warning: Reference `theorem_prime_number' on page 71 undefined on input line 3397.
+LaTeX Warning: Reference `theorem_prime_number' on page 71 undefined on input line 3402.
 
 
-LaTeX Warning: Reference `theorem_prime_number' on page 71 undefined on input line 3401.
+LaTeX Warning: Reference `theorem_prime_number' on page 71 undefined on input line 3406.
 
 
-Overfull \hbox (227.70056pt too wide) detected at line 3422
+
+[71]
+Overfull \hbox (227.70056pt too wide) detected at line 3427
 []
  []
 
 
 
-[71]
-
-LaTeX Warning: Reference `theorem_prime_number_ap' on page 72 undefined on input line 3459.
-
-
-
 [72]
+
+LaTeX Warning: Reference `theorem_prime_number_ap' on page 73 undefined on input line 3464.
+
+
 
 [73]
 
@@ -707,7 +707,15 @@ LaTeX Warning: Reference `theorem_prime_number_ap' on page 72 undefined on input
 
 [84]
 
-[85] (./V5A10.aux)
+[85]
+
+[86]
+
+[87]
+
+[88]
+
+[89] (./V5A10.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -718,18 +726,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 16381 strings out of 473190
- 343933 string characters out of 5715799
- 802715 words of memory out of 5000000
- 39346 multiletter control sequences out of 15000+600000
+ 16387 strings out of 473190
+ 344077 string characters out of 5715799
+ 802891 words of memory out of 5000000
+ 39352 multiletter control sequences out of 15000+600000
  568733 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  116i,20n,121p,537b,1069s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on V5A10.pdf (85 pages, 495490 bytes).
+Output written on V5A10.pdf (89 pages, 505251 bytes).
 PDF statistics:
- 388 PDF objects out of 1000 (max. 8388607)
- 256 compressed objects within 3 object streams
+ 400 PDF objects out of 1000 (max. 8388607)
+ 264 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
