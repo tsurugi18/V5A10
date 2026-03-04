@@ -202,7 +202,7 @@ By the integration by parts, we see that it's asymptotic expansion is
 \begin{remark}
   We can rewrite the second Chebyschev function as follows.
   \begin{equation*}
-    \psi(x) = \sum_{\substack{p\leq x\\ m=\max\{n\in\N\sep p^n\leq x\}}}m\ln p.
+    \psi(x) = \sum_{\mathmakebox[0pt][c]{\substack{p\leq x\\ m=\max\{n\in\N\sep p^n\leq x\}}}}m\ln p.
   \end{equation*}
 \end{remark}
 
@@ -238,7 +238,7 @@ Let $n\in\N$ be an even number greater than $2$, then there exists two primes $p
 
 \begin{conjecture}[Hardy-Littlewood Conjecture]
 \begin{equation*}
-\#\left\{ \text{ prime numbers $p$ such that $2p+1$ is also a prime and $p<x$}\right\} 
+\#\left\{ \substack{\text{ prime numbers $p$ such that}\\\text{$2p+1$ is also a prime and $p<x$}}\right\}  \sim {\frac x {(\log x)^2}}.
 \end{equation*}
 \end{conjecture}
 
@@ -319,7 +319,7 @@ $\zeta(1+it) \not=0$ if $t\in\R,t\not=0$. $\zeta(s) \not=0$ for $0<s<1$.
 \end{remark}
 
 \begin{remark}
-$\Gamma(s)$ is defined for $\Re(s)>0$ and can be analytically continued to the whole place except for $\C\backslash\{-n\:|\: n\in\Z_{\geq0}\}$. 
+$\Gamma(s)$ is defined for $\Re(s)>0$ and can be analytically continued to the whole place except for $\{-n\:|\: n\in\Z_{\geq0}\}$. 
 \end{remark}
 
 \begin{remark}
@@ -383,7 +383,7 @@ where $\varphi$ is a Euler phi-function.
 \begin{theorem}[Brun–Titchmarsh]
 For any $q<x$, we have
 \begin{equation*}
-\pi(x;,q,a) <{\frac {2x} {\varphi(q)\log({\frac x q})}}.
+\pi(x;q,a) <{\frac {2x} {\varphi(q)\log({\frac x q})}}.
 \end{equation*}
 \end{theorem}
 
@@ -575,7 +575,7 @@ For any $q<x$, we have
 \begin{theorem}The following statements are equivalent.
   \begin{enumerate}[1).]
     \item $\sum_{d|n}\Lambda(d) = \log n $
-    \item $\sum_{d|n}\mu(d)\log d = \Lambda(n)$.
+    \item $\sum_{d|n}\mu(d)\log {\frac n d} = \Lambda(n)$.
   \end{enumerate}
   And in particular $\sum_{d|n}\Lambda(d) = \log n $ holds.
   \label{theorem_von_mangoldot_sum}
@@ -666,7 +666,7 @@ we get this equals to ${\frac 1 2 }\ln2$.
 \begin{theorem}
   For $\Re(s)>1$, we have
   \begin{equation*}
-    -{\frac {\zeta'(s)} {\zeta(s)}} = \sum_{n\in\N} {\frac {\Lambda(s)} {n^s}}.
+    -{\frac {\zeta'(s)} {\zeta(s)}} = \sum_{n\in\N} {\frac {\Lambda(n)} {n^s}}.
   \end{equation*}
   From this we derive 
   \begin{equation*}
@@ -692,7 +692,7 @@ we get this equals to ${\frac 1 2 }\ln2$.
 \end{remark}
 
 \begin{definition}
-  Let $D\subseteq\C$ be open. A meromorphic function is $f:D\to\C$ which is analytic on $D$ except a discrete set of poles of $f$.
+  Let $D\subseteq\C$ be open. A meromorphic function is $f:D\to\C$ which is analytic on $D$ except for a discrete set of poles of $f$.
 \end{definition}
 \begin{remark}
   ${\frac {\zeta'(s)} {\zeta(s)}}$ is a meromorphic functions with a pole at $s=1$ and where $\zeta(s)$ vanishes. Indeed, 
@@ -1156,6 +1156,18 @@ Then we have,
     & = A([x])f([x])- \int_1^x A(t)f'(t)dt + A([x])f(x) - A([x])(f[x]),\\
      & =  A([x])f(x)- \int_1^x A(t)f'(t)dt.
   \end{align*}
+\end{proof}
+
+\begin{corollary}
+  \par Under the settings of Proposition \ref{proposition_abel_summation}, we have,
+\begin{equation*}
+  \sum_{p\leq x}a_pf(p) = A(x)f(x) - \int_2^x A(t)f'(t)dt.
+\end{equation*}
+\label{corollary_abels_summation_primes}
+\end{corollary}
+
+\begin{proof}
+  Consider $b_n = \pi(n)a_n$ and apply Proposition \ref{proposition_abel_summation}.
 \end{proof}
 
 
@@ -2648,7 +2660,7 @@ Iterating the process, we have the following theorem,
 \begin{exercise}
   Show 
   \begin{equation*}
-     \forall \alpha\in \R, x>0, \sum_{n\in\Z}e^{-(n+\alpha){\frac \pi x}}=\sqrt{x}\sum_{n\in\Z}e^{-n^2\pi x+2\pi i n \alpha}.
+     \forall \alpha\in \R, x>0, \sum_{n\in\Z}e^{-(n+\alpha)^2{\frac \pi x}}=\sqrt{x}\sum_{n\in\Z}e^{-n^2\pi x+2\pi i n \alpha}.
   \end{equation*}
   Note that $\sum_{n\in\Z}a_n$ is convergent if 
   \begin{equation*}
@@ -2675,6 +2687,7 @@ Iterating the process, we have the following theorem,
     \sum_{n\in\Z}F(n+u) = \sum_{n\in\Z}\hat{F}(n)e^{2\pi i n u}.
   \end{equation*}
   \label{theorem_fourier_transform_convergent}
+  \label{theorem_poisson_summation}
 \end{theorem}
 \begin{proof}
   Use Exercise \ref{exercise_fourier_poisson_summation}.
@@ -3423,7 +3436,7 @@ Now consider the following closed path
 where $U$ is some odd integer. By Cauchy's residue theorem, we have,
 \begin{align*}
    {\frac 1 {2\pi i}}\int_{C_R}-{\frac {\zeta'(s)}{\zeta(s)}}{\frac {x^s} s}ds &= \text{sum of residues of ${\frac {\zeta'(s)}{\zeta(s)}}$ in $C_R$},\\
-   & = \overbrace{x}^{\text{contribution of poles of $\zeta(s)$}} - \underbrace{{\frac {\zeta'(0)}{\zeta(0)}}}_{\text{contribution of $s=0$}} +\overbrace{\sum_{0<2m<U}{\frac {x^{-2m}} {2m}}}_{\text{contribution of non-trivial zeros of $\zeta(s)$}}-\underbrace{\sum_{\substack{\rho=\beta+i\gamma\\\zeta(\rho)=0\\\vert\gamma\vert<R}}{\frac {x^\rho} {\rho}}}_{\text{contribution of trivial zeros of $\zeta(s)$}}.
+   & = \overbrace{x}^{\substack{\text{\makebox[0pt][c]{contribution of poles of $\zeta(s)$}}\\\:}} - \underbrace{{\frac {\zeta'(0)}{\zeta(0)}}}_{\text{\makebox[0pt][c]{contribution of $s=0$}}} +\overbrace{\sum_{0<2m<U}{\frac {x^{-2m}} {2m}}}^{\text{\makebox[0pt][c]{contribution of non-trivial zeros of $\zeta(s)$}}}-\underbrace{\sum_{\substack{\rho=\beta+i\gamma\\\zeta(\rho)=0\\\vert\gamma\vert<R}}{\frac {x^\rho} {\rho}}}_{\text{contribution of trivial zeros of $\zeta(s)$}}.
 \end{align*}
 Note that,
 \begin{equation*}
@@ -3454,7 +3467,7 @@ Taking $R\to\infty$, we have,
 \end{equation*}
 \begin{definition}
   \begin{equation*}
-  \psi(x,\chi) \defeq\sum{n\leq x}\Lambda(n)\chi(n).
+  \psi(x,\chi) \defeq\sum_{n\leq x}\Lambda(n)\chi(n).
   \end{equation*}
 \end{definition}
 Recall we had,
@@ -3719,7 +3732,7 @@ where $(a,q) = 1$. By Theorem \ref{theorem_prime_number_ap}, we have, as $x\to\i
 \end{exercise}
 
 \begin{proof}[Solution.]
-We have,
+As the smallest prime between $\sqrt{x}$ and $x$ is at least $\sqrt{x}$, we have,
 \begin{equation*}
   (\pi(x)-\pi(\sqrt{x}))\log\sqrt{x}\leq2x\log 2.
 \end{equation*}
@@ -3732,11 +3745,18 @@ Note that $\pi(\sqrt{x})\leq \sqrt{x}$. Therefore,
   \pi(x)=O\left({\frac {x} {\log x}}\right).
 \end{equation*}
 %------- These parts need more explanations -------%
-We hae $\psi\gg x$, thus we get,
+Using $\psi\gg x$ and Remark \ref{remark_chebyschev_functions_relation}
 \begin{equation*}
-  \psi(x)-\theta(x)=O(\sqrt{x}\log^2x).
+  \psi(x)-\theta(x)=O(\sqrt{x}\log x).
 \end{equation*}
-Hence $\theta\gg x$.
+Hence $\theta\gg x$. As before,
+\begin{equation*}
+  \sum_{\sqrt{x}<p\leq x}\log p +O(\sqrt{x}\log x) \gg x.
+\end{equation*}
+So that sufficiently large $x$, we have, 
+\begin{equation*}
+  \pi(x)\log x \gg x.
+\end{equation*}
 \end{proof}
 
 \begin{exercise}[3.1.8]
@@ -3760,6 +3780,12 @@ Using Proposition \ref{proposition_abel_summation}, we get,
 \begin{align*}
   \sum_{n\leq x}{\frac {\Lambda(n)} n} & = {\frac {\psi(x)} x} + \int_1^x {\frac {\psi(t)} {t^2}}dt,\\
   & =\log x+O(1).
+\end{align*}
+Apply Corollary \ref{corollary_abels_summation_primes} to ${\frac {\log n} n}$, we get,
+\begin{align*}
+  \sum_{p\leq x}{\frac {\log p} p}{\frac 1 {\log p}} & = O(1)+\int_2^x {\frac {(\log t+O(1))} {(\log t)^2}}dt,\\
+  & = \int_2^x {\frac {(\log t+O(1))} {(\log t)^2}}{\frac {dt} t},\\
+  & = \log\log x+O(1).
 \end{align*}
 \end{proof}
 
@@ -3813,7 +3839,7 @@ Using Proposition \ref{proposition_abel_summation}, we get,
   \end{equation*}
   is bounded. Thus we have,
   \begin{align*}
-    \sum_{n>x}{\frac {\chi(n)} n}\leq \int_x^\infty {\frac {\varphi(q)} t^2}dt = O\left({\frac 1 x}\right).
+    \sum_{n>x}{\frac {\chi(n)} n}\leq \int_x^\infty {\frac {\varphi(q)} {t^2}}dt = O\left({\frac 1 x}\right).
   \end{align*}
 \end{proof}
 
@@ -3847,7 +3873,7 @@ Using Proposition \ref{proposition_abel_summation}, we get,
   \end{equation*}
   Set 
   \begin{equation*}
-    F(x) = \sum_{n\leq x}a_n \chi(d).
+    F(x) = \sum_{n\leq x}a_n .
   \end{equation*}
   Then by the previous exercise, we have $F(x) = O(\sqrt{x})$. Let 
   \begin{equation*}
@@ -3974,7 +4000,37 @@ Similarly, we observe that
   \begin{equation*}
     {\frac 1 {2\pi i}}\int_{c-iR}^{c+iR}{\frac {x^s} {s\zeta(s)}}ds,
   \end{equation*}
-  and consider $R\to\infty$.
+  Take $c_1,c_2$ from Theorem \ref{theorem_zeta_modulo_lower_bound}, thus 
+  \begin{equation*}
+    \delta=1-{\frac {c_1} {(\log R)^9}}\leq \sigma\leq 2,1\leq \vert t\vert\leq R\Rightarrow.
+  \end{equation*}
+  Thus consider the counterclockwise contour integral $\mathcal{C}$,
+      \begin{center}
+  \begin{tikzpicture}
+  \draw[->] (-1,0) -- (6,0);
+  \draw[->] (0,-3)--(0,-2) node[left]{$-R$} -- (0,2)node[left]{$R$}--(0,3);
+  \draw[very thick, dotted] (0,-2) -- (1,-2);
+  \draw[very thick, dotted] (0,2) -- (1,2);
+  \draw[very thick, black] (1,-2) -- (1,0)node[above left, black]{$\delta$} -- (1,2)
+    -- (5,2)--(5,0)node[above right, black]{$c$} -- (5,-2) -- cycle;
+  \end{tikzpicture}
+\end{center}
+By Cauchy's theorem, we have,
+\begin{equation*}
+  {\frac 1 {2\pi i}}\int_\mathcal{C}{\frac {x^s} {s\zeta(s)}}ds.
+\end{equation*}
+Therefore,
+\begin{equation*}
+  {\frac 1 {2\pi i}}\int_{c-iR}^{c+iR}{\frac {x^s} {s\zeta(s)}}ds = -{\frac 1 {2\pi i}}\left(\int_{\delta-iR}^{c-iR}+\int_{c+iR}^{\delta+iR}+\int_{\delta+iR}^{\delta-iR}\right){\frac {x^s} {s\zeta(s)}}ds,
+\end{equation*}
+By Theorem \ref{theorem_zeta_modulo_lower_bound}, we have,
+\begin{equation*}
+  -{\frac 1 {2\pi i}}\left(\int_{\delta-iR}^{c-iR}+\int_{c+iR}^{\delta+iR}\right){\frac {x^s} {s\zeta(s)}}ds \ll {\frac {x^c(\log R)^7} {R\log x}}.
+\end{equation*}
+On the vertical line, we have,
+\begin{equation*}
+  \left\vert{\frac 1 {2\pi i}}\int_{\delta+iR}^{\delta-iR}{\frac {x^s} {s\zeta(s)}}ds\right\vert \ll x^\delta(\log R)^8.
+\end{equation*}
 \end{proof}
 \begin{exercise}[4.3.5]
   Let $E(x)$ be the number of square free integers less than or equal to $x$ with even number of prime factors. Show that 
@@ -3990,7 +4046,7 @@ Similarly, we observe that
   $a_n=1$ if $n$ is square-free and has even number of prime factors otherwise $0$. Let $Q(x)$ be the number of square free integers less than or equal to $x$. Then 
   \begin{align*}
     E(x) &=\sum_{n\leq x}a_n,\\
-    & = {\frac 1 2}\sum_{n\leq x}\mu(n)^2+{\frac 1 2}\mu_{n\leq x}\mu(n),\\
+    & = {\frac 1 2}\sum_{n\leq x}\mu(n)^2+{\frac 1 2}\sum_{n\leq x}\mu(n),\\
     & = {\frac {Q(x)} 2}+{\frac {M(x)} 2}.
   \end{align*}
   The second term is shown by Exercise \ref{exercise_4.3.4}. Remains to show the first term. By Exercise \ref{exercise_1.2.7}, we have,
@@ -4015,7 +4071,7 @@ Similarly, we observe that
   \begin{equation*}
     \int_1^\infty {\frac {M(w)} {w^{2+it}}}dw-\int_N^\infty {\frac {M(w)} {w^{2+it}}}dw.
   \end{equation*}
-  Ther first term conevrges as ${\frac {M(w)} {w^{2+it}}}=O(w^{-1-\delta})$ for some $\delta>0$. Note that 
+  The first term conevrges as ${\frac {M(w)} {w^{2+it}}}=O(w^{-1-\delta})$ for some $\delta>0$. Note that 
   \begin{equation*}
     \exp\left(-{\frac c 2}(\log w)^{{\frac 1 {10}}}\right)\leq \exp\left(-{\frac c 2}(\log w)^{{\frac 1 {10}}}\right).
   \end{equation*}
@@ -4040,6 +4096,7 @@ Similarly, we observe that
   \end{align*}
 \end{proof}
 \begin{exercise}[4.4.13]
+  \label{exercise_4.4.13}
   Show that 
   \begin{equation*}
     \sum_{n\leq x}{\frac 1 {\varphi(n)}}\ll \log x.
@@ -4059,7 +4116,15 @@ Similarly, we observe that
   \end{equation*}
 \end{exercise}
 \begin{proof}
-  Remains to show that $\log x\ll \sum_{n\leq x}{\frac 1 {\varphi(n)}}$.%later
+  From Exercise \ref{exercise_4.4.13}, it remains to prove that 
+  \begin{equation*}
+    c\log x\leq \sum_{n\leq x}{\frac 1 {\varphi(n)}}.
+  \end{equation*}
+  We have $\varphi(n)\leq n$ for any $n\in\N$, in the argument of Lemma \ref{harmonic_series_upper_bound},
+  \begin{equation*}
+    \sum_{n\leq x}{\frac 1 n}\geq \log x.
+  \end{equation*}
+  This finishes the proof.
 \end{proof}
 \begin{exercise}[5.3.2]
   Show that for a character $\chi\tmod q$ and $(n,q)=1$, we have,
@@ -4106,7 +4171,7 @@ Similarly, we observe that
   \end{equation*}
   Suppose $\chi\tmod q$ is odd and set,
   \begin{equation*}
-    \theta_1(x,n) = \sum_{n\in\Z}n\chi(n)e^{-{\frac{\pi n^2x} q}}.
+    \theta_1(x,\chi) = \sum_{n\in\Z}n\chi(n)e^{-{\frac{\pi n^2x} q}}.
   \end{equation*}
   Then we have,
   \begin{equation*}
@@ -4121,21 +4186,54 @@ Similarly, we observe that
   This is derived from the definition of $\Gamma$ and change of variables by $t\to {\frac {\pi n^2x} q}$.
   The second equation is due to the parity of $\chi$ that is,
   \begin{equation*}
-    \theta_1(x,n) = \sum_{n\in\Z}n\chi(n)e^{-{\frac{\pi n^2x} q}} = \sum_{n\in\Z}(n\chi(n)-n\chi(-n))e^{-{\frac{\pi n^2x} q}}.
+    \theta_1(x,\chi) = \sum_{n\in\Z}n\chi(n)e^{-{\frac{\pi n^2x} q}} = \sum_{n\in\Z}(n\chi(n)-n\chi(-n))e^{-{\frac{\pi n^2x} q}}.
   \end{equation*}
 \end{proof}
 \begin{exercise}[5.4.4]
-  
+  \begin{equation*}
+    \sum_{n\in\Z}\left(n+{\frac m q}\right)e^{-{\frac {q\left(n+{\frac m q}\right)^2\pi} {x}}} = ix^{{\frac 3 2}}\sum_{n\in \Z}ne^{{\frac {-n^2\pi x} {q}}+2\pi i{\frac {mn} q}}.
+  \end{equation*}
 \end{exercise}
 \begin{proof}[Solution.]
-  
+  Recall that for $F(t) = e^{-\pi t^2}$, we have $\hat{F}(t) = F(t)$. Therefore, let 
+  \begin{equation*}
+    f(t) = e^{-{\frac {t^2} \alpha}\pi},
+  \end{equation*}
+  we obtain,
+  \begin{align*}
+    \hat{f}(n) & = \sqrt{\alpha}\int_{-\infty}^\infty e^{-\pi t^2}e^{-2\pi i\sqrt{\alpha}nt}dt,\\
+    & = \sqrt{\alpha}\hat{F}(\sqrt{\alpha} n) = \sqrt{\alpha}e^{-\alpha\pi n^2}.
+  \end{align*}
+  Using Theorem \ref{theorem_poisson_summation}, we obtain,
+  \begin{equation*}
+    \sum_{n\in\Z}e^{-{\frac {(n+a)^2\pi} {x}}} = \sqrt{x}\sum_{n\in \Z}e^{-n^2\pi x+2\pi ina}.
+  \end{equation*}
+  Differentiate with respect to $a$, we get,
+\begin{equation*}
+    {\frac {2\pi} {x}}\sum_{n\in\Z}(n+a)e^{-{\frac {(n+a)^2\pi} {x}}} = 2\pi i\sqrt{x}\sum_{n\in \Z}ne^{-n^2\pi x+2\pi ina}.
+  \end{equation*}
+  Put $x\to {\frac x q}$, and $a = {\frac m q}$, we obtain the result.
 \end{proof}
 
 \begin{exercise}[5.4.5]
-  
+  \begin{align*}
+    \xi(s,\chi)\defeq \pi^{-\left({\frac {s} 2}\right)}q^{\left({\frac {s} 2}\right)}\Gamma\left({\frac {s+1} 2}\right)L(s,\chi).
+  \end{align*}
+  Then show that $\xi$ is entire and 
+  \begin{equation*}
+    \xi(s,\chi) = {\frac {\tau(\chi)} {i\sqrt{q}}}\xi(1-s,\overline{\chi}).
+  \end{equation*}
 \end{exercise}
 \begin{proof}[Solution.]
-  
+  Note that $\chi(1) = e^{2\pi i{\frac m q}}$. Therefore, 
+  \begin{equation*}
+    \theta(s,\chi) = 
+  \end{equation*}
+   \begin{align*}
+    \pi^{-\left({\frac {s+1} 2}\right)}q^{\left({\frac {s+1} 2}\right)}&\Gamma\left({\frac {s+1} 2}\right)L(s,\chi),\\
+    &={\frac 1 2}\int_0^\infty \theta_1(x,\chi)x^{{\frac {s+1} 2}}{\frac {dx} x},\\
+    & = {\frac 1 2}\int_1^\infty \theta_1(x,\chi)x^{{\frac {s+1} 2}}{\frac {dx} x}+{\frac 1 2}\int_1^\infty \theta_1(x^{-1},\chi)x^{-{\frac {s+1} 2}}{\frac {dx} {x}},
+  \end{align*}
 \end{proof}
 \begin{exercise}[5.5.7]
   Suppose $\chi$ is a primitive character then we have,
@@ -4197,8 +4295,8 @@ Similarly, we observe that
   For a prime $p$ and a quadratic character $\chi$, we have,
   \begin{equation*}
     \tau(\chi) = \begin{cases}
-      \sqrt{p},\quad(p\equiv1\mod{p}),\\
-      i\sqrt{p},\quad(p\equiv3\mod{p}).
+      \sqrt{p},\quad(p\equiv1\mod{4}),\\
+      i\sqrt{p},\quad(p\equiv3\mod{4}).
     \end{cases}
   \end{equation*}
 \end{exercise}
@@ -4219,6 +4317,18 @@ Similarly, we observe that
   \begin{equation*}
     \vert\tau(\chi)\vert^2 = \sum_{k,l=0}^{p-1}\zeta_p^{k^2-l^2} = \sum_{a,b=0}^{p-1}\zeta_p^{ab} = p.
   \end{equation*}
-  Remains to prove the parity of this. 
+  Remains to prove the parity of this. But note that 
+  \begin{equation*}
+    \overline{\tau(\chi)} = \chi(-1)\tau(\chi),
+  \end{equation*}
+  therefore,
+  \begin{equation*}
+    \chi(-1)\tau(\chi)^2 = p.
+  \end{equation*}
+  Note that $\chi(-1)=\pm1$ and for a generator $g\in(\Z/p\Z)^\times$ we have 
+  \begin{equation*}
+    g^{{\frac {p-1} 2}} \equiv -1\mod{p}.
+  \end{equation*}
+  Thus we conclude the proof.
 \end{proof}
 \end{document}
